@@ -13,8 +13,7 @@ public class FirstWave : MonoBehaviour, ISpawn
         if(time > timeInterval)
         {
             GameObject go = info.simpleWordFactory.getWordObject();
-            //Instantiate(go);
-            go.transform.position = info.spawnPoints[0].position; //Temporal
+            go.transform.position = info.spawnPoints[Random.Range(0, info.spawnPoints.Count)].position; //Temporal
             word = go.GetComponent<IWordController>();
             time = 0f;
         }

@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class SimpleWord : MonoBehaviour, IWordController
 {
     public string word;
     public int points;
     private string seq = "";
-    private TextMeshPro m_TextMeshPro;
+    private WordDisplay display;
     public void HandleInput(char key)
     {
         seq += key;
@@ -22,25 +21,15 @@ public class SimpleWord : MonoBehaviour, IWordController
             GameManager.RemoveWord(this);
             Destroy(gameObject);
         }
-        UpdateWordDisplay();
+        display.UpdateDisplay(seq, word);
     }
 
-    private void UpdateWordDisplay()
-    {
-        string highlighted = "<color=green>" + seq + "</color>" + word.Substring(seq.Length);
-        m_TextMeshPro.text = highlighted;
-    }
     // Start is called before the first frame update
     void Start()
     {
-        m_TextMeshPro = gameObject.AddComponent<TextMeshPro>();
-        m_TextMeshPro.fontSize = 6;
-        m_TextMeshPro.text = word;
+        display = gameObject.AddComponent<WordDisplay>();
+        display.Initialize(word);
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
