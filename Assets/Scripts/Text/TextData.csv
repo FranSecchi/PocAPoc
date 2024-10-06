@@ -1,0 +1,60 @@
+Key;English;Catalan;Spanish
+Start;Start;Començar;Empezar
+Finish;The End!;Final!;Fin!
+Ok;Okey;D'acord;Vale
+Yes;Yes;Si;Si
+Fine;Fine;Be;Bien
+Bye;Bye;Adeu;Adios
+Use;Use;Utilitzar;Utilizar
+Unuse;Save;Guardar;Guardar
+CollectUI;Take;Agafar;Coger
+InspectUI;Inspect;Inspeccionar;Inspeccionar
+nSmoke;Smoke;Cigarreta;Cigarrillo
+dSmoke;.;.;Encontrado en la papelera de la habitación donde se encontró el cadáver. Pero la víctima no era fumadora.
+nElevatorBtn;Button;Botó Ascensor;Botón Ascensor
+dElevatorBtn;.;.;Parece encajar en el panel del ascensor. Debería ir a comprobarlo
+nGlassTube;Glass tube;Tub de vidre;Tubo de vidrio
+dGlassTube;.;.;Un tubito para llenarlo de lo que necesite.
+nFilledGlassTube;Filled Glass tube;Tub de vidre ple;Tubo de vidrio lleno
+dFilledGlassTube;.;.;"Las ""lágrimas del mañana"", espero tenerlas todas."
+nNeedle;Needle;Agulla;Aguja de canchillo
+dNeedle;.;.;Con esto podría cojer el objeto del seto del jardín, si no fuera tan corta.
+nScissors;Scissors;Tisores;Tijeras
+dScissors;.;.;Alomejor con esto podría cortar algo, ¿pero qué?
+nShovel;Shovel;Pala;Pala
+dShovel;.;.;Espero que sea igual que la pala que Jose ¿perdió?... ¿perderá?... ¿pierde?. Yo ya no sé.
+nKey;Key;Clau;Llave
+dKey;.;.;Esta llave estoy seguro de que me servirá si vuelvo al presente
+nLighter;Lighter;Encenedor;Encendedor
+dLighter;.;.;Todo el mundo sabe para que sirve. No hace falta un manual de instrucciones.
+nStatue;Statue;Estatueta;Estátua
+dStatue;.;.;Parece uno de los símbolos del cuarto de Rosa
+nRope;Rope;Corda;Cuerda
+dRope;.;.;Una cuerda, si estubiera enganchada a un especie de anzuelo...
+nNeedleRope;Needle and rope;Agulla i corda;Aguja y cuerda
+dNeedleRope;.;.;La combinación perfecta para llegar a todos lados
+nBook;Book;Llibreta;Libreta
+dBook;.;.;Está en blanco, pero huele a cítrico, ¿limón?
+nCandle;Candle;Espelma;Vela
+dCandle;.;.;Una vela normal aromática, parece usada varias veces. Estaba junto la libreta.
+nCandleOn;Lighted Candle;Espelma encesa;Vela prendida
+dCandleOn;.;.;Huele a rosas, y está calentita. Pero para que la encendía si la libreta está en blanco.
+nCookie;Cookie;Galeta;Galleta
+dCookie;.;.;Las galletas preferidas de Jose, cortesía de su hermana María
+nSeed;Seed;Llavor;Semilla
+dSeed;.;.;"Supongo que esto es ""lo que se debió plantar ayer"""
+nPolaroid;Polaroid;Polaroid;Cámara polaroid
+dPolaroid;.;.;Para hacer fotos instantaneas, bastante útil para crear recuerdos familiares en un momento
+nPicturePast;Picture;Fotografia;Foto Abraham Lutece
+dPicturePast;.;.;Igualito a su hijo y a su nieto
+nRing;Ring;Anell;Anillo
+dRing;.;.;El trocito de metal que hundió a una persona en la miseria, qué miedo da el compromiso
+nFlouer;Flouer;Flor;Flor
+dFlouer;.;.;"""Lo que se recolectará hoy"", una simple flor para mi, un sueño cumplido para ella"
+ContinueBtn;Continue Game;Continuar Partida; Continuar Partida
+NewGameBtn;New Game;Nova Partida; Nueva Partida
+Quit; Quit; Sortir; Salir
+nPicturePresent;Picture;Fotografia;Foto Adam Lutece
+dPicturePresent;.;.;Se parece demasiado a su padre y su hijo
+Next;Next;Següent;Siguiente
+confirmNew;Creating a new game will delete all current progress! Are you sure?;.;Crear una nueva partida borrará todo progreso! Seguro?

@@ -1,0 +1,184 @@
+Key;English;Catalan;Spanish
+DetectiveIntro_00;;;Buenas tardes, soy el detective Umberto Helecho. Me gustaría hacerte unas preguntitas. Espero no molestar.
+DetectiveIntro_01;;;(¡¿Magnífico día?! ¿Acaso no sabe que ocurrió ayer aquí?) Me han enviado para investigar la tragedia de la joven Rosa de Alabastro. Necesito información sobre los huéspedes que estaban registrados en el hotel durante la noche pasada, además de los datos de usted y de los demás empleados. ¿Podrías proporcionarme una lista?
+DetectiveIntro_02;;; Llámame inspector Umberto. Y no hace falta que me trates de usted. Conmigo no hacen falta tratos especiales.
+DetectiveIntro_Ans;;;Bueno, vamos a ver…
+DetectiveIntro_Op1;;;¿Hubo alguna actividad inusual o algún incidente reportado durante la noche?
+DetectiveIntro_Op2;;;¿Cómo se sostiene el negocio si no hay clientes?
+DetectiveIntro_Op3;;;Una última pregunta. ¿Quién trabaja aquí y dónde puedo encontrarlo? Con nombre y apellido, por favor.
+DetectiveIntro_10;;;¿Quién fue la primera persona en descubrir el cuerpo?
+DetectiveIntro_11;;;(Debería hablar con ella, pero antes me gustaría ver la escena del crimen.) ¿Y usted estuvo aquí todo el rato?
+DetectiveIntro_12;;;¿Y vió a alguien pasar en esas últimas horas?
+DetectiveIntro_20;;;(Heréncia que ahora heredarà Guillermo de Buganvilla. Tenemos un motivo plausible. Tendré que hablar con él y sacarle más información.) Muchas gracias por la información, será de gran utilidad.
+DetectiveIntro_30;;;Entendido. Por cierto, ¿dónde se encuentra el cuerpo?
+DetectiveIntro_31;;;(¿Se le olvida que alguien ha fallecido esa misma mañana? Qué extraño...) De acuerdo, chaval. Si no lo he entendido mal. Buganvilla a la derecha, el jardinero cortando malas hierbas en el jardín y-
+DetectiveIntro_32;;;(Debo de haber tocado un tema sensible. Será mejor que me ponga a trabajar en el caso.) 
+DetectiveIntro_End;;;Nos vemos, chaval. Gracias de nuevo por todo. Doy por hecho que no se moverá de aquí y espero que así sea mientras dure la investigación.
+RecepIntro_00;;;Muy buenas tardes a usted también, señor Helecho. No molesta en absoluto, señor. ¿En qué puedo ayudarle en este magnífico día?
+RecepIntro_01;;;La verdad es que no había ningún huésped. Nunca se ha hospedado nadie que no fuera de la familia Buganvilla y Alabastro, que suelen visitar durante el verano. En cuanto a los trabajadores respecta no va a necesitar ninguna lista, créame. ¿En qué más puedo ayudarle señor Helecho?
+RecepIntro_02;;;No es un trato especial si trato a todo el mundo igual, ¿verdad? Jajajaja. Digame que necesita y yo se lo proporciono. Política de empresa
+RecepIntro_10;;;Verá seño- digo, inspector. La noche transcurrió con normalidad y no se me informó hasta hace un par de horas para llamarle a usted. Todo estaba tranquilo hasta que esta mañana se encontró el cuerpo en una de las habitaciones.
+RecepIntro_11;;;Fue, cómo no, Azucena. La ama de llaves. Entró a despertar a la señorita, como de costumbre, y se encontró con la escena.
+RecepIntro_12;;;Sí, después de la cena estuve aquí plantado hasta las 12 de la noche.
+RecepIntro_13;;;La verdad es que después de la cena solo vi pasar a la señorita Rosa hacia su habitación. Aunque todo el mundo podría haber accedido a la habitación desde el otro lado del pasillo, pasando por el jardín.
+RecepIntro_14;;;¿En qué más puedo ayudarle señor Helecho?
+RecepIntro_20;;;No sabría decirle, seño- inspector. El amo Buganvilla no le va a contar todo a sus empleados, ¿no cree? Y tampoco querría inmiscuirme pero dicen las malas lenguas que todo esto se paga con la herencia que la ama Alabastro heredó antes de casarse con él. Así que sospecho tendrá que hablar usted de ese tema con él.
+RecepIntro_21;;;¿En qué más puedo ayudarle inspector Helecho?
+RecepIntro_30;;;Ya le dije que el elenco es reducido. El amo Guillermo de Buganvilla, dueño del hotel, lo podrá encontrar en la sala de estar de los empleados. Entrando a la derecha y luego al fondo a la izquierda del pasillo, no tiene pérdida. Azucena Florenza, el ama de llaves. Seguramente la pueda encontrar nada más girar a la izquierda delante de las habitaciones. El jardinero, José Romero. Ese hombre no sale del jardín, al cual se puede acceder por ambos lados del edificio. Y por último, un servidor, Adam Lutece. Trabajo de recepcionista cómo lo hizo mi padre y como espero que haga mi hijo.
+RecepIntro_31;;;Ah, sí. Ya se me había olvidado, jajajá. Penúltima habitación, la única que se puede abrir.
+RecepIntro_32;;;¡Inspector! Aquí no crecen “malas hierbas” y para usted es señor Buganvilla. Ejem, ejem… A Azucena la encontrará a la izquierda y yo me quedaré aquí a su servicio. En efectivo, entendió todo.
+RecepIntro_End;;;No moveré ni un solo dedo si eso necesita, inspector.
+DetectiveBuganvilla_00;;;Buenas tardes, señor Buganvilla. Soy el detective Umberto Helecho. Lamento mucho su pérdida. Estoy aquí para hablar sobre lo que sucedió entre anoche y esta mañana.
+DetectiveBuganvilla_01;;;(No para su esposa-) Sí, por supuesto. Me gustaría hacerle algunas preguntas sobre su esposa y lo que ocurrió en este hotel.
+DetectiveBuganvilla_Ans;;;Me gustaría preguntar si…
+DetectiveBuganvilla_Op1;;;¿Tiene alguna razón por la que suene tan alegre hablando de una situación como ésta?
+DetectiveBuganvilla_Op2;;;¿Puede describir su relación con su esposa? ¿Duermen separados? ¿Había algún problema entre ustedes?
+DetectiveBuganvilla_Op3;;;¿Puede decirme cuál fue la última vez que vio a su esposa con vida?
+DetectiveBuganvilla_10;;;Me sorprende que se pueda permitir el lujo de estar tan entero la misma mañana que se entera de la desgracia.
+DetectiveBuganvilla_11;;;¿Sigo con las preguntas?
+DetectiveBuganvilla_20;;;¿Qué escribía su mujer en esa libreta?
+DetectiveBuganvilla_21;;;¿Sabe dónde puedo encontrar esa libreta?
+DetectiveBuganvilla_22;;;(Tengo la sensación que ahí tiene que haber escrito algo importante.)Tengo una pregunta más.
+DetectiveBuganvilla_30;;;¿Dónde fue a cenar? ¿Con quién estuvo?
+DetectiveBuganvilla_31;;;Dice que fueron todos pero que vio a su esposa después de la cena.
+DetectiveBuganvilla_32;;;¿La noto un poco extraña, entonces? Me refiero a si rechazó la invitación por estar enfadada o triste o-
+DetectiveBuganvilla_33;;;(Atreverse. Una palabra muy fuerte para un sentimiento tan normal y humano.) ¿No ha llorado nunca delante suyo?
+DetectiveBuganvilla_34;;;(Creo que no es el momento para discutir. Debería sacar provecho de su enaltecimiento emocional y sacar más información) ¿Y que hubiera pasado si te la encuentras llorando?
+DetectiveBuganvilla_35;;;(Pero no podrías echarla si es ella quien tenía el dinero. Así que en su cabeza, si es tan retorcida como extremista, no quedaría otra opción que… Debería seguirle el rollo.) Lo siento si he puesto en duda el honor de la señorita Rosa.
+DetectiveBuganvilla_End;;;Lo entiendo. Bueno, necesitaré hacer algunas investigaciones adicionales. Por favor, no se mueva de este hotel y asegúrese de estar disponible si necesito hacerle más preguntas.
+BuganvillaDetective_00;;;Ah, detective, qué bueno que estás aquí. Sí, sí, es una tragedia, una verdadera tragedia. Pero sabes, la vida sigue, ¿no es así?
+BuganvillaDetective_01;;;Claro, adelante. Pregunte lo que quiera. Estoy aquí para cooperar en lo que sea necesario.
+BuganvillaDetective_10;;;Ah, detective, es solo mi forma de ser, ya sabes. Siempre trato de mantenerme positivo, incluso en momentos difíciles como este.
+BuganvillaDetective_11;;;No es un lujo, inspector. A pesar de mi apariencia no me permito ninguno.
+BuganvillaDetective_12;;;Claro, adelante. Estoy aquí para cooperar en lo que sea necesario.  (vuelta a la decisión de diálogos)
+BuganvillaDetective_20;;;Oh, nuestra relación era maravillosa. Nos llevábamos muy bien. No había problemas en absoluto. De hecho, estábamos planeando ir a visitar a su familia dentro de poco. Lo que pasa es que ella se queda hasta tarde escribiendo y yo no puedo pegar ojo con tanta luz.
+BuganvillaDetective_21;;;No lo sé, decidí que lo que escribiera fuera su intimidad, así que tampoco le preguntaba.
+BuganvillaDetective_22;;;Seguramente esté dentro de su baúl personal, en su habitación.
+BuganvillaDetective_23;;;Claro, adelante. Estoy aquí para cooperar en lo que sea necesario.
+BuganvillaDetective_30;;;Anoche, después de la cena. Fueron 10 segundos, cada uno fue a su habitación. No la vi esta mañana antes de que ocurriera todo esto.
+BuganvillaDetective_31;;;Fuimos todos a un restaurante que conozco. Más cerca de la ciudad.
+BuganvillaDetective_32;;;Si, claro. Ella se quedó como de costumbre estos últimos meses, decía que no le apetecía.
+BuganvillaDetective_33;;;¿¡Triste ella!? Jajaja, no me haga reír hombre. No se atrevería.
+BuganvillaDetective_34;;;Tenía todas las necesidades y todos los lujos que ella pidiera, ni delante de mí ni a mis espaldas iba a llorar. Ella bien sabía que el llanto sacude el cuerpo, deforma los rasgos de la cara, hace que la persona parezca un perro arrepentido... El llanto es un signo de inmadurez. El que llora está profundamente afectado por aquello que lo provoca, pero tampoco actúa para cambiarlo. Ella era mejor que esto.
+BuganvillaDetective_35;;;¡Que la hubiese echado!
+BuganvillaDetective_36;;;No lo ha hecho inspector, quédese tranquilo.
+BuganvillaDetective_End;;;Por supuesto, detective. Haré todo lo que esté en mi mano para ayudar con la investigación. Estoy seguro de que encontrará al responsable pronto.
+DetectiveAma_00;;;Buenas tardes, señora Azucena. Soy el detective Umberto Helecho. Me gustaría hacerle algunas preguntas sobre lo que ocurrió esta mañana.
+DetectiveAma_01;;;Por supuesto, trataré de ser lo más breve posible. ¿Podría decirme cuál fue su actividad esta mañana antes de que descubriera el cuerpo?
+DetectiveAma_02;;;¿Alguna vez notó algún comportamiento inusual por parte de la difunta o alguna actividad sospechosa en el hotel?
+DetectiveAma_03;;;¿Puede describir su relación con el señor Buganvilla y cómo se llevaba con su esposa?
+DetectiveAma_04;;;¿Y cómo se llevaba usted con la difunta?
+DetectiveAma_End;;;Entiendo. Bueno, gracias por su cooperación, señorita Azucena. Si tiene alguna información adicional, no dude en decírmelo.
+AmaDetective_00;;; Buenas tardes, detective. Espero que esta charla no tome mucho de mi tiempo. Tengo muchas responsabilidades que atender.
+AmaDetective_01;;;Estuve supervisando a mi personal, asegurándome de que cumplieran con sus tareas como siempre. Ya sabe, manteniendo este lugar en orden.
+AmaDetective_02;;;Bueno, Rosa parecía más rebelde estos últimos dos meses. Ya era una chica independiente desde pequeña, pero nunca había estado tan aislada como estas últimas semanas.
+AmaDetective_03;;;El señor Buganvilla es el dueño del hotel, así que naturalmente, le debo respeto. Pero digamos que su esposa era... un tanto indisciplinada. Siempre quería las cosas a su manera, ya sabe.
+AmaDetective_04;;;Oh, la conozco desde que era una adolescente malcriada presa de sus sentimientos e impulsos. Aunque a veces me sentía como si ella no creyera que yo llevo los pantalones en este hotel. Pero, como dicen, cada uno tiene su lugar, ¿no es así?
+AmaDetective_End;;;Por supuesto, detective. Estoy aquí para ayudar en lo que pueda.
+DetectiveJardinero_00;;;Buenas tardes, José. Soy el detective Umberto. Me gustaría hacerle algunas preguntas sobre lo que ocurrió esta mañana.
+DetectiveJardinero_01;;;¿Podría decirme qué estaba haciendo después de la cena de anoche y durante la mañana de hoy?
+DetectiveJardinero_02;;;Entiendo. ¿Hubo algún momento en el que se alejara del jardín?
+DetectiveJardinero_03;;;¿Está seguro de que no la dejó en otro lugar o alguien más pudo haberla tomado prestada?
+DetectiveJardinero_04;;;Entiendo. Tomaré nota de eso. ¿Hay algo más que crea importante mencionar sobre ayer? ¿Vio pasar a alguien por aquí a altas horas de la noche?
+DetectiveJardinero_End;;;Gracias, hombre. Si se le ocurre algo más relevante, no dude en decírmelo.
+JardineroDetective_00;;;Buenas tardes, detective. Claro, pregunte lo que necesite.
+JardineroDetective_01;;;Después de la cena, estuve en el jardín. No me moví de allí. Estaba trabajando en algunas áreas que necesitan ser arregladas. Y esta mañana, continué con mis labores de siempre.
+JardineroDetective_02;;;No, detective. Estuve aquí todo el tiempo. Pero hay algo que me preocupa. Mi pala de jardinería ha desaparecido. La dejé en la mesa la noche anterior, y cuando regresé por ella esta mañana, ya no estaba.
+JardineroDetective_03;;;Estoy seguro, detective. Siempre la dejo en el mismo lugar. Y es un regalo familiar, de mi hermana, no soy tan descuidado como para perderla.
+JardineroDetective_04;;;No, detective esto estaba tranquilo y no había nadie dándose un paseo nocturno. Eso es todo lo que puedo decirle. Si necesita algo más, estaré aquí en el jardín.
+JardineroDetective_End;;;Por supuesto, detective.
+DetectiveRecep_Past00;;;No sé qué acaba de pasar ahí dentro.
+DetectiveRecep_Past01;;;Buenas tardes. Sí, estoy un poco desconcertado. Creo que se ha estropeado el ascensor, porque yo iba hacia la planta de abajo y sigo aquí.
+DetectiveRecep_Past02;;;¿No había dicho que me llamaras inspector, Lutece?
+DetectiveRecep_Past03;;;Ay, ay, ay joven. Estás muy raro. ¿Te has hecho un retoque mientras estaba investigando? ¿No te he pedido que no te movieras sin mi permiso mientras busco las pistas?
+DetectiveRecep_Past04;;;Interesante. ¿Y cómo has dicho que te llamas, joven?
+DetectiveRecep_Past05;;;(Pero es que es tan parecido al Lutece que yo conozco… deben de ser familia.) Perdona, pero no conocerás por alguna coincidencia a Adam Lutece, verdad?
+DetectiveRecep_PastEnd;;;(¡¿Hijo?! Pero si tienen la misma edad. Un momento… que está pasando…Me he metido en un marrón con este Lutece. Estará pensando que espío a su familia) ¿Hijo? Eso es imposible, si es mayor y tiene canas y todo. ¿Cómo has dicho? ¿Lutece o Blutece? Ah, yo me refería a Adam Blutece el banquero. Bueno, mejor voy tirando.
+RecepDetective_Past00;;;Buenas tardes, señor. Parece un tanto confundido.
+RecepDetective_Past01;;;Ahora mismo avisaré a un técnico, señor.
+RecepDetective_Past02;;;Perdone pero si usted me hubiera pedido tal trato se lo hubiera concedido, señor. ¿Cómo sabe usted mi apellido?
+RecepDetective_Past03;;;De nuevo, señor. Si usted me hubiera pedido tal cosa yo hubiese acatado las indicaciones. Pero me temo que no le he visto en mi vida.
+RecepDetective_Past04;;;No lo dije. Me llamo Abraham Lutece.
+RecepDetective_PastEnd;;;Entiendo que tenga que hacer su trabajo de investigador, pero nombrar a mi hijo de la nada, no se lo voy a permitir.
+DetectiveJardinero_Past00;;;Buenas tardes.
+DetectiveJardinero_Past01;;;(Está hablando con la boca llena…) ¿Es usted el jardinero del hotel, verdad?
+DetectiveJardinero_Past02;;;Estoy investigando un caso, y creo que necesito su ayuda.
+DetectiveJardinero_Past03;;;(Qué peculiar.) No puedo revelar muchos detalles por respeto a la privacidad de las personas implicadas, pero me gustaría hacerle unas preguntas.
+DetectiveJardinero_Past04;;;(Tienen pinta de ser de chocolate. ¿O son pasas?) ¡Ha tenido usted algún problema con alguien del personal del hotel, en algún momento?
+DetectiveJardinero_Past05;;;(intentaré llamarle la atención…) ¿De qué son esas galletas?
+DetectiveJardinero_Past06;;;Ya veo… Bueno, al tema. ¿Qué opinión tiene usted de los demás trabajadores de este hotel?
+DetectiveJardinero_Past07;;;(A una mosca no, pero a una persona por lo que se ve sí…) ¿y qué relación en particular tiene usted con la señora Rosa de Alabastro?
+DetectiveJardinero_PastEnd;;;(Será mejor que me vaya antes de que coja otra galleta…) Muchas gracias por su tiempo. Siga usted con su trabajo, que yo voy a hacer el mio.
+JardineroDetective_Past00;;; Buenas, ¿qué puedo hacer por ti? *Crunch, crunch.*
+JardineroDetective_Past01;;;En efecto, ¿por qué lo pregunta? *Crunch, crunch.
+JardineroDetective_Past02;;;¿De qué se trata? *Coje otra galleta.*
+JardineroDetective_Past03;;;Por su puesto. *Crunch.*
+JardineroDetective_Past04;;;Claro que no, este hotel es el paraíso. Aquí nunca pasa nada malo, aquí todo el mundo es feliz. Eso dice el jefe. *Crunch.*
+JardineroDetective_Past05;;;Disculpe inspector, pero es que se trata de las mejores galletas del mundo, hechas por mi hermana. ¡Son adictivas!
+JardineroDetective_Past06;;;Mire, si pregunta usted por su caso, le aseguro señor inspector que son todos magníficas personas que no harían daño ni a una mosca. No dude de ello. ni de ellos.
+JardineroDetective_Past07;;;Ah, ¿ella? No entiendo cómo le resulta a usted tan interesante. No parece encajar demasiado en este lugar. Es muy… suya, digamos.
+JardineroDetective_PastEnd;;;Buena suerte, inspector. Crunch, crunch. Tome, crunch. (Le da una galleta)
+DetectiveRosa_00;;;(No puede ser, ¡es ella! ¿Me habré muerto en ese maldito ascensor?) Mire, señorita, soy inspector. Me gustaría preguntarle un par de cosas sobre un caso que estoy investigando.
+DetectiveRosa_01;;;Bueno, algunos inspectores tenemos la vista perfecta. Pero tiene razón, me vendría bien una pipa.
+DetectiveRosa_02;;;Pues me gustaría saber si hay algún empleado que se esté comportando raro últimamente, o que haya tenido alguna actitud inusual con usted.
+DetectiveRosa_03;;;….
+DetectiveRosa_04;;;Ahora mismo iba en camino al jardín. Hay cosas allí que debo investigar. 
+DetectiveRosa_End;;;No se preocupe. En cuanto pase por allí lo dejaré tal y como me pide. Incluso me puede llegar a venir bien de cara a futuro. Voy tirando, parece que usted necesita descansar.
+RosaDetective_00;;;Uy, ¿usted quién es, y por qué ha entrado en mi habitación sin permiso?
+RosaDetective_01;;;Un investigador, ¡qué guay! ¿Dónde está su lupa y su pipa?
+RosaDetective_02;;;Pues claro que tengo razón. ¿Qué es lo que quería saber?
+RosaDetective_03;;;¿Qué tanto interés tiene en mí? Cuidado detective, ¡que soy una mujer casada! pero lo cierto es que no, ¡todo el mundo me trata muy bien! Bueno, a veces, otras veces tan solo quisiera escapar de aquí… Pero no se preocupe, eso es normal. Quiero decir, ¡sí, en verdad estoy encantada!
+RosaDetective_04;;;Me gusta tanto el hotel, que hasta quisiera dejar mi marca por siempre aquí. ¡Me gustaría plantar una flor hermosa que estuviera siempre aquí! Aunque es difícil hacer crecer cosas delicadas en nuestro jardín.
+RosaDetective_05;;;Uy, pues devuelve esta aguja de ganchillo si te pasas por ahí. Es que, perdóname pero estoy agotada, últimamente no puedo ni con mi cuerpo…
+RosaDetective_End;;;¡Muchas gracias inspector! ¡Que le vaya bien!
+RosaDetective_End2;;;¡Recuerde llevar el ganchillo al jardín!
+DetectiveRecep_Fut00;;;(¿Es Lutece?¿No se supone que esto es el futuro? No parece haber envejecido. ¿Habrá funcionado esto?) Buenas tardes a usted también, muchacho.
+DetectiveRecep_Fut01;;;Estoy aquí para hacerte un par de preguntitas. Como por ejemplo…
+DetectiveRecep_Fut02;;;Hace ya un tiempo hubo aquí una tragedia y alguien perdió la vida en este mismo hotel.
+DetectiveRecep_Fut03;;;No, muchacho. El cuerpo que se encontró fue el de una mujer. ¿Acaso murió alguien más aquí?
+DetectiveRecep_Fut04;;;No lo creo, muchacho. Seguramente le ocurrió algo.
+DetectiveRecep_Fut05;;;¿Por qué tratas de encontrarlo?
+DetectiveRecep_Fut06;;;Entonces lo que te duele no es que tu padre os quisiera, sino que son las dudas de si os quiso a ti y a tu madre en algún momento. (Creo que puedo llegar a ayudar.)
+DetectiveRecep_FutEnd;;;Bueno, muchacho. Espero que encuentres tu paz de una forma u otra. (¿Podría ayudar si le traigo un recuerdo de su padre?
+RecepDetective_Fut00;;;Muy buenas tardes señor, ¿en qué puedo ayudarle?
+RecepDetective_Fut01;;;¿En qué puedo ayudarle, señor?
+RecepDetective_Fut02;;;Oh vaya… ¿de qué tipo, si se puede saber?
+RecepDetective_Fut03;;;¿Era un hombre? Delgado y muy parecido a mi.
+RecepDetective_Fut04;;;No que yo sepa, señor. Pero estuve investigando durante este último año sobre la desaparición de mi padre y antes que él mi abuelo . El último rastro que dejó mi padre fue en este hotel. Pero da igual, seguramente huyó cuando se enteró de que mi madre estaba embarazada, pero mi abuelo se marchó mucho antes..
+RecepDetective_Fut05;;;Lo que pienso yo, señor, es que abandonó a su familia, y yo sigo trabajando en este hotel hasta que encuentre la siguiente pista o aparezca mi padre por arte de magia.
+RecepDetective_Fut06;;;No lo sé, al final es mi padre.
+RecepDetective_FutEnd;;;Puede ser, y puede ser que no. La verdad es que no sé cómo reaccionaría si llegara a aparecer mi padre por aquí algún día.
+DetectiveJardinero_Fut00;;;(Si me reconoce mejor no quiere cooperar. Nadie se esperaría que no envejeciera.) No, la verdad. Soy un detective a cargo de un caso que ocurría cerca de aquí.
+DetectiveJardinero_Fut01;;;(Parece afectar un poco más ahora…) Hemos reabierto el caso debido a nuevas pruebas. Ya sabe, abriendo heridas antiguas para prevenir de nuevas.
+DetectiveJardinero_Fut02;;;¿Pasa algo, jardinero?
+DetectiveJardinero_Fut03;;;¿Qué ha pasado?
+DetectiveJardinero_Fut04;;;Comprendo tu preocupación. A veces, las relaciones familiares pueden ser complicadas.
+DetectiveJardinero_Fut05;;;Seguro que tiene algún motivo para hacerlo, seguro que no quería que te preocuparas.
+DetectiveJardinero_Fut06;;;(Tengo que ayudarle a recordar lo mucho que la quiere y la buena relación que tenían) No se preocupe, seguro que podrá perdonarla.
+DetectiveJardinero_FutEnd;;;(Tengo que buscar algo que le recuerde su amor por ella…) Hasta luego.
+JardineroDetective_Fut00;;;Me suenas, ¿has pasado por aquí alguna vez?
+JardineroDetective_Fut01;;;¿Ah, sí?... Aquí nunca pasa nada… Desde hace mucho.
+JardineroDetective_Fut02;;;A mí me lo va a decir…
+JardineroDetective_Fut03;;;Es sobre mi hermana. Hace años que estoy en una situación bastante difícil con ella y no sé cómo solucionarlo. Estar distanciados tanto tiempo ha hecho que nuestra relación  haya acabado… así. 
+JardineroDetective_Fut04;;;Resulta que se ha metido en un lío muy grande y no puedo evitar sentirme decepcionado. No sé cómo abordar la situación.
+JardineroDetective_Fut05;;;Mi hermana me ocultó cosas importantes. Me siento traicionado y no sé cómo confiar en ella de nuevo.
+JardineroDetective_Fut06;;;Lo sé y quiero hacer las paces, pero no sé por qué debería hacerlas con alguien en quien no puedo confiar.
+JardineroDetective_Fut07;;;No se yo…
+JardineroDetective_FutEnd;;;Adiós.
+DetectiveBuganvilla_Fut00;;;Hola Guillermo, ¿cómo va el negocio?
+DetectiveBuganvilla_Fut01;;;Soy el detective…
+DetectiveBuganvilla_Fut02;;;Créame que más joven no estoy. Pero me sorprende que me recuerde.
+DetectiveBuganvilla_Fut03;;;Parece que tomárselo con tanta positividad no cambió el hecho de que fuera un evento traumático para usted.
+DetectiveBuganvilla_Fut04;;;(“Se lo quitó”, ¿está insinuando que la víctima sabía que iba a morir?) ¿Y ese anillo donde se encontró?
+DetectiveBuganvilla_Fut05;;;No creo que lo fuera para usted.
+DetectiveBuganvilla_Fut06;;;(Amigo. Este hombre debe de haber revivido el mismo día durante años) No se preocupe, yo lo encontraré.
+DetectiveBuganvilla_FutEnd;;;No me rete.
+BuganvillaDetective_Fut00;;;Viento en popa y a toda vela. Pero yo ya voy notando el paso de los años. ¿Y usted quién es, joven?
+BuganvillaDetective_Fut01;;;Umberto Helecho… Me lo suponía. No le ha sentado tan mal el paso de los años, eh. Parece incluso un poco más joven de lo que recordaba, pero eso ya sería imposible.
+BuganvillaDetective_Fut02;;;No podría olvidar ese día, aunque quisiera. Fue el día más importante en mi memoria.
+BuganvillaDetective_Fut03;;;Oh, no. Ahí se equivoca, inspector. Lo cambió todo, hizo que me arrepintiera cada día que pasaba, lo hizo aún peor. No lo dije en el momento, pero… se quitó el anillo. Cuándo la encontraron, no llevaba el anillo que yo le di. Un anillo que me gané con sudor y sangre antes de tener ningún negocio.
+BuganvillaDetective_Fut04;;;Nunca se encontró, pero supongo que si ella no lo quiso, era un trozo de metal cualquiera.
+BuganvillaDetective_Fut05;;;A veces yo también me intento convencer de eso querido amigo.
+BuganvillaDetective_FutEnd;;;No creo que lo encuentre, ni que tuviera una máquina del tiempo.
+Next;Next;Següent;Siguiente
+...;;;
