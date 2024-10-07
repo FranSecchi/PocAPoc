@@ -152,8 +152,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawners:
-  - {fileID: 790602028}
-  - {fileID: 432568034}
+  - {fileID: 790602025}
+  - {fileID: 432568031}
 --- !u!4 &426755169
 Transform:
   m_ObjectHideFlags: 0
