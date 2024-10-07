@@ -17,8 +17,8 @@ public class Spawner : MonoBehaviour
     }
     public void setSpawner(ISpawn spawner)
     { 
-        Destroy(GetComponent(typeof(ISpawn)));
-        this.spawner = spawner; 
+        if(spawner != null) DestroyImmediate(this.spawner as Component);
+        this.spawner = spawner;
     }
     public IWordController spawn()
     {

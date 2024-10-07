@@ -1,15 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    [SerializeField] private List<Spawner> spawners;
+    [SerializeField] private List<GameObject> spawners;
 
     private List<IWordController> allWords;
     private InputHandler inputHandler;
-    private float time = 0;
+    private int currentWave = -1;
+    private int totalPoints = 0;
+
     private void Awake()
     {
         if(Instance == null)
@@ -21,36 +25,51 @@ public class GameManager : MonoBehaviour
             inputHandler = gameObject.AddComponent<InputHandler>();
         if (allWords == null)
             allWords = new List<IWordController>();
-        foreach (Spawner spawner in spawners)
-        {
-            ISpawn ispawn = gameObject.AddComponent<FirstWave>();
-            spawner.setSpawner(ispawn);//Temporal
-        }
     }
     private void Update()
     {
-        time += Time.deltaTime;
-        if (time > 5f) 
-            spawnNewWord();
+        CheckWave();
+        Step();
+    }
+    private void removeWord(IWordController word)
+    {
+        allWords.Remove(word);
+        inputHandler.unsubscribe(word);
     }
     public static void RemoveWord(IWordController word)
     {
-        Instance.allWords.Remove(word);
-        Instance.inputHandler.unsubscribe(word);
+        Instance.removeWord(word);
     }
-    private void spawnNewWord()
+    private void Step()
     {
-        Spawner spawner = spawners[Random.Range(0, spawners.Count)];
-        //foreach(Spawner spawner in spawners)
-        //{
+        //Spawner spawner = spawners[Random.Range(0, spawners.Count)];
+        foreach (GameObject go in spawners)
+        {
+            Spawner spawner = go.GetComponent<Spawner>();
             IWordController word = spawner.spawn();
             if (word != null)
             {
                 allWords.Add(word);
                 inputHandler.subscribe(word);
             }
-        //}
-        Debug.Log(allWords.Count);
-        time = 0f;
+        }
+    }
+
+    private void CheckWave()
+    {
+        if(totalPoints > 10)
+        {
+            currentWave = 1;
+        }
+        else if(currentWave != 0)
+        {
+            foreach (GameObject go in spawners)
+            {
+                ISpawn sp = go.AddComponent<FirstWave>();
+                Spawner spawner = go.GetComponent<Spawner>();
+                spawner.setSpawner(sp);
+            }
+            currentWave = 0;
+        }
     }
 }

@@ -2,13 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SimpleWord : MonoBehaviour, IWordController
+public class SimpleWord : Word, IWordController
 {
-    public string word;
-    public int points;
-    private string seq = "";
-    private WordDisplay display;
-    public void HandleInput(char key)
+    public override void HandleInput(char key)
     {
         seq += key;
         //Add check
@@ -18,18 +14,12 @@ public class SimpleWord : MonoBehaviour, IWordController
         }
         if (seq == word)
         {
-            GameManager.RemoveWord(this);
-            Destroy(gameObject);
+            Remove(true);
         }
-        display.UpdateDisplay(seq, word);
+        UpdateDisplay(seq, word);
     }
-
-    // Start is called before the first frame update
-    void Start()
+    protected override void Step()
     {
-        display = gameObject.AddComponent<WordDisplay>();
-        display.Initialize(word);
-
+        throw new System.NotImplementedException();
     }
-
 }
