@@ -7,7 +7,6 @@ using System.Collections.Generic;
 public class ClassicDisplay : IDisplayWord
 {
     TextMeshPro m_TextMeshPro;
-    private float fontSize;
     private Color color = Color.black;
     public void Initialize(GameObject gameObject, string word)
     {
@@ -16,6 +15,7 @@ public class ClassicDisplay : IDisplayWord
         m_TextMeshPro.alignment = TextAlignmentOptions.Center;
         m_TextMeshPro.color = color;
         m_TextMeshPro.text = word;
+        gameObject.AddComponent<TextWaveAnimation>();
     }
 
     public void PrintRemove(GameObject gameObject, int points)
@@ -29,7 +29,10 @@ public class ClassicDisplay : IDisplayWord
     public void UpdateDisplay(GameObject gameObject, string currentSequence, string fullWord)
     {
         m_TextMeshPro = gameObject.GetComponent<TextMeshPro>();
-        string highlighted = "<color=green>" + currentSequence + "</color>" + fullWord.Substring(currentSequence.Length);
+
+        string highlighted = "<color=green>" + fullWord.Substring(0, currentSequence.Length) + "</color>"
+                           + fullWord.Substring(currentSequence.Length);
+
         m_TextMeshPro.text = highlighted;
     }
 }

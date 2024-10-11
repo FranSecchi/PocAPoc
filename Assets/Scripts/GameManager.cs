@@ -59,17 +59,17 @@ public class GameManager : MonoBehaviour
 
     private void CheckWave()
     {
-        if(pointsManager.totalPoints > 10 && currentWave == 0)
-        {
-            ISpawn sp = new SecondWave();
-            waveManager.setSpawner(sp);
-            currentWave = 1;
-        }
-        else if(currentWave < 0)
+        if(currentWave < 0)
         {
             ISpawn sp = new FirstWave();
             waveManager.setSpawner(sp);
             currentWave = 0;
+        }
+        else if(currentWave == 0 && pointsManager.totalPoints > Parameters.PointsFirstWave)
+        {
+            ISpawn sp = new SecondWave();
+            waveManager.setSpawner(sp);
+            currentWave = 1;
         }
     }
 }

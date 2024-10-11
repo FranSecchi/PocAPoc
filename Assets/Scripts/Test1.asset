@@ -12,10 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d76936766fe54bf4ba14fbd269335e67, type: 3}
   m_Name: Test1
   m_EditorClassIdentifier: 
-  simpleSpeed: 15
+  simpleSpeed: 12
   hardSpeed: 10
-  goalRadius: 1
-  classicFont: 5
-  pointsFont: 5
-  firstWaveSpawnRate: 2
+  goalRadius: 0.55
+  classicFont: 4
+  pointsFont: 8
+  spacing: 0
+  waveAmplitude: 0.1
+  waveFreq: 5
+  firstWaveSpawnRate: 4
+  maxSpawn1: 2
+  pointsForSecondWave: 100
   secondWaveSpawnRate: 5
+  maxSpawn2: 2

@@ -1,6 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Text;
 using UnityEngine;
 public abstract class Word : MonoBehaviour
 {
@@ -9,6 +12,7 @@ public abstract class Word : MonoBehaviour
     public Spawner spawner;
 
     public  WordStruct word;
+    protected string normalizedWord;
     protected IDisplayWord display;
     protected Transform goal;
     protected int points;
@@ -41,6 +45,7 @@ public abstract class Word : MonoBehaviour
     {
         display = DisplayStrategyFactory.GetDisplay(word.Type);
         gameManager.addWord(this);
+        normalizedWord = RemoveAccents(word.Content);
         Init();
     }
     protected abstract void Init();
@@ -56,5 +61,12 @@ public abstract class Word : MonoBehaviour
         gameManager.removeWord(this, completed);
         display.PrintRemove(gameObject, completed?points:0);
         Destroy(gameObject);
+    }
+    private string RemoveAccents(string text)
+    {
+        return string.Concat(
+            text.Normalize(NormalizationForm.FormD)
+                .Where(ch => CharUnicodeInfo.GetUnicodeCategory(ch) != UnicodeCategory.NonSpacingMark)
+        ).Normalize(NormalizationForm.FormC);
     }
 }

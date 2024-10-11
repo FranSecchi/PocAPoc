@@ -11,21 +11,21 @@ public class SimpleWord : Word
         //if (!word.Content.Contains(key)) return;
         seq += key;
         //Add check
-        if (!word.Content.StartsWith(seq))
+        if (!normalizedWord.StartsWith(seq))
         {
             seq = "";
         }
-        if (seq == word.Content)
+        display.UpdateDisplay(gameObject, seq, word.Content);
+        if (seq == normalizedWord)
         {
             Remove(true);
         }
-        display.UpdateDisplay(gameObject, seq, word.Content);
     }
 
     protected override void Init()
     {
         display.Initialize(gameObject, word.Content);
-        points = word.Content.Length;
+        points = normalizedWord.Length;
         speed = GameManager.Parameters.SimpleSpeed;
     }
 
