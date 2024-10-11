@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface ISpawn
 {
-    IWordController Spawn(Spawner info);
+    void Spawn(Spawner info);
 }

@@ -1,27 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-public abstract class WordFactory : MonoBehaviour
+public abstract class WordFactory
 {
-    [SerializeField] private TextAsset sheet;
-    protected List<string> wordList = new List<string>();
-    public abstract GameObject getWordObject();
-    private void Awake()
+    public WordDifficulty difficulty;
+    protected List<WordStruct> data = new List<WordStruct>();
+    public abstract WordStruct getWord();
+    protected WordFactory(List<WordStruct> data)
     {
-        ReadSheet();
+        this.data = data;
     }
-
-    void ReadSheet()
+    public List<WordStruct> GetWordList()
     {
-        string[] texts = sheet.text.Split(new char[] { ';' });
-        foreach (string word in texts)
-        {
-            wordList.Add(word.Trim());
-        }
+        return data;
     }
-    public List<string> GetWordList()
+    public void SetWordList(List<WordStruct> data)
     {
-        return wordList;
+        this.data = data;
     }
 }

@@ -4,20 +4,11 @@ using UnityEngine;
 
 public class HardWordFactory : WordFactory
 {
-    public override GameObject getWordObject()
+    public HardWordFactory(List<WordStruct> data) : base(data) { difficulty = WordDifficulty.HARD; }
+    public override WordStruct getWord()
     {
-        throw new System.NotImplementedException();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        WordStruct ws = new WordStruct(data[Random.Range(0, data.Count)]);
+        ws.Type = WordType.HARD;
+        return ws;
     }
 }

@@ -1,15 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class InputHandler : MonoBehaviour
 {
-    private List<IWordController> subscribers;
-    // Start is called before the first frame update
-    void Start()
-    {
-        subscribers = new List<IWordController>();
-    }
+    public event Action<char> charPressed;
 
     // Update is called once per frame
     void Update()
@@ -22,34 +18,9 @@ public class InputHandler : MonoBehaviour
 
                 if (char.IsLetterOrDigit(keyPressed) || char.IsPunctuation(keyPressed) || char.IsSymbol(keyPressed))
                 {
-                    notifyAll(keyPressed);
+                    charPressed?.Invoke(keyPressed);
                 }
             }
-        }
-    }
-
-    public void subscribe(IWordController controller)
-    {
-        if (!subscribers.Contains(controller))
-        {
-            subscribers.Add(controller);
-        }
-    }
-    public void unsubscribe(IWordController controller)
-    {
-        if (subscribers.Contains(controller))
-        {
-            subscribers.Remove(controller);
-        }
-    }
-
-    public void notifyAll(char key)
-    {
-        List<IWordController> currentSubscribers = new List<IWordController>(subscribers);
-
-        foreach (var subscriber in currentSubscribers)
-        {
-            subscriber.HandleInput(key);
         }
     }
 }

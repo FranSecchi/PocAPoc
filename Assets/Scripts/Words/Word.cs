@@ -1,46 +1,60 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-
-public abstract class Word : MonoBehaviour, WordDisplay, IWordController
+public abstract class Word : MonoBehaviour
 {
-    private TextMeshPro m_TextMeshPro;
+    public GameManager gameManager;
+    public InputHandler subject;
+    public Spawner spawner;
 
-    public string word;
-    public int points;
-    protected string seq = "";
+    public  WordStruct word;
+    protected IDisplayWord display;
+    protected Transform goal;
+    protected int points;
+    protected float speed;
     protected abstract void Step();
-    public virtual void Initialize(string word, float fontSize = 6f, Color? color = null)
-    {
-        m_TextMeshPro = gameObject.AddComponent<TextMeshPro>();
-        m_TextMeshPro.fontSize = fontSize;
-        m_TextMeshPro.alignment = TextAlignmentOptions.Center;
-        m_TextMeshPro.color = color ?? Color.black;
-        m_TextMeshPro.text = word;
-    }
 
-    public void UpdateDisplay(string currentSequence, string fullWord)
+    #region Enablers
+    private void OnEnable()
     {
-        string highlighted = "<color=green>" + currentSequence + "</color>" + fullWord.Substring(currentSequence.Length);
-        m_TextMeshPro.text = highlighted;
+        subject.charPressed += OnCharPressed;
     }
-    protected void Remove(bool completed)
+    private void OnDisable()
     {
-        GameManager.RemoveWord(this);
-        Destroy(gameObject);
+        subject.charPressed -= OnCharPressed;
+    }
+    private void OnDestroy()
+    {
+        subject.charPressed -= OnCharPressed;
+    }
+    #endregion
+
+    private void Awake()
+    {
+        gameManager = GameManager.Instance;
+        subject = gameManager.InputHandler;
+        goal = gameManager.Goal;
     }
     // Start is called before the first frame update
     void Start()
     {
-        Initialize(word);
+        display = DisplayStrategyFactory.GetDisplay(word.Type);
+        gameManager.addWord(this);
+        Init();
     }
-
+    protected abstract void Init();
+    public abstract void OnCharPressed(char key);
     // Update is called once per frame
     void Update()
     {
         Step();
     }
 
-    public abstract void HandleInput(char key);
+    protected void Remove(bool completed)
+    {
+        gameManager.removeWord(this, completed);
+        display.PrintRemove(gameObject, completed?points:0);
+        Destroy(gameObject);
+    }
 }

@@ -1,29 +1,39 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    public TextAsset Sheet;
     public List<Transform> spawnPoints;
-    public WordFactory simpleWordFactory;
-    public WordFactory hardWordFactory;
+    private List<WordFactory> factories;
+
     private ISpawn spawner;
-    private List<IWordController> activeWords;
-    void Start()
+
+    private void Start()
     {
-        activeWords = new List<IWordController>();  
-        simpleWordFactory = GetComponent<SimpleWordFactory>();
-        hardWordFactory = GetComponent<HardWordFactory>();
+        factories = WordFactoryManager.createFactories(Sheet);
     }
     public void setSpawner(ISpawn spawner)
     { 
         if(spawner != null) DestroyImmediate(this.spawner as Component);
         this.spawner = spawner;
     }
-    public IWordController spawn()
+    public void spawn()
     {
-        IWordController word = spawner.Spawn(this);
-        if(word != null) activeWords.Add(word);
-        return word;
+        spawner.Spawn(this);
+    }
+    public WordFactory getFactory(WordDifficulty type)
+    {
+        foreach(WordFactory factory in factories)
+        {
+            if(factory.difficulty == type)
+            {
+                return factory;
+            }
+        }
+        throw new InvalidOperationException($"No factory found for difficulty type: {type}");
     }
 }
+

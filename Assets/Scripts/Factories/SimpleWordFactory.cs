@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class SimpleWordFactory : WordFactory
 {
-    public override GameObject getWordObject()
+    public SimpleWordFactory(List<WordStruct> data) : base(data) { difficulty = WordDifficulty.EASY; }
+    public override WordStruct getWord()
     {
-        GameObject gameObject = new GameObject();
-        SimpleWord sw = gameObject.AddComponent<SimpleWord>();
-        sw.word = wordList[Random.Range(0,wordList.Count)];
-        return gameObject;
+        WordStruct ws = new WordStruct(data[Random.Range(0, data.Count)]);
+        ws.Type = WordType.SIMPLE;
+        return ws;
     }
 }

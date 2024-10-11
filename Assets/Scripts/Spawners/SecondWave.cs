@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class FirstWave : ISpawn
+public class SecondWave : ISpawn
 {
     private WordFactory factory;
     private float time = 0f;
@@ -11,12 +9,12 @@ public class FirstWave : ISpawn
     {
         time += Time.deltaTime;
         if (time < timeInterval) return;
-        if (factory == null) factory = info.getFactory(WordDifficulty.EASY);
+        if (factory == null) factory = info.getFactory(WordDifficulty.HARD);
         time = 0f;
         WordStruct wordCont = factory.getWord();
 
         GameObject go = new GameObject();
-        Word word = go.AddComponent<SimpleWord>();
+        Word word = go.AddComponent<HardWord>();
 
         word.word = wordCont;
         word.spawner = info;

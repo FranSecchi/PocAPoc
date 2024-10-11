@@ -1,22 +1,31 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public Transform Goal;
+    public GameParameters parameters;
     public static GameManager Instance;
+
     [SerializeField] private List<GameObject> spawners;
 
-    private List<IWordController> allWords;
+    private Dictionary<Spawner,List<Word>> allWords;
+    private PointsManager pointsManager;
     private InputHandler inputHandler;
     private int currentWave = -1;
-    private int totalPoints = 0;
 
+    public static GameParameters Parameters { get => Instance.parameters; }
+    public InputHandler InputHandler { get => inputHandler;}
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(Goal.position, parameters.GoalRadius);
+    }
     private void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
             Instance = this;
     }
     private void Start()
@@ -24,48 +33,59 @@ public class GameManager : MonoBehaviour
         if(inputHandler == null)
             inputHandler = gameObject.AddComponent<InputHandler>();
         if (allWords == null)
-            allWords = new List<IWordController>();
+            allWords = new Dictionary<Spawner, List<Word>>();
+        if (pointsManager == null)
+            pointsManager = new PointsManager();
     }
     private void Update()
     {
         CheckWave();
         Step();
     }
-    private void removeWord(IWordController word)
+    public void addWord(Word word)
     {
-        allWords.Remove(word);
-        inputHandler.unsubscribe(word);
+        if (!allWords.ContainsKey(word.spawner))
+        {
+            allWords[word.spawner] = new List<Word>();
+        }
+        allWords[word.spawner].Add(word);
     }
-    public static void RemoveWord(IWordController word)
+
+    public void removeWord(Word word, bool completed)
     {
-        Instance.removeWord(word);
+        allWords[word.spawner].Remove(word);
+        pointsManager.sumPoints(word, completed);
     }
+
+
+
     private void Step()
     {
         //Spawner spawner = spawners[Random.Range(0, spawners.Count)];
         foreach (GameObject go in spawners)
         {
             Spawner spawner = go.GetComponent<Spawner>();
-            IWordController word = spawner.spawn();
-            if (word != null)
-            {
-                allWords.Add(word);
-                inputHandler.subscribe(word);
-            }
+            spawner.spawn();
         }
     }
 
     private void CheckWave()
     {
-        if(totalPoints > 10)
-        {
-            currentWave = 1;
-        }
-        else if(currentWave != 0)
+        if(pointsManager.totalPoints > 10 && currentWave == 0)
         {
             foreach (GameObject go in spawners)
             {
-                ISpawn sp = go.AddComponent<FirstWave>();
+                ISpawn sp = new SecondWave();
+                Spawner spawner = go.GetComponent<Spawner>();
+                spawner.setSpawner(sp);
+            }
+            currentWave = 1;
+        }
+        else if(currentWave < 0)
+        {
+            foreach (GameObject go in spawners)
+            {
+                ISpawn sp = new FirstWave();
                 Spawner spawner = go.GetComponent<Spawner>();
                 spawner.setSpawner(sp);
             }
