@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d76936766fe54bf4ba14fbd269335e67, type: 3}
   m_Name: Test1
   m_EditorClassIdentifier: 
-  simpleSpeed: 30
+  simpleSpeed: 15
   hardSpeed: 10
   goalRadius: 1
+  classicFont: 5
+  pointsFont: 5
+  firstWaveSpawnRate: 2
+  secondWaveSpawnRate: 5
