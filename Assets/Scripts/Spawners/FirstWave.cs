@@ -2,25 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FirstWave : ISpawn
+public class FirstWave : WaveStrategy, ISpawn
 {
-    private WordFactory factory;
-    private float time = 0f;
-    private float timeInterval = 5f;
-    public void Spawn(Spawner info)
+    public override void Spawn()
     {
         time += Time.deltaTime;
         if (time < timeInterval) return;
-        if (factory == null) factory = info.getFactory(WordDifficulty.EASY);
-        time = 0f;
+
+        Spawner spawner = spawners[Random.Range(0, spawners.Count)];
+        WordFactory factory = spawner.getFactory(WordDifficulty.EASY);
         WordStruct wordCont = factory.getWord();
 
         GameObject go = new GameObject();
         Word word = go.AddComponent<SimpleWord>();
 
         word.word = wordCont;
-        word.spawner = info;
+        word.spawner = spawner;
 
-        go.transform.position = info.spawnPoints[Random.Range(0, info.spawnPoints.Count)].position; //Temporal
+        go.transform.position = spawner.spawnPoints[Random.Range(0, spawner.spawnPoints.Count)].position; //Temporal
+
+        time = 0f;
+    }
+
+    protected override void Init()
+    {
+        timeInterval = GameManager.Parameters.FirstSpawnRate;
     }
 }

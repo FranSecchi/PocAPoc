@@ -4,5 +4,6 @@ using UnityEngine;
 
 public interface ISpawn
 {
-    void Spawn(Spawner info);
+    void Spawn();
+    void SetSpawners(List<Spawner> spawners);
 }

@@ -8,6 +8,8 @@ public class GameParameters : ScriptableObject
     [SerializeField] private float goalRadius = 1f;
     [SerializeField] private float classicFont = 5f;
     [SerializeField] private float pointsFont = 5f;
+    [SerializeField] private float firstWaveSpawnRate = 5f;
+    [SerializeField] private float secondWaveSpawnRate = 5f;
 
     // Public properties to access the values
     public float SimpleSpeed => simpleSpeed / 10f;
@@ -15,4 +17,6 @@ public class GameParameters : ScriptableObject
     public float GoalRadius => goalRadius;
     public float ClassicFont => classicFont;
     public float PointsFont => pointsFont;
+    public float FirstSpawnRate => firstWaveSpawnRate;
+    public float SecondSpawnRate => secondWaveSpawnRate;
 }

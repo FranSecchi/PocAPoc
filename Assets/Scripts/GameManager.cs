@@ -7,9 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public Transform Goal;
     public GameParameters parameters;
+    public WaveManager waveManager;
     public static GameManager Instance;
-
-    [SerializeField] private List<GameObject> spawners;
 
     private Dictionary<Spawner,List<Word>> allWords;
     private PointsManager pointsManager;
@@ -36,12 +35,9 @@ public class GameManager : MonoBehaviour
             allWords = new Dictionary<Spawner, List<Word>>();
         if (pointsManager == null)
             pointsManager = new PointsManager();
-    }
-    private void Update()
-    {
         CheckWave();
-        Step();
     }
+
     public void addWord(Word word)
     {
         if (!allWords.ContainsKey(word.spawner))
@@ -55,40 +51,24 @@ public class GameManager : MonoBehaviour
     {
         allWords[word.spawner].Remove(word);
         pointsManager.sumPoints(word, completed);
+        CheckWave();
     }
 
 
 
-    private void Step()
-    {
-        //Spawner spawner = spawners[Random.Range(0, spawners.Count)];
-        foreach (GameObject go in spawners)
-        {
-            Spawner spawner = go.GetComponent<Spawner>();
-            spawner.spawn();
-        }
-    }
 
     private void CheckWave()
     {
         if(pointsManager.totalPoints > 10 && currentWave == 0)
         {
-            foreach (GameObject go in spawners)
-            {
-                ISpawn sp = new SecondWave();
-                Spawner spawner = go.GetComponent<Spawner>();
-                spawner.setSpawner(sp);
-            }
+            ISpawn sp = new SecondWave();
+            waveManager.setSpawner(sp);
             currentWave = 1;
         }
         else if(currentWave < 0)
         {
-            foreach (GameObject go in spawners)
-            {
-                ISpawn sp = new FirstWave();
-                Spawner spawner = go.GetComponent<Spawner>();
-                spawner.setSpawner(sp);
-            }
+            ISpawn sp = new FirstWave();
+            waveManager.setSpawner(sp);
             currentWave = 0;
         }
     }
