@@ -4,7 +4,6 @@ using UnityEngine;
 public class SecondWave : WaveStrategy
 {
     private int max;
-    private List<Transform> availableSpawnPoints;
     public override void Spawn()
     {
         time += Time.deltaTime;
@@ -12,7 +11,7 @@ public class SecondWave : WaveStrategy
 
         ResetSpawnPoints();
         int r = Random.Range(1, max + 1);
-        for (int i = 0; i < r && availableSpawnPoints.Count > 0; ++i)
+        for (int i = 0; i < r; ++i)
             InstantiateWord(WordDifficulty.EASY, typeof(SimpleWord));
         if (r == 1)
             InstantiateWord(WordDifficulty.HARD, typeof(HardWord));
@@ -21,33 +20,24 @@ public class SecondWave : WaveStrategy
     }
     private void InstantiateWord(WordDifficulty difficulty, System.Type wordType)
     {
-        Spawner spawner = spawners[Random.Range(0, spawners.Count)];
-        WordFactory factory = spawner.getFactory(difficulty);
-        WordStruct wordCont = factory.getWord();
 
-        GameObject go = new GameObject();
-        Word word = (Word)go.AddComponent(wordType);
-
-        word.word = wordCont;
-        word.spawner = spawner;
-        SpawnAtPosition(go);
+        Spawner spawner = null;
+        List<Spawner> spawnersTemp = new List<Spawner>(spawners);
+        do
+        {
+            spawner = spawnersTemp[Random.Range(0, spawnersTemp.Count)];
+            spawnersTemp.Remove(spawner);
+        } while (spawner.availableSpawnPoints.Count == 0 && spawnersTemp.Count > 0);
+        if (spawnersTemp.Count == 0) return;
+        Instantiate(spawner, difficulty, wordType);
     }
 
-    private void SpawnAtPosition(GameObject go)
-    {
-        int spawnIndex = Random.Range(0, availableSpawnPoints.Count);
-        Transform spawnPoint = availableSpawnPoints[spawnIndex];
-        availableSpawnPoints.RemoveAt(spawnIndex);
-
-        go.transform.position = spawnPoint.position;
-    }
 
     private void ResetSpawnPoints()
     {
-        availableSpawnPoints = new List<Transform>();
         foreach (var spawner in spawners)
         {
-            availableSpawnPoints.AddRange(spawner.spawnPoints);
+            spawner.availableSpawnPoints = new List<Transform>(spawner.spawnPoints);
         }
     }
     protected override void Init()

@@ -14,6 +14,7 @@ public class WaveManager : MonoBehaviour
     {
         if (spawner != null) DestroyImmediate(this.spawner as Component);
         this.spawner = spawner;
+        Debug.Log(spawner.GetType().ToString());
         spawner.SetSpawners(spawners);
     }
     public void spawn()

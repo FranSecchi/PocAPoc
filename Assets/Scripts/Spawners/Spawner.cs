@@ -7,6 +7,8 @@ public class Spawner : MonoBehaviour
 {
     public TextAsset Sheet;
     public List<Transform> spawnPoints;
+    [NonSerialized]
+    public List<Transform> availableSpawnPoints;
     private List<WordFactory> factories;
 
 

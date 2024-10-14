@@ -15,14 +15,29 @@ public class ClassicDisplay : IDisplayWord
         m_TextMeshPro.alignment = TextAlignmentOptions.Center;
         m_TextMeshPro.color = color;
         m_TextMeshPro.text = word;
-        gameObject.AddComponent<TextWaveAnimation>();
     }
 
     public void PrintRemove(GameObject gameObject, int points)
     {
-        GameObject go = new GameObject("pointsDisplay");
-        PointsDisplay pd = go.AddComponent<PointsDisplay>();
-        pd.Print(points, gameObject.transform.position);
+        if(points > 0)
+        {
+            GameObject go = new GameObject("pointsDisplay");
+            PointsDisplay pd = go.AddComponent<PointsDisplay>();
+            pd.Print(points, gameObject.transform.position);
+        }
+        else
+        {
+            //GameObject go = new GameObject("fallDisplay");
+            //go.transform.position = gameObject.transform.position;
+            //TextMeshPro tmp = go.AddComponent<TextMeshPro>();
+            //TextMeshPro source = gameObject.GetComponent<TextMeshPro>(); ;
+            //tmp.text = source.text; // Copy text
+            //tmp.font = source.font; // Copy font
+            //tmp.fontSize = source.fontSize; // Copy font size
+            //tmp.color = source.color; // Copy color
+            //tmp.alignment = source.alignment;
+            //go.AddComponent<TextFallAnimation>();
+        }
     }
 
 

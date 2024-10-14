@@ -7,14 +7,19 @@ public class WordFactoryManager
 {
     public static List<WordFactory> createFactories(TextAsset file)
     {
-        List<WordFactory> factories = new List<WordFactory>();
-        List<WordStruct> words = parseSheet(file); // Read words from the file
+        TextAsset commonFile = Resources.Load<TextAsset>("CommonWords");
 
-        Dictionary<WordDifficulty, List<WordStruct>> wordBuckets = categorizeWords(words); // Categorize by difficulty
+        List<WordFactory> factories = new List<WordFactory>();
+        List<WordStruct> commonWords = parseSheet(commonFile);
+        List<WordStruct> additionalWords = parseSheet(file);
+
+        List<WordStruct> combinedWords = commonWords.Concat(additionalWords).ToList();
+        Dictionary<WordDifficulty, List<WordStruct>> wordBuckets = categorizeWords(combinedWords); // Categorize by difficulty
 
         // Create the factories based on word categories
         factories.Add(new SimpleWordFactory(wordBuckets[WordDifficulty.EASY]));
         factories.Add(new HardWordFactory(wordBuckets[WordDifficulty.HARD]));
+        factories.Add(new BossWordFactory(wordBuckets[WordDifficulty.BOSS]));
 
         return factories;
     }
@@ -35,13 +40,21 @@ public class WordFactoryManager
                 }
                 dic[WordDifficulty.EASY].Add(word);
             }
-            else if(length >= 4) // Medium
+            else if(length >= 4 && length < 7) // Medium
             {
                 if (!dic.ContainsKey(WordDifficulty.HARD))
                 {
                     dic[WordDifficulty.HARD] = new List<WordStruct>();
                 }
                 dic[WordDifficulty.HARD].Add(word);
+            }
+            else if (length >= 7) // Medium
+            {
+                if (!dic.ContainsKey(WordDifficulty.BOSS))
+                {
+                    dic[WordDifficulty.BOSS] = new List<WordStruct>();
+                }
+                dic[WordDifficulty.BOSS].Add(word);
             }
         }
         return dic;

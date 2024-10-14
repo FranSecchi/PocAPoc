@@ -1,10 +1,10 @@
 ﻿public enum WordType
 {
-    SIMPLE, MISTAKEN, HARD
+    SIMPLE, FRASE, HARD
 }
 public enum WordDifficulty
 {
-    EASY, MEDIUM, HARD
+    EASY, MEDIUM, HARD, BOSS
 }
 public struct WordStruct
 {

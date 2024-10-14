@@ -55,7 +55,11 @@ public abstract class Word : MonoBehaviour
     {
         Step();
     }
-
+    public void Remove()
+    {
+        display.PrintRemove(gameObject, 0);
+        Destroy(gameObject);
+    }
     protected void Remove(bool completed)
     {
         gameManager.removeWord(this, completed);
