@@ -1,13 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class ThirdWave : WaveStrategy
+﻿internal class FourthWave : WaveStrategy
 {
-    private WordFactory factory;
     public override void Spawn()
     {
-
         throw new System.NotImplementedException();
     }
 

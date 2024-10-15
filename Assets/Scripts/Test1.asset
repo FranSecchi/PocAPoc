@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d76936766fe54bf4ba14fbd269335e67, type: 3}
   m_Name: Test1
   m_EditorClassIdentifier: 
+  startWave: -1
   lifes: 3
+  simplePoints: 0
   simpleSpeed: 12
+  easySpeed: 5
   hardSpeed: 10
   goalRadius: 0.31
   classicFont: 4
@@ -22,9 +25,13 @@ MonoBehaviour:
   spacing: 0
   waveAmplitude: 0.1
   waveFreq: 5
-  firstWaveSpawnRate: 4
-  maxSpawn1: 2
-  pointsForSecondWave: 10
-  secondWaveSpawnRate: 5
-  pointsForThirdWave: 300
+  firstWaveSpawnRate: 2
+  firstWaveWaitTime: 2
+  maxSpawn1: 3
+  pointsForSecondWave: 30
+  secondWaveSpawnRate: 1.5
+  secondWaveWaitTime: 5
+  pointsForThirdWave: 80
   maxSpawn2: 2
+  thirdWaveSpawnRate: 1
+  thirdWaveWaitTime: 6

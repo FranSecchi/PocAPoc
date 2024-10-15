@@ -17,14 +17,6 @@ public class FirstWave : WaveStrategy
         time = 0f;
     }
 
-    private void ResetSpawnPoints()
-    {
-        foreach (var spawner in spawners)
-        {
-            spawner.availableSpawnPoints = new List<Transform>(spawner.spawnPoints);
-        }
-    }
-
     private void Instantiate()
     {
         Spawner spawner = null;
@@ -36,7 +28,7 @@ public class FirstWave : WaveStrategy
         } while (spawner.availableSpawnPoints.Count == 0 && spawnersTemp.Count > 0);
         if (spawnersTemp.Count == 0) return;
 
-        Instantiate(spawner, WordDifficulty.EASY, typeof(SimpleWord));
+        Instantiate(spawner, WordDifficulty.EASY, typeof(EasyWord));
     }
 
 

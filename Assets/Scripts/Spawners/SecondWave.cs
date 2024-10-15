@@ -12,7 +12,7 @@ public class SecondWave : WaveStrategy
         ResetSpawnPoints();
         int r = Random.Range(1, max + 1);
         for (int i = 0; i < r; ++i)
-            InstantiateWord(WordDifficulty.EASY, typeof(SimpleWord));
+            InstantiateWord(WordDifficulty.EASY, typeof(EasyWord));
         if (r == 1)
             InstantiateWord(WordDifficulty.HARD, typeof(HardWord));
 
@@ -33,13 +33,6 @@ public class SecondWave : WaveStrategy
     }
 
 
-    private void ResetSpawnPoints()
-    {
-        foreach (var spawner in spawners)
-        {
-            spawner.availableSpawnPoints = new List<Transform>(spawner.spawnPoints);
-        }
-    }
     protected override void Init()
     {
         max = GameManager.Parameters.MaxSpawnSecondWave;

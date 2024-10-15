@@ -1,15 +1,14 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HardWord : Word
+public class BossWord : Word
 {
     private string seq = "";
 
     public override void OnCharPressed(char key)
     {
         //if (!word.Content.Contains(key)) return;
-        //if (inserted == true && seq == "") return;
         seq += key;
         //Add check
         if (!normalizedWord.StartsWith(seq))
@@ -19,22 +18,22 @@ public class HardWord : Word
         display.UpdateDisplay(gameObject, seq, word.Content);
         if (seq == normalizedWord)
         {
-            Remove(true);
+            Remove();
         }
     }
 
     protected override void Init()
     {
         display.Initialize(gameObject, word.Content);
-        points = normalizedWord.Length;
-        speed = GameManager.Parameters.HardSpeed;
+        points = GameManager.Parameters.SimplePoints;
+        speed = GameManager.Parameters.SimpleSpeed;
     }
 
     protected override void Step()
     {
         if (Vector2.Distance(transform.position, goal.position) < GameManager.Parameters.GoalRadius)
         {
-            Remove(false);
+            Remove();
         }
         else
         {

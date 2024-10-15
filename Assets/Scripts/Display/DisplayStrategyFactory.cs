@@ -18,6 +18,9 @@ public class DisplayStrategyFactory
                 case WordType.HARD:
                     strategies.Add(type, new EpicDisplay());
                     break;
+                case WordType.FRASE:
+                    strategies.Add(type, new ClassicDisplay());
+                    break;
                 // Add more cases for other word types if needed
                 default:
                     throw new InvalidOperationException("Unknown word type: " + type);

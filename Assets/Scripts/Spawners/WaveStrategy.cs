@@ -31,4 +31,11 @@ public abstract class WaveStrategy : ISpawn
 
         go.transform.position = spawnPoint.position;
     }
+    protected void ResetSpawnPoints()
+    {
+        foreach (var spawner in spawners)
+        {
+            spawner.availableSpawnPoints = new List<Transform>(spawner.spawnPoints);
+        }
+    }
 }

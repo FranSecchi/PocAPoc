@@ -7,6 +7,7 @@ using System.Text;
 using UnityEngine;
 public abstract class Word : MonoBehaviour
 {
+    //protected static bool inserted;
     public GameManager gameManager;
     public InputHandler subject;
     public Spawner spawner;
@@ -45,7 +46,7 @@ public abstract class Word : MonoBehaviour
     {
         display = DisplayStrategyFactory.GetDisplay(word.Type);
         gameManager.addWord(this);
-        normalizedWord = RemoveAccents(word.Content);
+        normalizedWord = NormalizeWord(word.Content);
         Init();
     }
     protected abstract void Init();
@@ -66,7 +67,7 @@ public abstract class Word : MonoBehaviour
         display.PrintRemove(gameObject, completed?points:0);
         Destroy(gameObject);
     }
-    private string RemoveAccents(string text)
+    private string NormalizeWord(string text)
     {
         return string.Concat(
             text.Normalize(NormalizationForm.FormD)

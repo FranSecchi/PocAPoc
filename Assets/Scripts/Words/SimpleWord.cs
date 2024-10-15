@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +8,7 @@ public class SimpleWord : Word
 
     public override void OnCharPressed(char key)
     {
+        //if (inserted == true && seq == "") return;
         //if (!word.Content.Contains(key)) return;
         seq += key;
         //Add check
@@ -25,13 +26,13 @@ public class SimpleWord : Word
     protected override void Init()
     {
         display.Initialize(gameObject, word.Content);
-        points = normalizedWord.Length;
+        points = word.Content.Length;
         speed = GameManager.Parameters.SimpleSpeed;
     }
 
     protected override void Step()
     {
-        if(Vector2.Distance(transform.position, goal.position) < GameManager.Parameters.GoalRadius)
+        if (Vector2.Distance(transform.position, goal.position) < GameManager.Parameters.GoalRadius)
         {
             Remove(false);
         }

@@ -17,11 +17,17 @@ public class WordFactoryManager
         Dictionary<WordDifficulty, List<WordStruct>> wordBuckets = categorizeWords(combinedWords); // Categorize by difficulty
 
         // Create the factories based on word categories
-        factories.Add(new SimpleWordFactory(wordBuckets[WordDifficulty.EASY]));
+        factories.Add(new EasyWordFactory(wordBuckets[WordDifficulty.EASY]));
         factories.Add(new HardWordFactory(wordBuckets[WordDifficulty.HARD]));
-        factories.Add(new BossWordFactory(wordBuckets[WordDifficulty.BOSS]));
 
         return factories;
+    }
+
+    internal static WordFactory createPhraseFactory()
+    {
+        TextAsset commonFile = Resources.Load<TextAsset>("Phrases");
+        WordFactory factory = new BossWordFactory(parseSheet(commonFile));
+        return factory;
     }
 
     private static Dictionary<WordDifficulty, List<WordStruct>> categorizeWords(List<WordStruct> words)
@@ -47,14 +53,6 @@ public class WordFactoryManager
                     dic[WordDifficulty.HARD] = new List<WordStruct>();
                 }
                 dic[WordDifficulty.HARD].Add(word);
-            }
-            else if (length >= 7) // Medium
-            {
-                if (!dic.ContainsKey(WordDifficulty.BOSS))
-                {
-                    dic[WordDifficulty.BOSS] = new List<WordStruct>();
-                }
-                dic[WordDifficulty.BOSS].Add(word);
             }
         }
         return dic;

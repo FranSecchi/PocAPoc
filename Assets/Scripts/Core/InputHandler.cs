@@ -15,7 +15,7 @@ public class InputHandler : MonoBehaviour
             if (!string.IsNullOrEmpty(Input.inputString))
             {
                 char keyPressed = Input.inputString[0];
-
+                keyPressed = char.ToLower(keyPressed);
                 if (char.IsLetterOrDigit(keyPressed) || char.IsPunctuation(keyPressed) || char.IsSymbol(keyPressed))
                 {
                     charPressed?.Invoke(keyPressed);
