@@ -7,13 +7,19 @@ public class FirstWave : WaveStrategy
     private int max;
     public override void Spawn()
     {
+        if(wordsSpawned > numberWords)
+        {
+            GameManager.Instance.AddWave(new SecondWave());
+            GameManager.Instance.jumpWave(timeForWave);
+            return;
+        }
         time += Time.deltaTime;
         if (time < timeInterval) return;
         ResetSpawnPoints();
         int r = Random.Range(1, max+1);
         for (int i = 0; i < r; ++i)
             Instantiate();
-
+        ++wordsSpawned;
         time = 0f;
     }
 
@@ -34,7 +40,10 @@ public class FirstWave : WaveStrategy
 
     protected override void Init()
     {
-        max = GameManager.Parameters.MaxSpawnFirstWave;
-        timeInterval = GameManager.Parameters.FirstSpawnRate;
+        GameParameters param = GameManager.Parameters;
+        max = param.MaxSpawnFirstWave;
+        timeInterval = param.FirstSpawnRate;
+        numberWords = param.WordsFirstWave;
+        timeForWave = param.SecondWaveWaitTime;
     }
 }

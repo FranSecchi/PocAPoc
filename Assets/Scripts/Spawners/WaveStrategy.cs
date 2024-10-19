@@ -6,6 +6,9 @@ public abstract class WaveStrategy : ISpawn
     protected List<Spawner> spawners;
     protected float time = 0f;
     protected float timeInterval;
+    protected float timeForWave;
+    protected int numberWords;
+    protected int wordsSpawned;
     public void SetSpawners(List<Spawner> spawners)
     {
         this.spawners = spawners;

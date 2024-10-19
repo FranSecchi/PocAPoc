@@ -10,12 +10,17 @@ public class ThirdWave : WaveStrategy
     private int spawnerIndex;
     public override void Spawn()
     {
+        if (wordsSpawned > numberWords)
+        {
+            GameManager.Instance.AddWave(new FourthWave());
+            GameManager.Instance.jumpWave(timeForWave);
+            return;
+        }
         time += Time.deltaTime;
         if (time < timeInterval) return;
         if(currentWords.Count <= 0)
         {
             GameManager.Instance.addPhrase(phrase);
-            GameManager.Instance.jumpWave();
         }
         else Instantiate();
 
@@ -28,9 +33,12 @@ public class ThirdWave : WaveStrategy
         currentWords = GetWords(phrase);
         spawnerIndex = 0;
         timeInterval = GameManager.Parameters.ThirdSpawnRate;
+        numberWords = GameManager.Parameters.WordsThirdWave;
+        timeForWave = GameManager.Parameters.FourthWaveWaitTime;
     }
     protected void Instantiate()
     {
+        ++wordsSpawned;
         if (spawnerIndex >= spawners.Count) spawnerIndex = 0;
         Spawner spawner = spawners[spawnerIndex];
 

@@ -6,6 +6,12 @@ public class SecondWave : WaveStrategy
     private int max;
     public override void Spawn()
     {
+        if (wordsSpawned > numberWords)
+        {
+            GameManager.Instance.AddWave(new ThirdWave());
+            GameManager.Instance.jumpWave(timeForWave);
+            return;
+        }
         time += Time.deltaTime;
         if (time < timeInterval) return;
 
@@ -15,7 +21,7 @@ public class SecondWave : WaveStrategy
             InstantiateWord(WordDifficulty.EASY, typeof(EasyWord));
         if (r == 1)
             InstantiateWord(WordDifficulty.HARD, typeof(HardWord));
-
+        ++wordsSpawned;
         time = 0f;
     }
     private void InstantiateWord(WordDifficulty difficulty, System.Type wordType)
@@ -37,5 +43,7 @@ public class SecondWave : WaveStrategy
     {
         max = GameManager.Parameters.MaxSpawnSecondWave;
         timeInterval = GameManager.Parameters.SecondSpawnRate;
+        numberWords = GameManager.Parameters.WordsSecondWave;
+        timeForWave = GameManager.Parameters.ThirdWaveWaitTime;
     }
 }

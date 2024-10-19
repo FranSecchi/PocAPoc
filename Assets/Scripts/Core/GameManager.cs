@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public WaveManager waveManager;
     public static GameManager Instance;
 
+    private Queue<ISpawn> waves = new Queue<ISpawn>();
     private List<WordStruct> newWords;
     private List<WordStruct> frases;
     private Dictionary<Spawner,List<Word>> allWords;
@@ -53,7 +54,9 @@ public class GameManager : MonoBehaviour
         hud.SetLifes(lifes);
         currentWave = Parameters.startWave;
         waveManager.enabled = true;
-        CheckWave();
+        waves = new Queue<ISpawn>();
+        waves.Enqueue(new FirstWave());
+        StartNextWave(Parameters.FirstWaveWaitTime);
     }
 
     private void CheckLifes()
@@ -75,34 +78,15 @@ public class GameManager : MonoBehaviour
         hud.OpenMenu();
     }
 
-    private void CheckWave()
+    public void AddWave(ISpawn wave)
     {
-        if (currentWave < 0)
-        {
-            StartNextWave(new FirstWave(), 0, Parameters.FirstWaveWaitTime);
-        }
-        else if (currentWave == 0 && pointsManager.totalPoints > Parameters.PointsFirstWave)
-        {
-            StartNextWave(new SecondWave(), 1, Parameters.SecondWaveWaitTime);
-        }
-        else if (currentWave == 1 && pointsManager.totalPoints > Parameters.PointsSecondWave)
-        {
-            StartNextWave(new ThirdWave(), 2, Parameters.ThirdWaveWaitTime);
-        }
-        else if (currentWave == 3)
-        {
-            StartNextWave(new FourthWave(), 4, Parameters.ThirdWaveWaitTime);
-        }
-        else if(currentWave == 4)
-        {
-            Finish();
-        }
+        waves.Enqueue(wave);
     }
 
-    private void StartNextWave(ISpawn newWave, int nextWave, float waitTime)
+    private void StartNextWave(float waitTime)
     {
+        ISpawn newWave = waves.Dequeue();
         waveManager.setSpawner(newWave);
-        currentWave = nextWave;
         StartCoroutine(WaitForWave(waitTime));
     }
 
@@ -126,7 +110,6 @@ public class GameManager : MonoBehaviour
         allWords[word.spawner].Remove(word);
         if (completed)
         {
-            CheckWave();
             pointsManager.sumPoints(word, completed);
             if (!newWords.Any(w => w.Content == word.word.Content) && word.word.Type != WordType.FRASE)
             {
@@ -135,10 +118,9 @@ public class GameManager : MonoBehaviour
         }
         else CheckLifes();
     }
-    internal void jumpWave()
+    public void jumpWave(float time)
     {
-        currentWave++;
-        CheckWave();
+        StartNextWave(time);
     }
     public void addPhrase(WordStruct word)
     {
