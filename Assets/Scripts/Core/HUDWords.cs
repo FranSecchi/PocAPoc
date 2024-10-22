@@ -4,14 +4,15 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HUDWords : MonoBehaviour
+public class HUDWords : LocalizedText
 {
     public int maxWordsPerPage = 10;
     public Transform bookPanel;
     public Transform contentPanel;
     public GameObject wordTextPrefab;
     public Button nextPageButton;
-    private List<WordStruct> words;
+    public Button backPageButton;
+    private List<WordStruct> words = new List<WordStruct>();
     private int currentPage = 0;
     private int totalPages;
 
@@ -36,6 +37,14 @@ public class HUDWords : MonoBehaviour
             ShowPage(currentPage);
         }
     }// Display the current page of words
+    public void BackPage()
+    {
+        if (currentPage > 0)
+        {
+            currentPage--;
+            ShowPage(currentPage);
+        }
+    }
     private void ShowPage(int pageIndex)
     {
         ClearContent(); // Clear any existing words in the panel
@@ -50,11 +59,10 @@ public class HUDWords : MonoBehaviour
             wordText.text = words[i].Content;
             GameObject descGO = Instantiate(wordTextPrefab, contentPanel);
             TMP_Text descText = descGO.GetComponent<TMP_Text>();
-            descText.text = words[i].Description;
+            descText.text = GetText(words[i].Description, TextType.Simple);
         }
-
-        // Enable/Disable next page button based on page status
-        nextPageButton.interactable = (currentPage < totalPages - 1);
+        nextPageButton.gameObject.SetActive(currentPage < totalPages - 1);
+        backPageButton.gameObject.SetActive(currentPage > 0);
     }
     // Helper function to clear the content of the panel
     private void ClearContent()
@@ -69,5 +77,10 @@ public class HUDWords : MonoBehaviour
         this.words = words;
         totalPages = Mathf.CeilToInt((float)words.Count / maxWordsPerPage);
         currentPage = 0;
+    }
+
+    protected override void OnLanguageChanged()
+    {
+        ShowPage(currentPage);
     }
 }

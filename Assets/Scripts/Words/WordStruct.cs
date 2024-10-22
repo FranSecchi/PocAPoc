@@ -1,6 +1,6 @@
 ﻿public enum WordType
 {
-    SIMPLE, FRASE, HARD
+    SIMPLE, FRASE, HARD, STATIC
 }
 public enum WordDifficulty
 {

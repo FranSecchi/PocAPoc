@@ -14,24 +14,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startWave: -1
   lifes: 3
+  combo: 3
   simplePoints: 0
   simpleSpeed: 12
   easySpeed: 5
   hardSpeed: 10
   goalRadius: 0.31
-  classicFont: 4
+  classicFontSize: 5
+  classicFont: {fileID: 11400000, guid: ff289a50614dbe747a44f7437a12db77, type: 2}
   epicFont: 5
   pointsFont: 8
   spacing: 0
   waveAmplitude: 0.1
   waveFreq: 5
-  firstWaveSpawnRate: 2
+  tutoWaveSpawnRate: 2
   firstWaveWaitTime: 2
+  firstWaveSpawnRate: 2
   maxSpawn1: 3
-  pointsForSecondWave: 30
-  secondWaveSpawnRate: 1.5
+  WordsForSecondWave: 3
   secondWaveWaitTime: 5
-  pointsForThirdWave: 80
+  secondWaveSpawnRate: 1.5
+  WordsForThirdWave: 4
   maxSpawn2: 2
-  thirdWaveSpawnRate: 1
   thirdWaveWaitTime: 6
+  thirdWaveSpawnRate: 1
+  WordsForFourthWave: 1
+  fourthWaveWaitTime: 5

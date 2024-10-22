@@ -25,15 +25,7 @@ public class FirstWave : WaveStrategy
 
     private void Instantiate()
     {
-        Spawner spawner = null;
-        List<Spawner> spawnersTemp = new List<Spawner>(spawners);
-        do
-        {
-            spawner = spawnersTemp[Random.Range(0, spawnersTemp.Count)];
-            spawnersTemp.Remove(spawner);
-        } while (spawner.availableSpawnPoints.Count == 0 && spawnersTemp.Count > 0);
-        if (spawnersTemp.Count == 0) return;
-
+        Spawner spawner = RandomSpawner();
         Instantiate(spawner, WordDifficulty.EASY, typeof(EasyWord));
     }
 

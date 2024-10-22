@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using TMPro;
+using TMPro.EditorUtilities;
 
 [CreateAssetMenu(fileName = "GameParameters", menuName = "Settings/GameParameters")]
 public class GameParameters : ScriptableObject
@@ -6,6 +8,7 @@ public class GameParameters : ScriptableObject
     [SerializeField] public int startWave = 0;
     [Header("General Parameters")]
     [SerializeField] private int lifes = 3;
+    [SerializeField] private int combo = 3;
 
     [Space(10)]
     [Header("Word Speeds")]
@@ -17,7 +20,8 @@ public class GameParameters : ScriptableObject
     [Space(10)]
     [Header("Word Display Settings")]
     [SerializeField] private float goalRadius = 1f;
-    [SerializeField] private float classicFont = 5f;
+    [SerializeField] private float classicFontSize = 5f;
+    [SerializeField] private TMP_FontAsset classicFont;
     [SerializeField] private float epicFont = 5f;
     [SerializeField] private float pointsFont = 5f;
     [SerializeField] private float spacing = 5f;
@@ -26,6 +30,8 @@ public class GameParameters : ScriptableObject
 
     [Space(10)]
     [Header("Wave Settings")]
+    [Header("Wave Tuto")]
+    [SerializeField] private float tutoWaveSpawnRate = 5f;
     [Header("Wave 1")]
     [SerializeField] private float firstWaveWaitTime = 5f;
     [SerializeField] private float firstWaveSpawnRate = 5f;
@@ -49,9 +55,11 @@ public class GameParameters : ScriptableObject
     public float EasySpeed => easySpeed / 10f;
     public float HardSpeed => hardSpeed / 10f;
     public float GoalRadius => goalRadius;
-    public float ClassicFont => classicFont;
+    public float ClassicFontSize => classicFontSize;
+    public TMP_FontAsset ClassicFont => classicFont;
     public float EpicFont => epicFont;
     public float PointsFont => pointsFont;
+    public float TutoSpawnRate => tutoWaveSpawnRate;
     public float FirstSpawnRate => firstWaveSpawnRate;
     public float FirstWaveWaitTime => firstWaveWaitTime;
     public float SecondWaveWaitTime => secondWaveWaitTime;
@@ -68,4 +76,5 @@ public class GameParameters : ScriptableObject
     public float WaveAmplitude => waveAmplitude;
     public float WaveFrequency => waveFreq;
     public int Lifes => lifes;
+    public int ComboMultiplier => combo;
 }

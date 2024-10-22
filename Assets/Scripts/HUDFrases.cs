@@ -8,10 +8,11 @@ public class HUDFrases : MonoBehaviour
 {
     public Transform bookPanel;
     public Button nextPageButton;
+    public Button backPageButton;
     public TextMeshProUGUI wordText;
     public TextMeshProUGUI descText;
 
-    private List<WordStruct> frases;
+    private List<WordStruct> frases = new List<WordStruct>();
     private int currentPage = 0;
     private int totalPages;
     internal void SetFrases(List<WordStruct> frases)
@@ -40,6 +41,14 @@ public class HUDFrases : MonoBehaviour
             ShowPage(currentPage);
         }
     }
+    public void BackPage()
+    {
+        if (currentPage > 0)
+        {
+            currentPage--;
+            ShowPage(currentPage);
+        }
+    }
     private void ShowPage(int pageIndex)
     {
         if(frases.Count == 0)
@@ -52,6 +61,7 @@ public class HUDFrases : MonoBehaviour
             wordText.text = frases[pageIndex].Content;
             descText.text = frases[pageIndex].Description;
         }
-        nextPageButton.interactable = (currentPage < totalPages - 1);
+        nextPageButton.gameObject.SetActive(currentPage < totalPages - 1);
+        backPageButton.gameObject.SetActive(currentPage > 0);
     }
 }

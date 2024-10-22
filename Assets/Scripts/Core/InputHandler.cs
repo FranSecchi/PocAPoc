@@ -6,13 +6,18 @@ using UnityEngine;
 public class InputHandler : MonoBehaviour
 {
     public event Action<char> charPressed;
+    public event Action escapePressed;
 
     // Update is called once per frame
     void Update()
     {
         if (Input.anyKeyDown)
         {
-            if (!string.IsNullOrEmpty(Input.inputString))
+            if (Input.GetKeyDown(KeyCode.Escape)) 
+            { 
+                escapePressed?.Invoke();
+            }
+            else if (!string.IsNullOrEmpty(Input.inputString))
             {
                 char keyPressed = Input.inputString[0];
                 keyPressed = char.ToLower(keyPressed);

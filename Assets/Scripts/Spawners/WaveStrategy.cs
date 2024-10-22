@@ -23,7 +23,7 @@ public abstract class WaveStrategy : ISpawn
         spawner.availableSpawnPoints.RemoveAt(spawnIndex);
 
         WordFactory factory = spawner.getFactory(difficulty);
-        WordStruct wordCont = factory.getWord();
+        WordStruct wordCont = factory.getWord().Value;
 
         GameObject go = new GameObject();
         Word word = (Word)go.AddComponent(type);
@@ -40,5 +40,17 @@ public abstract class WaveStrategy : ISpawn
         {
             spawner.availableSpawnPoints = new List<Transform>(spawner.spawnPoints);
         }
+    }
+
+    protected Spawner RandomSpawner()
+    {
+        Spawner spawner = null;
+        List<Spawner> spawnersTemp = new List<Spawner>(spawners);
+        do
+        {
+            spawner = spawnersTemp[Random.Range(0, spawnersTemp.Count)];
+            spawnersTemp.Remove(spawner);
+        } while (spawner.availableSpawnPoints.Count == 0 && spawnersTemp.Count > 0);
+        return spawner;
     }
 }

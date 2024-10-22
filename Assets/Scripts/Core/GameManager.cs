@@ -18,11 +18,11 @@ public class GameManager : MonoBehaviour
     private Dictionary<Spawner,List<Word>> allWords;
     private PointsManager pointsManager;
     private InputHandler inputHandler;
-    private int currentWave = -1;
-
+    private int lastFrameCalled = -1;
 
     private int lifes = 3;
-
+    private bool paused = false;
+    private Coroutine waveCoro = null;
     public static GameParameters Parameters { get => Instance.parameters; }
     public InputHandler InputHandler { get => inputHandler;}
 
@@ -34,29 +34,49 @@ public class GameManager : MonoBehaviour
     {
         if (Instance == null)
             Instance = this;
+        if(inputHandler == null)
+            inputHandler = gameObject.AddComponent<InputHandler>();
     }
     private void Start()
     {
-        if(inputHandler == null)
-            inputHandler = gameObject.AddComponent<InputHandler>();
         if (allWords == null)
             allWords = new Dictionary<Spawner, List<Word>>();
         if (pointsManager == null)
-            pointsManager = new PointsManager();
+            pointsManager = GetComponent<PointsManager>();
         newWords = new List<WordStruct>();
         frases = new List<WordStruct>();
-        RestartGame();
+        inputHandler.escapePressed += PauseGame;
+        waveManager.enabled = false;
+        waves = new Queue<ISpawn>();
+    }
+    public void FirstStart()
+    {
+        waves.Enqueue(new TutoWave());
+        StartGame();
+    }
+    public void PauseGame()
+    {
+        if (lifes == 0) return;
+        Time.timeScale = paused ? 1f : 0f;
+        paused = !paused;
+        hud.SetPoints(pointsManager.totalPoints);
+        hud.SetFrases(frases);
+        hud.SetWords(newWords);
+        hud.Pause(paused);
+    }
+    private void StartGame()
+    {
+        RemoveWords();
+        lifes = Parameters.Lifes;
+        hud.SetLifes(lifes);
+        pointsManager.totalPoints = 0;
+        StartNextWave(Parameters.FirstWaveWaitTime);
     }
     public void RestartGame()
     {
-        lifes = Parameters.Lifes;
-        pointsManager.totalPoints = 0;
-        hud.SetLifes(lifes);
-        currentWave = Parameters.startWave;
-        waveManager.enabled = true;
-        waves = new Queue<ISpawn>();
+        if (paused) PauseGame();
         waves.Enqueue(new FirstWave());
-        StartNextWave(Parameters.FirstWaveWaitTime);
+        StartGame();
     }
 
     private void CheckLifes()
@@ -71,11 +91,19 @@ public class GameManager : MonoBehaviour
 
     private void Finish()
     {
+        if(waveCoro != null) StopCoroutine(waveCoro);
         waveManager.enabled = false;
         RemoveWords();
+        if (pointsManager.totalPoints > pointsManager.record)
+        {
+            pointsManager.record = pointsManager.totalPoints;
+            hud.DisplayNewRecord(pointsManager.record);
+        }
+        hud.SetPoints(pointsManager.totalPoints);
         hud.SetWords(newWords);
         hud.SetFrases(frases);
         hud.OpenMenu();
+        waves = new Queue<ISpawn>();
     }
 
     public void AddWave(ISpawn wave)
@@ -87,7 +115,7 @@ public class GameManager : MonoBehaviour
     {
         ISpawn newWave = waves.Dequeue();
         waveManager.setSpawner(newWave);
-        StartCoroutine(WaitForWave(waitTime));
+        waveCoro = StartCoroutine(WaitForWave(waitTime));
     }
 
     private IEnumerator WaitForWave(float sec)
@@ -95,6 +123,7 @@ public class GameManager : MonoBehaviour
         waveManager.enabled = false;
         yield return new WaitForSeconds(sec);
         waveManager.enabled = true;
+        waveCoro = null;
     }
     public void addWord(Word word)
     {
@@ -110,11 +139,17 @@ public class GameManager : MonoBehaviour
         allWords[word.spawner].Remove(word);
         if (completed)
         {
+            if (Time.frameCount == lastFrameCalled)
+            {
+                pointsManager.combo(word);
+            }
             pointsManager.sumPoints(word, completed);
             if (!newWords.Any(w => w.Content == word.word.Content) && word.word.Type != WordType.FRASE)
             {
                 newWords.Add(word.word);
+                pointsManager.displayWord(word.word.Content);
             }
+            lastFrameCalled = Time.frameCount;
         }
         else CheckLifes();
     }

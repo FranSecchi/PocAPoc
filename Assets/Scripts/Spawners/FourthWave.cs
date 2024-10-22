@@ -27,7 +27,6 @@ internal class FourthWave : WaveStrategy
 
     private void InstantiateWord(WordDifficulty difficulty, System.Type wordType)
     {
-
         Spawner spawner = null;
         List<Spawner> spawnersTemp = new List<Spawner>(spawners);
         do

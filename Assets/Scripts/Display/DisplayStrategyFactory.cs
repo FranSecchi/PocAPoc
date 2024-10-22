@@ -21,6 +21,9 @@ public class DisplayStrategyFactory
                 case WordType.FRASE:
                     strategies.Add(type, new ClassicDisplay());
                     break;
+                case WordType.STATIC:
+                    strategies.Add(type, new ClassicDisplay());
+                    break;
                 // Add more cases for other word types if needed
                 default:
                     throw new InvalidOperationException("Unknown word type: " + type);

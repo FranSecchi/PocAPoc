@@ -3,6 +3,7 @@ using TMPro;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class ClassicDisplay : IDisplayWord
 {
@@ -10,9 +11,12 @@ public class ClassicDisplay : IDisplayWord
     private Color color = Color.black;
     public void Initialize(GameObject gameObject, string word)
     {
-        m_TextMeshPro = gameObject.AddComponent<TextMeshPro>();
-        m_TextMeshPro.fontSize = GameManager.Parameters.ClassicFont;
+        m_TextMeshPro = gameObject.GetComponent<TextMeshPro>();
+            if(m_TextMeshPro == null) m_TextMeshPro = gameObject.AddComponent<TextMeshPro>();
+        m_TextMeshPro.font = GameManager.Parameters.ClassicFont;
+        m_TextMeshPro.fontSize = GameManager.Parameters.ClassicFontSize;
         m_TextMeshPro.alignment = TextAlignmentOptions.Center;
+        m_TextMeshPro.fontWeight = FontWeight.Bold;
         m_TextMeshPro.color = color;
         m_TextMeshPro.text = word;
     }
@@ -43,10 +47,23 @@ public class ClassicDisplay : IDisplayWord
 
     public void UpdateDisplay(GameObject gameObject, string currentSequence, string fullWord)
     {
+
         m_TextMeshPro = gameObject.GetComponent<TextMeshPro>();
 
-        string highlighted = "<color=green>" + fullWord.Substring(0, currentSequence.Length) + "</color>"
-                           + fullWord.Substring(currentSequence.Length);
+        int highlightEnd = 0;
+        int currentIndex = 0;
+
+        while (currentIndex < currentSequence.Length && highlightEnd < fullWord.Length)
+        {
+            if (char.IsPunctuation(fullWord[highlightEnd]))
+            {
+                highlightEnd++;
+            }
+            highlightEnd++;
+            currentIndex++;
+        }
+        string highlighted = "<color=green>" + fullWord.Substring(0, highlightEnd) + "</color>"
+                           + fullWord.Substring(highlightEnd);
 
         m_TextMeshPro.text = highlighted;
     }

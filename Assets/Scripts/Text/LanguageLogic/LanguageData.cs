@@ -11,7 +11,7 @@ public class LanguageData
         Data = new Dictionary<Language, string>();
         for (int i = 1; i < rawData.Length; i++)
         {
-            Data.Add((Language)i, rawData[i]);
+            Data.Add((Language)i - 1, rawData[i]);
         }
     }
 
@@ -23,9 +23,8 @@ public class LanguageData
 
 public enum Language
 {
-    English= 1,
-    Catalan,
-    Spanish
+    Catalan = 0,
+    Spanish = 1,
 }
 
 

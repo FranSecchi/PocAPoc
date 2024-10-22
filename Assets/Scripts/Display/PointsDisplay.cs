@@ -14,6 +14,7 @@ public class PointsDisplay : MonoBehaviour
     void Awake()
     {
         m_TextMeshPro = gameObject.AddComponent<TextMeshPro>();
+        m_TextMeshPro.font = GameManager.Parameters.ClassicFont;
         m_TextMeshPro.fontSize = GameManager.Parameters.PointsFont;
         m_TextMeshPro.color = color;
         m_TextMeshPro.alignment = TextAlignmentOptions.Center;

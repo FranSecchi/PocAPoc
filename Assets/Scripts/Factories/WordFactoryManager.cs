@@ -29,6 +29,12 @@ public class WordFactoryManager
         WordFactory factory = new BossWordFactory(parseSheet(commonFile));
         return factory;
     }
+    internal static WordFactory createTutoFactory()
+    {
+        TextAsset commonFile = Resources.Load<TextAsset>("TutoWords");
+        WordFactory factory = new LimitedWordFactory(parseSheet(commonFile));
+        return factory;
+    }
 
     private static Dictionary<WordDifficulty, List<WordStruct>> categorizeWords(List<WordStruct> words)
     {
@@ -64,6 +70,8 @@ public class WordFactoryManager
         string[] lines = file.text.Split(new char[] { '\n' });
         for (int i = 1; i < lines.Length; i++)
         {
+            if (string.IsNullOrEmpty(lines[i]))
+                continue;
             if (lines.Length > 1)
                 list.Add(GetWord(lines[i]));
         }

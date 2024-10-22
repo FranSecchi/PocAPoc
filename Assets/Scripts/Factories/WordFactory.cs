@@ -5,7 +5,7 @@ public abstract class WordFactory
 {
     public WordDifficulty difficulty;
     protected List<WordStruct> data = new List<WordStruct>();
-    public abstract WordStruct getWord();
+    public abstract WordStruct? getWord();
     protected WordFactory(List<WordStruct> data)
     {
         this.data = data;

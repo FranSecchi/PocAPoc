@@ -44,8 +44,8 @@ public abstract class Word : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        display = DisplayStrategyFactory.GetDisplay(word.Type);
         gameManager.addWord(this);
+        display = DisplayStrategyFactory.GetDisplay(word.Type);
         normalizedWord = NormalizeWord(word.Content);
         Init();
     }
@@ -71,7 +71,8 @@ public abstract class Word : MonoBehaviour
     {
         return string.Concat(
             text.Normalize(NormalizationForm.FormD)
-                .Where(ch => CharUnicodeInfo.GetUnicodeCategory(ch) != UnicodeCategory.NonSpacingMark)
+                .Where(ch => CharUnicodeInfo.GetUnicodeCategory(ch) != UnicodeCategory.NonSpacingMark &&
+                             char.IsLetterOrDigit(ch)) 
         ).Normalize(NormalizationForm.FormC);
     }
 }
