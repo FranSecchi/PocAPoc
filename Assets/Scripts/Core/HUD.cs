@@ -42,6 +42,10 @@ public class HUD : MonoBehaviour
     {
         notebook.SetFrases(frases);
     }
+    internal void SetRegionals(List<WordStruct> words)
+    {
+        notebook.SetRegionals(words);
+    }
 
     internal void OpenMenu()
     {

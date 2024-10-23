@@ -41,8 +41,7 @@ internal class FourthWave : WaveStrategy
 
     protected override void Init()
     {
-        max = GameManager.Parameters.MaxSpawnSecondWave;
-        timeInterval = GameManager.Parameters.SecondSpawnRate;
+        timeInterval = GameManager.Parameters.MediumSpawnRate;
         numberWords = GameManager.Parameters.WordsSecondWave;
         timeForWave = GameManager.Parameters.ThirdWaveWaitTime;
     }

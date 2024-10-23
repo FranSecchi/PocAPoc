@@ -23,21 +23,24 @@ MonoBehaviour:
   classicFontSize: 5
   classicFont: {fileID: 11400000, guid: ff289a50614dbe747a44f7437a12db77, type: 2}
   epicFont: 5
-  pointsFont: 8
+  pointsFont: 6
   spacing: 0
   waveAmplitude: 0.1
   waveFreq: 5
   tutoWaveSpawnRate: 2
-  easyWaitTime: 2
+  easyWaitTime: 1.5
   easySpawnRate: 0.8
   wordsPerBurst: 4
   numberBursts: 6
   burstCooldown: 1.5
-  mediumWaitTime: 5
-  mediumSpawnRate: 5
-  WordsForThirdWave: 4
-  maxSpawn2: 2
+  easy_ProbabilityMedium: 0.25
+  mediumWaitTime: 2
+  mediumSpawnRate: 3
+  WordsForThirdWave: 12
+  medium_ProbabilityEasy: 0.3
+  medium_ProbabilityHard: 0.15
+  medium_ProbabilityTwoWords: 0.4
   frasesWaitTime: 5
-  frasesSpawnRate: 5
+  frasesSpawnRate: 1.5
   WordsForFourthWave: 1
   fourthWaveWaitTime: 5

@@ -4,7 +4,7 @@ using System;
 using UnityEngine.EventSystems;
 using System.Collections;
 
-internal class ComboDisplay : MonoBehaviour
+public class ComboDisplay : MonoBehaviour
 {
     public float duration;
     TextMeshPro m_TextMeshPro;
@@ -34,7 +34,6 @@ internal class ComboDisplay : MonoBehaviour
             yield return null;
         }
 
-        // Destroy the GameObject after the animation
-        Destroy(gameObject);
+        m_TextMeshPro.text = "";
     }
 }

@@ -30,15 +30,20 @@ public class PointsDisplay : MonoBehaviour
         float elapsedTime = 0f;
         Vector2 startPosition = m_TextMeshPro.transform.position;
         float startSize = m_TextMeshPro.fontSize;
-
+        Color color = m_TextMeshPro.color;
         while (elapsedTime < duration)
         {
             float t = elapsedTime / duration;
 
-            m_TextMeshPro.transform.position = startPosition + (moveDirection * (t * 2)); 
+            m_TextMeshPro.transform.position = startPosition + (moveDirection * t/2f); 
 
-            m_TextMeshPro.fontSize = Mathf.Lerp(startSize, 0, t);
-
+            m_TextMeshPro.fontSize = Mathf.Lerp(startSize, startSize/2, t);
+            if (t > 0.5f)
+            {
+                //implement here
+                color.a = Mathf.Lerp(1, 0, (t - 0.5f) / 0.5f);
+                m_TextMeshPro.color = color;
+            }
             elapsedTime += Time.deltaTime;
             yield return null;
         }

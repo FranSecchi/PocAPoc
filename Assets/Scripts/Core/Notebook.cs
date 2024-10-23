@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class Notebook : LocalizedText
 {
     public int maxWordsPerPage = 10;
+    public int maxRegionalsPerPage = 10;
     public Transform bookPanel;
     public Transform contentPanel;
     public GameObject wordTextPrefab;
@@ -15,11 +16,13 @@ public class Notebook : LocalizedText
     public TextMeshProUGUI fraseDesc;
     public Button wordsButton;
     public Button frasesButton;
+    public Button regionalsButton;
     public Button nextPageButton;
     public Button backPageButton;
 
     private List<WordStruct> words = new List<WordStruct>();
     private List<WordStruct> frases = new List<WordStruct>();
+    private List<WordStruct> regionals = new List<WordStruct>();
     private int currentPage = 0;
     private int totalPages;
 
@@ -30,6 +33,10 @@ public class Notebook : LocalizedText
     internal void SetFrases(List<WordStruct> frases)
     {
         this.frases = frases;
+    }
+    internal void SetRegionals(List<WordStruct> regionals)
+    {
+        this.regionals = regionals;
     }
 
     // Called when the player clicks the UI button to open the book
@@ -46,7 +53,8 @@ public class Notebook : LocalizedText
     public void OpenWords()
     {
         wordsButton.enabled = false;
-        frasesButton.enabled = true;
+        frasesButton.enabled = frases.Count > 0;
+        regionalsButton.enabled = regionals.Count > 0;
         frasesContentPanel.SetActive(false);
         currentPage = 0;
         totalPages = Mathf.CeilToInt((float)words.Count / maxWordsPerPage);
@@ -55,11 +63,22 @@ public class Notebook : LocalizedText
     public void OpenFrases()
     {
         frasesButton.enabled = false;
+        regionalsButton.enabled = regionals.Count > 0;
         wordsButton.enabled = true;
         frasesContentPanel.SetActive(true);
         currentPage = 0;
         totalPages = frases.Count;
         ShowFrasesPage(currentPage);
+    }
+    public void OpenRegionals()
+    {
+        frasesButton.enabled = frases.Count > 0;
+        regionalsButton.enabled = false;
+        wordsButton.enabled = true;
+        frasesContentPanel.SetActive(false);
+        currentPage = 0;
+        totalPages = Mathf.CeilToInt((float)regionals.Count / maxRegionalsPerPage);
+        ShowRegionalsPage(currentPage);
     }
     private void ShowPage(int pageIndex)
     {
@@ -76,6 +95,25 @@ public class Notebook : LocalizedText
             GameObject descGO = Instantiate(wordTextPrefab, contentPanel);
             TMP_Text descText = descGO.GetComponent<TMP_Text>();
             descText.text = GetText(words[i].Description, TextType.Simple);
+        }
+        nextPageButton.gameObject.SetActive(currentPage < totalPages - 1);
+        backPageButton.gameObject.SetActive(currentPage > 0);
+    }
+    private void ShowRegionalsPage(int pageIndex)
+    {
+        ClearContent();
+
+        int startWordIndex = pageIndex * maxRegionalsPerPage;
+        int endWordIndex = Mathf.Min(startWordIndex + maxRegionalsPerPage, regionals.Count);
+
+        for (int i = startWordIndex; i < endWordIndex; i++)
+        {
+            GameObject wordGO = Instantiate(wordTextPrefab, contentPanel);
+            TMP_Text wordText = wordGO.GetComponent<TMP_Text>();
+            wordText.text = regionals[i].Content;
+            GameObject descGO = Instantiate(wordTextPrefab, contentPanel);
+            TMP_Text descText = descGO.GetComponent<TMP_Text>();
+            descText.text = GetText(regionals[i].Description, TextType.Simple);
         }
         nextPageButton.gameObject.SetActive(currentPage < totalPages - 1);
         backPageButton.gameObject.SetActive(currentPage > 0);
@@ -115,7 +153,8 @@ public class Notebook : LocalizedText
         if (currentPage < totalPages - 1)
         {
             currentPage++;
-            ShowPage(currentPage);
+            if (wordsButton.enabled) ShowRegionalsPage(currentPage);
+            else ShowPage(currentPage);
         }
     }// Display the current page of words
     public void BackPage()
@@ -123,7 +162,8 @@ public class Notebook : LocalizedText
         if (currentPage > 0)
         {
             currentPage--;
-            ShowPage(currentPage);
+            if (wordsButton.enabled) ShowRegionalsPage(currentPage);
+            else ShowPage(currentPage);
         }
     }
 }

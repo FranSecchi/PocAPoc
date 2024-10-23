@@ -7,12 +7,13 @@ public class EasyWave : WaveStrategy
     private int bursts;
     private int max;
     private float cooldown;
+    private float prob;
     private float t = 0f;
     public override void Spawn()
     {
         if(bursts > numberWords)
         {
-            GameManager.Instance.AddWave(new SecondWave());
+            GameManager.Instance.AddWave(new MediumWave());
             GameManager.Instance.jumpWave(timeForWave);
             return;
         }
@@ -40,8 +41,8 @@ public class EasyWave : WaveStrategy
         Spawner spawner = RandomSpawner();
         float rand = Random.Range(0f, 1f);
         WordDifficulty wordDifficulty;
-        if (rand > 0.2f) { wordDifficulty = WordDifficulty.MEDIUM; }
-        else { wordDifficulty = WordDifficulty.EASY; }
+        if (rand > prob) { wordDifficulty = WordDifficulty.EASY; }
+        else { wordDifficulty = WordDifficulty.MEDIUM; }
         Instantiate(spawner, wordDifficulty, typeof(EasyWord));
     }
 
@@ -53,7 +54,8 @@ public class EasyWave : WaveStrategy
         max = param.WordsPerBurst;
         timeInterval = param.EasySpawnRate;
         numberWords = param.ManyBursts;
-        timeForWave = param.SecondWaveWaitTime;
+        timeForWave = param.MediumWaitTime;
+        prob = param.Easy_MediumProbability;
         bursts = 0;
         wordsSpawned = 0;
     }

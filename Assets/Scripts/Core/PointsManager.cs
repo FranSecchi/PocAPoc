@@ -5,7 +5,7 @@ using UnityEngine;
 public class PointsManager : MonoBehaviour
 {
     public TextMeshProUGUI wordText;
-    public GameObject comboPrefab;
+    public ComboDisplay comboDisplay;
     public float fadeTime;
     public float displayTime;
     [NonSerialized]
@@ -71,9 +71,8 @@ public class PointsManager : MonoBehaviour
     internal void combo(Word word)
     {
         int points= GameManager.Parameters.ComboMultiplier*word.word.Content.Length;
-        GameObject go = Instantiate(comboPrefab, word.transform.position, Quaternion.identity);
-        ComboDisplay cd = go.GetComponent<ComboDisplay>();
-        cd.Print(points);
+
+        comboDisplay.Print(points);
         totalPoints += points;
     }
 

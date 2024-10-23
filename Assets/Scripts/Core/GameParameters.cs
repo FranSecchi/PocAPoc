@@ -37,11 +37,18 @@ public class GameParameters : ScriptableObject
     [SerializeField] private int wordsPerBurst = 3;
     [SerializeField] private int numberBursts = 10;
     [SerializeField] private float burstCooldown = 5f;
+    [Range(0,1)]
+    [SerializeField] private float easy_ProbabilityMedium = 0f;
     [Header("Medium Wave")]
     [SerializeField] private float mediumWaitTime = 5f;
     [SerializeField] private float mediumSpawnRate = 5f;
     [SerializeField] private int WordsForThirdWave = 10;
-    [SerializeField] private int maxSpawn2 = 3;
+    [Range(0, 1)]
+    [SerializeField] private float medium_ProbabilityEasy = 0f;
+    [Range(0, 1)]
+    [SerializeField] private float medium_ProbabilityHard = 0f;
+    [Range(0, 1)]
+    [SerializeField] private float medium_ProbabilityTwoWords = 0f;
     [Header("Frases wave")]
     [SerializeField] private float frasesWaitTime = 5f;
     [SerializeField] private float frasesSpawnRate = 5f;
@@ -72,13 +79,16 @@ public class GameParameters : ScriptableObject
     public float EasyWaitTime => easyWaitTime;
     public float EasySpawnRate => easySpawnRate;
     public float BurstCooldown => burstCooldown;
+    public float Easy_MediumProbability => easy_ProbabilityMedium;
     public int ManyBursts => numberBursts;
     public int WordsPerBurst => wordsPerBurst;
     // Medium wave
-    public float SecondWaveWaitTime => mediumWaitTime;
-    public float SecondSpawnRate => mediumSpawnRate;
+    public float MediumWaitTime => mediumWaitTime;
+    public float MediumSpawnRate => mediumSpawnRate;
     public int WordsSecondWave => WordsForThirdWave;
-    public int MaxSpawnSecondWave => maxSpawn2;
+    public float Medium_EasyProbability => medium_ProbabilityEasy;
+    public float Medium_HardProbability => medium_ProbabilityHard;
+    public float Medium_ComboProbability => medium_ProbabilityTwoWords;
     // Frase wave
     public float ThirdWaveWaitTime => frasesWaitTime;
     public float ThirdSpawnRate => frasesSpawnRate;
