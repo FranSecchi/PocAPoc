@@ -32,7 +32,7 @@ public class EasyWord : Word
 
     protected override void Step()
     {
-        if(Vector2.Distance(transform.position, goal.position) < GameManager.Parameters.GoalRadius)
+        if (Vector2.Distance(transform.position, goal.position) < GameManager.Parameters.GoalRadius)
         {
             Remove(false);
         }

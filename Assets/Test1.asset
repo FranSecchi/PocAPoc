@@ -28,15 +28,16 @@ MonoBehaviour:
   waveAmplitude: 0.1
   waveFreq: 5
   tutoWaveSpawnRate: 2
-  firstWaveWaitTime: 2
-  firstWaveSpawnRate: 2
-  maxSpawn1: 3
-  WordsForSecondWave: 3
-  secondWaveWaitTime: 5
-  secondWaveSpawnRate: 1.5
+  easyWaitTime: 2
+  easySpawnRate: 0.8
+  wordsPerBurst: 4
+  numberBursts: 6
+  burstCooldown: 1.5
+  mediumWaitTime: 5
+  mediumSpawnRate: 5
   WordsForThirdWave: 4
   maxSpawn2: 2
-  thirdWaveWaitTime: 6
-  thirdWaveSpawnRate: 1
+  frasesWaitTime: 5
+  frasesSpawnRate: 5
   WordsForFourthWave: 1
   fourthWaveWaitTime: 5

@@ -13,7 +13,7 @@ public class InputHandler : MonoBehaviour
     {
         if (Input.anyKeyDown)
         {
-            if (Input.GetKeyDown(KeyCode.Escape)) 
+            if (Input.GetKeyDown(KeyCode.Return)) 
             { 
                 escapePressed?.Invoke();
             }

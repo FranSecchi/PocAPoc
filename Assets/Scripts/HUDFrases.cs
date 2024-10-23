@@ -9,59 +9,10 @@ public class HUDFrases : MonoBehaviour
     public Transform bookPanel;
     public Button nextPageButton;
     public Button backPageButton;
-    public TextMeshProUGUI wordText;
-    public TextMeshProUGUI descText;
+    public TextMeshProUGUI fraseText;
+    public TextMeshProUGUI fraseDesc;
 
     private List<WordStruct> frases = new List<WordStruct>();
     private int currentPage = 0;
     private int totalPages;
-    internal void SetFrases(List<WordStruct> frases)
-    {
-        this.frases = frases;
-        totalPages =  frases.Count;
-        currentPage = 0;
-    }
-    // Called when the player clicks the UI button to open the book
-    public void OpenBook()
-    {
-        if (bookPanel.gameObject.activeSelf)
-        {
-            bookPanel.gameObject.SetActive(false);
-            return;
-        }
-        bookPanel.gameObject.SetActive(true);
-        currentPage = 0;
-        ShowPage(currentPage);
-    }
-    public void NextPage()
-    {
-        if (currentPage < totalPages - 1)
-        {
-            currentPage++;
-            ShowPage(currentPage);
-        }
-    }
-    public void BackPage()
-    {
-        if (currentPage > 0)
-        {
-            currentPage--;
-            ShowPage(currentPage);
-        }
-    }
-    private void ShowPage(int pageIndex)
-    {
-        if(frases.Count == 0)
-        {
-            wordText.text = "Cap frase feta trovada";
-            descText.text = "";
-        }
-        else
-        {
-            wordText.text = frases[pageIndex].Content;
-            descText.text = frases[pageIndex].Description;
-        }
-        nextPageButton.gameObject.SetActive(currentPage < totalPages - 1);
-        backPageButton.gameObject.SetActive(currentPage > 0);
-    }
 }

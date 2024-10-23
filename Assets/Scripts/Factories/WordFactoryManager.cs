@@ -18,6 +18,7 @@ public class WordFactoryManager
 
         // Create the factories based on word categories
         factories.Add(new EasyWordFactory(wordBuckets[WordDifficulty.EASY]));
+        factories.Add(new MediumWordFactory(wordBuckets[WordDifficulty.MEDIUM]));
         factories.Add(new HardWordFactory(wordBuckets[WordDifficulty.HARD]));
 
         return factories;
@@ -52,7 +53,15 @@ public class WordFactoryManager
                 }
                 dic[WordDifficulty.EASY].Add(word);
             }
-            else if(length >= 4 && length < 7) // Medium
+            else if(length >= 4 && length < 6) // Medium
+            {
+                if (!dic.ContainsKey(WordDifficulty.MEDIUM))
+                {
+                    dic[WordDifficulty.MEDIUM] = new List<WordStruct>();
+                }
+                dic[WordDifficulty.MEDIUM].Add(word);
+            }
+            else if (length >= 6 && length < 8) // Hard
             {
                 if (!dic.ContainsKey(WordDifficulty.HARD))
                 {

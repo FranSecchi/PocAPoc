@@ -70,12 +70,12 @@ public class GameManager : MonoBehaviour
         lifes = Parameters.Lifes;
         hud.SetLifes(lifes);
         pointsManager.totalPoints = 0;
-        StartNextWave(Parameters.FirstWaveWaitTime);
+        StartNextWave(Parameters.EasyWaitTime);
     }
     public void RestartGame()
     {
         if (paused) PauseGame();
-        waves.Enqueue(new FirstWave());
+        waves.Enqueue(new EasyWave());
         StartGame();
     }
 

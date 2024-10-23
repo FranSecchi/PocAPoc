@@ -10,7 +10,7 @@ public class TutoWave : WaveStrategy
         WordStruct? wordCont = wordFactory.getWord();
         if (!wordCont.HasValue) 
         {
-            GameManager.Instance.AddWave(new FirstWave());
+            GameManager.Instance.AddWave(new EasyWave());
             GameManager.Instance.jumpWave(timeForWave);
             return;
         }
@@ -35,6 +35,6 @@ public class TutoWave : WaveStrategy
     {
         wordFactory = WordFactoryManager.createTutoFactory();
         timeInterval = GameManager.Parameters.TutoSpawnRate;
-        timeForWave = GameManager.Parameters.FirstWaveWaitTime;
+        timeForWave = GameManager.Parameters.EasyWaitTime;
     }
 }

@@ -8,8 +8,7 @@ using UnityEngine.UI;
 
 public class HUD : MonoBehaviour
 {
-    public HUDFrases frasesHUD;
-    public HUDWords wordsHUD;
+    public Notebook notebook;
     public GameObject hudPanel;
     public GameObject resumeButton;
     public TextMeshProUGUI lifesTMP;
@@ -31,7 +30,7 @@ public class HUD : MonoBehaviour
 
     internal void SetWords(List<WordStruct> words)
     {
-        wordsHUD.SetWords(words);
+        notebook.SetWords(words);
     }
 
     internal void SetLifes(int lifes)
@@ -41,7 +40,7 @@ public class HUD : MonoBehaviour
 
     internal void SetFrases(List<WordStruct> frases)
     {
-        frasesHUD.SetFrases(frases);
+        notebook.SetFrases(frases);
     }
 
     internal void OpenMenu()
