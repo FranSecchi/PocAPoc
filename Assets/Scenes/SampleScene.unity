@@ -680,7 +680,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Goal: {fileID: 1357233606}
   hud: {fileID: 308599637}
-  parameters: {fileID: 11400000, guid: 0b90b3749406bb843962436988c6438e, type: 2}
+  parameters:
+  - {fileID: 11400000, guid: 0b90b3749406bb843962436988c6438e, type: 2}
+  - {fileID: 11400000, guid: 150b74432716c0942b5dd324a52256e9, type: 2}
   waveManager: {fileID: 1648080304}
 --- !u!4 &426755169
 Transform:

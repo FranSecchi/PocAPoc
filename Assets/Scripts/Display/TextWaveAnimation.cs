@@ -9,8 +9,8 @@ public class TextWaveAnimation : MonoBehaviour
 
     private void Start()
     {
-        waveAmplitude = GameManager.Parameters.WaveAmplitude;
-        waveFrequency = GameManager.Parameters.WaveFrequency;
+        waveAmplitude = GameManager.Parameter.WaveAmplitude;
+        waveFrequency = GameManager.Parameter.WaveFrequency;
         textMeshPro = GetComponent<TextMeshPro>();
         // Start the wave animation coroutine
         StartCoroutine(AnimateTextWave());

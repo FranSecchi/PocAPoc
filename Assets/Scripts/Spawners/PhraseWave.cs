@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThirdWave : WaveStrategy
+public class PhraseWave : WaveStrategy
 {
     private WordFactory factory;
     private Queue<WordStruct> currentWords;
@@ -12,9 +12,7 @@ public class ThirdWave : WaveStrategy
     {
         if (wordsSpawned >= numberWords)
         {
-            GameManager.Instance.addPhrase(phrase);
-            GameManager.Instance.AddWave(new FourthWave());
-            GameManager.Instance.jumpWave(timeForWave);
+            JumpWave();
             return;
         }
         time += Time.deltaTime;
@@ -34,9 +32,9 @@ public class ThirdWave : WaveStrategy
         phrase = factory.getWord().Value;
         currentWords = GetWords(phrase);
         spawnerIndex = 0;
-        timeInterval = GameManager.Parameters.ThirdSpawnRate;
-        numberWords = GameManager.Parameters.WordsThirdWave;
-        timeForWave = GameManager.Parameters.FourthWaveWaitTime;
+        timeInterval = GameManager.Parameter.PhraseSpawnRate;
+        numberWords = GameManager.Parameter.PhraseNextWave;
+        timeForWave = GameManager.Parameter.HardWaitTime;
     }
     protected void Instantiate()
     {
@@ -53,6 +51,13 @@ public class ThirdWave : WaveStrategy
         spawnerIndex++;
         time = 0f;
     }
+
+    public override void JumpWave()
+    {
+        GameManager.Instance.addPhrase(phrase);
+        GameManager.Instance.jumpWave(timeForWave);
+    }
+
     private Queue<WordStruct> GetWords(WordStruct ws)
     {
         string[] t = ws.Content.Split(new char[] { ' ' });

@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEngine.ParticleSystem;
 
-public class MediumWave : WaveStrategy
+public class HardWave : WaveStrategy
 {
     private float comboprob;
     private float easyprob;
@@ -53,12 +51,12 @@ public class MediumWave : WaveStrategy
     {
         Spawner spawner = RandomSpawner();
         float rand = Random.Range(0f, 1f);
-        if (rand < easyprob) 
-        { 
+        if (rand < easyprob)
+        {
             Instantiate(spawner, WordDifficulty.EASY, typeof(EasyWord));
         }
-        else if(rand < easyprob + hardprob) 
-        { 
+        else if (rand < easyprob + hardprob)
+        {
             Instantiate(spawner, WordDifficulty.HARD, typeof(HardWord));
         }
         else
@@ -72,10 +70,10 @@ public class MediumWave : WaveStrategy
         GameParameters param = GameManager.Parameter;
         cooldown = param.Medium_BurstCooldown;
         max = param.Medium_WordsPerBurst;
-        timeInterval = param.MediumSpawnRate;
-        numberWords = param.Medium_ManyBursts;
-        timeForWave = param.MediumWaitTime;
-        comboprob = param.Medium_ComboProbability;
+        timeInterval = param.HardSpawnRate;
+        numberWords = param.Hard_ManyBursts;
+        timeForWave = param.HardWaitTime;
+        comboprob = param.Hard_ComboProbability;
     }
 
     public override void JumpWave()

@@ -13,8 +13,7 @@ public class EasyWave : WaveStrategy
     {
         if(bursts > numberWords)
         {
-            GameManager.Instance.AddWave(new MediumWave());
-            GameManager.Instance.jumpWave(timeForWave);
+            JumpWave();
             return;
         }
         time += Time.deltaTime;
@@ -49,14 +48,19 @@ public class EasyWave : WaveStrategy
 
     protected override void Init()
     {
-        GameParameters param = GameManager.Parameters;
-        cooldown = param.BurstCooldown;
-        max = param.WordsPerBurst;
+        GameParameters param = GameManager.Parameter;
+        cooldown = param.Easy_BurstCooldown;
+        max = param.Easy_WordsPerBurst;
         timeInterval = param.EasySpawnRate;
-        numberWords = param.ManyBursts;
+        numberWords = param.Easy_ManyBursts;
         timeForWave = param.MediumWaitTime;
         prob = param.Easy_MediumProbability;
         bursts = 0;
         wordsSpawned = 0;
+    }
+
+    public override void JumpWave()
+    {
+        GameManager.Instance.jumpWave(timeForWave);
     }
 }

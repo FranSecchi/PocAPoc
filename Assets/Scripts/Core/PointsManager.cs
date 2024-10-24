@@ -70,7 +70,7 @@ public class PointsManager : MonoBehaviour
 
     internal void combo(Word word)
     {
-        int points= GameManager.Parameters.ComboMultiplier*word.word.Content.Length;
+        int points= GameManager.Parameter.ComboMultiplier*word.word.Content.Length;
 
         comboDisplay.Print(points);
         totalPoints += points;

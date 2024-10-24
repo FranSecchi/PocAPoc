@@ -10,15 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d76936766fe54bf4ba14fbd269335e67, type: 3}
-  m_Name: Test1
+  m_Name: Param1
   m_EditorClassIdentifier: 
   startWave: -1
   lifes: 3
   combo: 3
+  multipleWaves: 2
+  newWordProbability: 0.5
   simplePoints: 0
-  simpleSpeed: 12
-  easySpeed: 5
-  hardSpeed: 10
+  simpleSpeed: 6
+  easySpeed: 14
+  mediumSpeed: 8
+  hardSpeed: 6
   goalRadius: 0.31
   classicFontSize: 5
   classicFont: {fileID: 11400000, guid: ff289a50614dbe747a44f7437a12db77, type: 2}
@@ -30,17 +33,30 @@ MonoBehaviour:
   tutoWaveSpawnRate: 2
   easyWaitTime: 1.5
   easySpawnRate: 0.8
-  wordsPerBurst: 4
-  numberBursts: 6
-  burstCooldown: 1.5
-  easy_ProbabilityMedium: 0.25
+  e_wordsPerBurst: 2
+  e_numberBursts: 5
+  e_burstCooldown: 3
+  easy_ProbabilityMedium: 0.2
   mediumWaitTime: 2
-  mediumSpawnRate: 3
-  WordsForThirdWave: 12
-  medium_ProbabilityEasy: 0.3
-  medium_ProbabilityHard: 0.15
+  mediumSpawnRate: 1
+  m_burstCooldown: 5
+  m_wordsPerBurst: 3
+  m_numberBursts: 3
+  medium_ProbabilityEasy: 0.304
+  medium_ProbabilityHard: 0.2
   medium_ProbabilityTwoWords: 0.4
-  frasesWaitTime: 5
-  frasesSpawnRate: 1.5
-  WordsForFourthWave: 1
-  fourthWaveWaitTime: 5
+  frasesWaitTime: 6
+  frasesSpawnRate: 0.8
+  phrasesForNextWave: 1
+  hardWaitTime: 3
+  hardSpawnRate: 2
+  h_burstCooldown: 6
+  h_wordsPerBurst: 3
+  h_numberBursts: 3
+  h_ProbabilityEasy: 0.2
+  h_ProbabilityHard: 0.6
+  h_ProbabilityTwoWords: 0.5
+  easyWaveProbability: 0.24435909
+  mediumWaveProbability: 0.3238108
+  hardWaveProbability: 0.19329897
+  phraseWaveProbability: 0.23853117

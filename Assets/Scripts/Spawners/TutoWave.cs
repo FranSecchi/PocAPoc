@@ -10,8 +10,7 @@ public class TutoWave : WaveStrategy
         WordStruct? wordCont = wordFactory.getWord();
         if (!wordCont.HasValue) 
         {
-            GameManager.Instance.AddWave(new EasyWave());
-            GameManager.Instance.jumpWave(timeForWave);
+            JumpWave();
             return;
         }
         WordStruct wordS = wordCont.Value;
@@ -34,7 +33,12 @@ public class TutoWave : WaveStrategy
     protected override void Init()
     {
         wordFactory = WordFactoryManager.createTutoFactory();
-        timeInterval = GameManager.Parameters.TutoSpawnRate;
-        timeForWave = GameManager.Parameters.EasyWaitTime;
+        timeInterval = GameManager.Parameter.TutoSpawnRate;
+        timeForWave = GameManager.Parameter.EasyWaitTime;
+    }
+
+    public override void JumpWave()
+    {
+        GameManager.Instance.jumpWave(timeForWave);
     }
 }

@@ -8,28 +8,28 @@ public class GameManager : MonoBehaviour
 {
     public Transform Goal;
     public HUD hud;
-    public GameParameters parameters;
+    public List<GameParameters> parameters;
     public WaveManager waveManager;
     public static GameManager Instance;
 
     private Queue<ISpawn> waves = new Queue<ISpawn>();
     private List<WordStruct> newWords;
     private List<WordStruct> frases;
-    private List<WordStruct> regionals;
     private Dictionary<Spawner,List<Word>> allWords;
     private PointsManager pointsManager;
     private InputHandler inputHandler;
     private int lastFrameCalled = -1;
+    private GameParameters parameter;
 
     private int lifes = 3;
     private bool paused = false;
     private Coroutine waveCoro = null;
-    public static GameParameters Parameters { get => Instance.parameters; }
+    public static GameParameters Parameter { get => Instance.parameter; }
     public InputHandler InputHandler { get => inputHandler;}
-
+    public List<WordStruct> NewWords { get => newWords; }
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(Goal.position, parameters.GoalRadius);
+        Gizmos.DrawWireSphere(Goal.position, parameter.GoalRadius);
     }
     private void Awake()
     {
@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
             Instance = this;
         if(inputHandler == null)
             inputHandler = gameObject.AddComponent<InputHandler>();
+        parameter = parameters[0];
     }
     private void Start()
     {
@@ -46,7 +47,6 @@ public class GameManager : MonoBehaviour
             pointsManager = GetComponent<PointsManager>();
         newWords = new List<WordStruct>();
         frases = new List<WordStruct>();
-        regionals = new List<WordStruct>();
         inputHandler.escapePressed += PauseGame;
         waveManager.enabled = false;
         waves = new Queue<ISpawn>();
@@ -63,17 +63,20 @@ public class GameManager : MonoBehaviour
         paused = !paused;
         hud.SetPoints(pointsManager.totalPoints);
         hud.SetFrases(frases);
-        hud.SetRegionals(regionals);
         hud.SetWords(newWords);
         hud.Pause(paused);
     }
     private void StartGame()
     {
+        waves.Enqueue(new EasyWave());
+        waves.Enqueue(new MediumWave());
+        waves.Enqueue(new PhraseWave());
+        waves.Enqueue(new HardWave());
         RemoveWords();
-        lifes = Parameters.Lifes;
+        lifes = Parameter.Lifes;
         hud.SetLifes(lifes);
         pointsManager.totalPoints = 0;
-        StartNextWave(Parameters.EasyWaitTime);
+        StartNextWave(Parameter.EasyWaitTime);
     }
     public void RestartGame()
     {
@@ -105,7 +108,6 @@ public class GameManager : MonoBehaviour
         hud.SetPoints(pointsManager.totalPoints);
         hud.SetWords(newWords);
         hud.SetFrases(frases);
-        hud.SetRegionals(regionals);
         hud.OpenMenu();
         waves = new Queue<ISpawn>();
     }
@@ -148,13 +150,7 @@ public class GameManager : MonoBehaviour
                 pointsManager.combo(word);
             }
             pointsManager.sumPoints(word, completed);
-            if (word.word.Dialect != "català" && word.word.Type != WordType.FRASE && !regionals.Any(w => w.Content == word.word.Content))
-            {
-                Debug.Log("added " + word.word.Content);
-                regionals.Add(word.word);
-                pointsManager.displayWord(word.word.Content);
-            }
-            else if (!newWords.Any(w => w.Content == word.word.Content) && word.word.Type != WordType.FRASE)
+            if (!newWords.Any(w => w.Content == word.word.Content) && word.word.Type != WordType.FRASE)
             {
                 newWords.Add(word.word);
                 pointsManager.displayWord(word.word.Content);
@@ -165,6 +161,7 @@ public class GameManager : MonoBehaviour
     }
     public void jumpWave(float time)
     {
+        waveManager.AddWave();
         StartNextWave(time);
     }
     public void addPhrase(WordStruct word)

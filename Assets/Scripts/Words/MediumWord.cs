@@ -1,15 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class SimpleWord : Word
+public class MediumWord : Word
 {
     private string seq = "";
 
     public override void OnCharPressed(char key)
     {
-        //if (inserted == true && seq == "") return;
         //if (!word.Content.Contains(key)) return;
+        //if (inserted == true && seq == "") return;
         seq += key;
         //Add check
         if (!normalizedWord.StartsWith(seq))
@@ -26,8 +25,8 @@ public class SimpleWord : Word
     protected override void Init()
     {
         display.Initialize(gameObject, word.Content);
-        points = word.Content.Length;
-        speed = GameManager.Parameter.SimpleSpeed;
+        points = normalizedWord.Length;
+        speed = GameManager.Parameter.MediumSpeed;
     }
 
     protected override void Step()

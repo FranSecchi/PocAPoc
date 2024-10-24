@@ -26,9 +26,19 @@ public class Notebook : LocalizedText
     private int currentPage = 0;
     private int totalPages;
 
-    internal void SetWords(List<WordStruct> words)
+    internal void SetWords(List<WordStruct> inputWords)
     {
-        this.words = words;
+        foreach (var word in inputWords)
+        {
+            if (word.Dialect != "català")
+            {
+                regionals.Add(word);
+            }
+            else
+            {
+                words.Add(word);
+            }
+        }
     }
     internal void SetFrases(List<WordStruct> frases)
     {

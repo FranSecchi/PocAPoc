@@ -27,12 +27,12 @@ public class EasyWord : Word
     {
         display.Initialize(gameObject, word.Content);
         points = normalizedWord.Length;
-        speed = GameManager.Parameters.SimpleSpeed;
+        speed = GameManager.Parameter.EasySpeed;
     }
 
     protected override void Step()
     {
-        if (Vector2.Distance(transform.position, goal.position) < GameManager.Parameters.GoalRadius)
+        if (Vector2.Distance(transform.position, goal.position) < GameManager.Parameter.GoalRadius)
         {
             Remove(false);
         }

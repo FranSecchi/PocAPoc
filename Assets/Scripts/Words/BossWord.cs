@@ -25,13 +25,13 @@ public class BossWord : Word
     protected override void Init()
     {
         display.Initialize(gameObject, word.Content);
-        points = GameManager.Parameters.SimplePoints;
-        speed = GameManager.Parameters.SimpleSpeed;
+        points = GameManager.Parameter.SimplePoints;
+        speed = GameManager.Parameter.SimpleSpeed;
     }
 
     protected override void Step()
     {
-        if (Vector2.Distance(transform.position, goal.position) < GameManager.Parameters.GoalRadius)
+        if (Vector2.Distance(transform.position, goal.position) < GameManager.Parameter.GoalRadius)
         {
             Remove();
         }

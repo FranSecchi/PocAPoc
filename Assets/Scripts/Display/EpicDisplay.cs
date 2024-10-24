@@ -8,8 +8,8 @@ internal class EpicDisplay : IDisplayWord
     public void Initialize(GameObject gameObject, string word)
     {
         m_TextMeshPro = gameObject.AddComponent<TextMeshPro>();
-        m_TextMeshPro.font = GameManager.Parameters.ClassicFont;
-        m_TextMeshPro.fontSize = GameManager.Parameters.EpicFont;
+        m_TextMeshPro.font = GameManager.Parameter.ClassicFont;
+        m_TextMeshPro.fontSize = GameManager.Parameter.EpicFont;
         m_TextMeshPro.alignment = TextAlignmentOptions.Center;
         m_TextMeshPro.color = color;
         m_TextMeshPro.text = word;

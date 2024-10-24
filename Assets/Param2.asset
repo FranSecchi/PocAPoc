@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d76936766fe54bf4ba14fbd269335e67, type: 3}
+  m_Name: Param2
+  m_EditorClassIdentifier: 
+  startWave: -1
+  lifes: 3
+  combo: 3
+  multipleWaves: 2
+  newWordProbability: 0.5
+  simplePoints: 0
+  simpleSpeed: 8
+  easySpeed: 18
+  mediumSpeed: 12
+  hardSpeed: 8
+  goalRadius: 0.31
+  classicFontSize: 5
+  classicFont: {fileID: 11400000, guid: ff289a50614dbe747a44f7437a12db77, type: 2}
+  epicFont: 5
+  pointsFont: 6
+  spacing: 0
+  waveAmplitude: 0.1
+  waveFreq: 5
+  tutoWaveSpawnRate: 2
+  easyWaitTime: 1
+  easySpawnRate: 0.5
+  e_wordsPerBurst: 2
+  e_numberBursts: 5
+  e_burstCooldown: 3
+  easy_ProbabilityMedium: 0.25
+  mediumWaitTime: 1
+  mediumSpawnRate: 0.8
+  m_burstCooldown: 4
+  m_wordsPerBurst: 2
+  m_numberBursts: 5
+  medium_ProbabilityEasy: 0.4
+  medium_ProbabilityHard: 0.2
+  medium_ProbabilityTwoWords: 0.4
+  frasesWaitTime: 5
+  frasesSpawnRate: 0.8
+  phrasesForNextWave: 2
+  hardWaitTime: 2
+  hardSpawnRate: 5
+  h_burstCooldown: 5
+  h_wordsPerBurst: 3
+  h_numberBursts: 10
+  h_ProbabilityEasy: 0.2
+  h_ProbabilityHard: 0.6
+  h_ProbabilityTwoWords: 0.5
+  easyWaveProbability: 0.1467882
+  mediumWaveProbability: 0.2841533
+  hardWaveProbability: 0.28560537
+  phraseWaveProbability: 0.28345308

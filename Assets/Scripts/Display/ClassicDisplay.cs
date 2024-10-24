@@ -13,8 +13,8 @@ public class ClassicDisplay : IDisplayWord
     {
         m_TextMeshPro = gameObject.GetComponent<TextMeshPro>();
             if(m_TextMeshPro == null) m_TextMeshPro = gameObject.AddComponent<TextMeshPro>();
-        m_TextMeshPro.font = GameManager.Parameters.ClassicFont;
-        m_TextMeshPro.fontSize = GameManager.Parameters.ClassicFontSize;
+        m_TextMeshPro.font = GameManager.Parameter.ClassicFont;
+        m_TextMeshPro.fontSize = GameManager.Parameter.ClassicFontSize;
         m_TextMeshPro.alignment = TextAlignmentOptions.Center;
         m_TextMeshPro.fontWeight = FontWeight.Bold;
         m_TextMeshPro.color = color;
