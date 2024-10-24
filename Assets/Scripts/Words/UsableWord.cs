@@ -9,6 +9,7 @@ using UnityEngine;
 public class UsableWord : MonoBehaviour
 {
     public CameraAnimation ca;
+    public GameObject dialeg;
     protected IDisplayWord display;
     private string normalized;
     private string text;
@@ -37,6 +38,7 @@ public class UsableWord : MonoBehaviour
         display.UpdateDisplay(gameObject, seq, text);
         if (seq == normalized)
         {
+            dialeg.SetActive(false);
             ca.Transition();
             Destroy(gameObject);
         }

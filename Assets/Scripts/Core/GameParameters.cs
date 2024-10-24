@@ -11,7 +11,8 @@ public class GameParameters : ScriptableObject
     [SerializeField] private int multipleWaves = 1;
     [Range(0, 1)]
     [SerializeField] private float newWordProbability = 1;
-    
+    [SerializeField] private float progressiveSpeed = 0;
+
     [Space(10)]
     [Header("Word Speeds")]
     [SerializeField] private int simplePoints = 0;
@@ -34,7 +35,11 @@ public class GameParameters : ScriptableObject
     [Space(10)]
     [Header("Wave Settings")]
     [Header("Wave Tuto")]
-    [SerializeField] private float tutoWaveSpawnRate = 5f;
+    [SerializeField] private float tutoFirstSpawn = 5f;
+    [SerializeField] private float tutoSecondSpawn = 5f;
+    [SerializeField] private float tutoThirdSpawn = 5f;
+    [SerializeField] private float tutoFourthSpawn = 5f;
+    [SerializeField] private float tutoLastSpawn = 5f;
     [Header("Easy Wave")]
     [SerializeField] private float easyWaitTime = 5f;
     [SerializeField] private float easySpawnRate = 5f;
@@ -81,6 +86,9 @@ public class GameParameters : ScriptableObject
     [SerializeField] private float hardWaveProbability = 0.2f;
     [Range(0, 1)]
     [SerializeField] private float phraseWaveProbability = 0.1f;
+
+    private float increment = 0;
+    public void Increment() { increment += progressiveSpeed; }
     private void OnValidate()
     {
         // Calculate the total sum
@@ -97,29 +105,11 @@ public class GameParameters : ScriptableObject
     }
     // Words
     public int SimplePoints => simplePoints; 
-    public float SimpleSpeed
-    {
-        get => simpleSpeed / 10f;
-        set => simpleSpeed = value * 10f;
-    }
+    public float SimpleSpeed => (simpleSpeed + increment) / 10f;
+    public float EasySpeed => (easySpeed + increment) / 10f;
+    public float MediumSpeed => (mediumSpeed + increment) / 10f;
+    public float HardSpeed => (hardSpeed + increment) / 10f;
 
-    public float EasySpeed
-    {
-        get => easySpeed / 10f;
-        set => easySpeed = value * 10f;
-    }
-
-    public float MediumSpeed
-    {
-        get => mediumSpeed / 10f;
-        set => mediumSpeed = value * 10f;
-    }
-
-    public float HardSpeed
-    {
-        get => hardSpeed / 10f;
-        set => hardSpeed = value * 10f;
-    }
     // General
     public float GoalRadius => goalRadius;
     public int Lifes => lifes;
@@ -135,7 +125,11 @@ public class GameParameters : ScriptableObject
     public float WaveAmplitude => waveAmplitude;
     public float WaveFrequency => waveFreq;
     // Tuto
-    public float TutoSpawnRate => tutoWaveSpawnRate;
+    public float TutoFirstSpawn => tutoFirstSpawn;
+    public float TutoSecondSpawn => tutoSecondSpawn;
+    public float TutoThirdSpawn => tutoThirdSpawn;
+    public float TutoFourthSpawn => tutoFourthSpawn;
+    public float TutoLastSpawn => tutoLastSpawn;
     // Easy wave
     public float EasyWaitTime => easyWaitTime;
     public float EasySpawnRate => easySpawnRate;

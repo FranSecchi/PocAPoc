@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     private int lifes = 3;
     private bool paused = false;
     private Coroutine waveCoro = null;
+    private bool started = false;
     public static GameParameters Parameter { get => Instance.parameter; }
     public InputHandler InputHandler { get => inputHandler;}
     public List<WordStruct> NewWords { get => newWords; }
@@ -53,12 +54,13 @@ public class GameManager : MonoBehaviour
     }
     public void FirstStart()
     {
+        started = true;
         waves.Enqueue(new TutoWave());
         StartGame();
     }
     public void PauseGame()
     {
-        if (lifes == 0) return;
+        if (lifes == 0 || !started) return;
         Time.timeScale = paused ? 1f : 0f;
         paused = !paused;
         hud.SetPoints(pointsManager.totalPoints);
@@ -183,5 +185,9 @@ public class GameManager : MonoBehaviour
                 if (word != null) word.Remove();
             }
         }
+    }
+    public void IncrementParam(int i)
+    {
+        parameter = parameters[i];
     }
 }

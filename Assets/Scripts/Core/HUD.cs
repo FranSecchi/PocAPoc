@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class HUD : MonoBehaviour
 {
+    public GameObject dialeg;
     public Notebook notebook;
     public GameObject hudPanel;
     public GameObject resumeButton;
@@ -52,7 +53,10 @@ public class HUD : MonoBehaviour
         newRecordDisplay.SetActive(true);
         recordTMP.text = record.ToString();
     }
-
+    public void ShowDialeg()
+    {
+        dialeg.SetActive(true);
+    }
     public void Pause(bool paused)
     {
         resumeButton.SetActive(paused);

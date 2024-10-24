@@ -44,18 +44,17 @@ public class WaveManager : MonoBehaviour
         if (waves > 0 && waves % param.WavesMultiple == 0)
         {
             ++paramIndex;
-            if(paramIndex < GameManager.Instance.parameters.Count)
+            if(paramIndex < gameManager.parameters.Count)
             {
-                param = GameManager.Instance.parameters[paramIndex];
+                gameManager.IncrementParam(paramIndex);
+                param = GameManager.Parameter;
                 SetProbs();
             }
             else
             {
-                ++param.EasySpeed;
-                ++param.MediumSpeed;
-                ++param.HardSpeed;
-                ++param.SimpleSpeed;
+                param.Increment();
             }
+            Debug.Log(param.EasySpeed);
         }
         if (spawner != null) DestroyImmediate(this.spawner as Component);
         this.spawner = spawner;
@@ -68,7 +67,7 @@ public class WaveManager : MonoBehaviour
     }
     public void AddWave()
     {
-        float rand = Random.Range(0, 1);
+        float rand = Random.Range(0f, 1f);
 
         if (rand < easyWaveProbability)
         {

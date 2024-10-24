@@ -16,12 +16,13 @@ MonoBehaviour:
   lifes: 3
   combo: 3
   multipleWaves: 2
-  newWordProbability: 0.5
+  newWordProbability: 0.691
+  progressiveSpeed: 0.5
   simplePoints: 0
   simpleSpeed: 8
-  easySpeed: 18
+  easySpeed: 17
   mediumSpeed: 12
-  hardSpeed: 8
+  hardSpeed: 9
   goalRadius: 0.31
   classicFontSize: 5
   classicFont: {fileID: 11400000, guid: ff289a50614dbe747a44f7437a12db77, type: 2}
@@ -30,7 +31,11 @@ MonoBehaviour:
   spacing: 0
   waveAmplitude: 0.1
   waveFreq: 5
-  tutoWaveSpawnRate: 2
+  tutoFirstSpawn: 5
+  tutoSecondSpawn: 5
+  tutoThirdSpawn: 5
+  tutoFourthSpawn: 5
+  tutoLastSpawn: 5
   easyWaitTime: 1
   easySpawnRate: 0.5
   e_wordsPerBurst: 2

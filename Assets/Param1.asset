@@ -16,7 +16,8 @@ MonoBehaviour:
   lifes: 3
   combo: 3
   multipleWaves: 2
-  newWordProbability: 0.5
+  newWordProbability: 0.612
+  progressiveSpeed: 0
   simplePoints: 0
   simpleSpeed: 6
   easySpeed: 14
@@ -30,7 +31,11 @@ MonoBehaviour:
   spacing: 0
   waveAmplitude: 0.1
   waveFreq: 5
-  tutoWaveSpawnRate: 2
+  tutoFirstSpawn: 1
+  tutoSecondSpawn: 3
+  tutoThirdSpawn: 2
+  tutoFourthSpawn: 2
+  tutoLastSpawn: 3
   easyWaitTime: 1.5
   easySpawnRate: 0.8
   e_wordsPerBurst: 2

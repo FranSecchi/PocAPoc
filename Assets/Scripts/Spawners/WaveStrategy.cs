@@ -13,6 +13,7 @@ public abstract class WaveStrategy : ISpawn
     public void Set(List<Spawner> spawners)
     {
         this.spawners = spawners;
+        ResetSpawnPoints();
         Init();
     }
     protected abstract void Init();
