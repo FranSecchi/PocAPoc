@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
 
-internal class EpicDisplay : IDisplayWord
+internal class SmokeDisplay : IDisplayWord
 {
     TextMeshPro m_TextMeshPro;
     private Color color = Color.black;
@@ -13,7 +13,7 @@ internal class EpicDisplay : IDisplayWord
         m_TextMeshPro.alignment = TextAlignmentOptions.Center;
         m_TextMeshPro.color = color;
         m_TextMeshPro.text = word;
-        gameObject.AddComponent<TextWaveAnimation>();
+        gameObject.AddComponent<TextWaveAnimation>().fade = true;
     }
 
     public void PrintRemove(GameObject gameObject, int points)

@@ -25,6 +25,9 @@ public class GameManager : MonoBehaviour
     private bool paused = false;
     private Coroutine waveCoro = null;
     private bool started = false;
+    private bool anyWordMatched = false;
+    private bool chain = false;
+    private bool addedWord = false;
     public static GameParameters Parameter { get => Instance.parameter; }
     public InputHandler InputHandler { get => inputHandler;}
     public List<WordStruct> NewWords { get => newWords; }
@@ -52,9 +55,12 @@ public class GameManager : MonoBehaviour
         waveManager.enabled = false;
         waves = new Queue<ISpawn>();
     }
+    public void AnyWordMatched()
+    {
+        anyWordMatched = true;
+    }
     public void FirstStart()
     {
-        started = true;
         waves.Enqueue(new TutoWave());
         StartGame();
     }
@@ -70,6 +76,7 @@ public class GameManager : MonoBehaviour
     }
     private void StartGame()
     {
+        started = true;
         waves.Enqueue(new EasyWave());
         waves.Enqueue(new MediumWave());
         waves.Enqueue(new PhraseWave());
@@ -83,6 +90,8 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         if (paused) PauseGame();
+        parameter = parameters[0];
+        waveManager.SetProbs();
         waves.Enqueue(new EasyWave());
         StartGame();
     }
@@ -101,6 +110,8 @@ public class GameManager : MonoBehaviour
     {
         if(waveCoro != null) StopCoroutine(waveCoro);
         waveManager.enabled = false;
+        chain = false;
+        pointsManager.BreakCombo();
         RemoveWords();
         if (pointsManager.totalPoints > pointsManager.record)
         {
@@ -112,6 +123,7 @@ public class GameManager : MonoBehaviour
         hud.SetFrases(frases);
         hud.OpenMenu();
         waves = new Queue<ISpawn>();
+        parameter.ResetIncrement();
     }
 
     public void AddWave(ISpawn wave)
@@ -147,20 +159,36 @@ public class GameManager : MonoBehaviour
         allWords[word.spawner].Remove(word);
         if (completed)
         {
-            if (Time.frameCount == lastFrameCalled)
-            {
-                pointsManager.combo(word);
-            }
-            pointsManager.sumPoints(word, completed);
             if (!newWords.Any(w => w.Content == word.word.Content) && word.word.Type != WordType.FRASE)
             {
                 newWords.Add(word.word);
                 pointsManager.displayWord(word.word.Content);
             }
+            if (chain)
+            {
+                chain = false;
+                pointsManager.Chain();
+            }
+            if (!CheckDouble(word))
+            {
+                pointsManager.Combo();
+                pointsManager.sumPoints(word, completed);
+            }
             lastFrameCalled = Time.frameCount;
         }
         else CheckLifes();
     }
+
+    private bool CheckDouble(Word word)
+    {
+        if (Time.frameCount == lastFrameCalled)
+        {
+            pointsManager.Double(word);
+            return true;
+        }
+        return false;
+    }
+
     public void jumpWave(float time)
     {
         waveManager.AddWave();
@@ -173,7 +201,7 @@ public class GameManager : MonoBehaviour
             frases.Add(word);
         }
     }
-    private void RemoveWords()
+    public void RemoveWords()
     {
         foreach (KeyValuePair<Spawner, List<Word>> entry in allWords)
         {
@@ -189,5 +217,18 @@ public class GameManager : MonoBehaviour
     public void IncrementParam(int i)
     {
         parameter = parameters[i];
+    }
+    public void CheckCombos()
+    {
+        if (anyWordMatched && Time.frameCount == lastFrameCalled)
+        {
+            chain = true;
+        }
+        else if (!anyWordMatched && Time.frameCount != lastFrameCalled)
+        {
+            chain = false;
+            pointsManager.BreakCombo();
+        }
+        anyWordMatched = false;
     }
 }

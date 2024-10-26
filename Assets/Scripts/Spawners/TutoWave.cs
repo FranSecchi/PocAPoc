@@ -18,7 +18,7 @@ public class TutoWave : WaveStrategy
         }
         WordStruct wordS = wordCont.Value;
         GameObject go = new GameObject();
-        Word word = (Word)go.AddComponent(typeof(SimpleWord));
+        Word word = (Word)go.AddComponent(typeof(BossWord));
         Spawner spawner;
         Transform spawnPoint;
         switch (i)

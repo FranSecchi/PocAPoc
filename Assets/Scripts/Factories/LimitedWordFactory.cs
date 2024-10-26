@@ -11,7 +11,6 @@ public class LimitedWordFactory : WordFactory
         if (idx == data.Count)
             return null;
         WordStruct ws = new WordStruct(data[idx]);
-        ws.Type = WordType.SIMPLE;
         ++idx;
         return ws;
     }

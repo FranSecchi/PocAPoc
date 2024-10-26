@@ -42,7 +42,7 @@ public class EasyWave : WaveStrategy
         WordDifficulty wordDifficulty;
         if (rand > prob) { wordDifficulty = WordDifficulty.EASY; }
         else { wordDifficulty = WordDifficulty.MEDIUM; }
-        Instantiate(spawner, wordDifficulty, typeof(EasyWord));
+        Instantiate(spawner, wordDifficulty, typeof(SimpleWord));
     }
 
 
@@ -53,7 +53,7 @@ public class EasyWave : WaveStrategy
         max = param.Easy_WordsPerBurst;
         timeInterval = param.EasySpawnRate;
         numberWords = param.Easy_ManyBursts;
-        timeForWave = param.MediumWaitTime;
+        timeForWave = param.EasyWaitTime;
         prob = param.Easy_MediumProbability;
         bursts = 0;
         wordsSpawned = 0;

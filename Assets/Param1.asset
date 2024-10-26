@@ -15,14 +15,15 @@ MonoBehaviour:
   startWave: -1
   lifes: 3
   combo: 3
-  multipleWaves: 2
-  newWordProbability: 0.612
-  progressiveSpeed: 0
+  multipleWaves: 3
+  newWordProbability: 0.4
+  progressiveSpeed: 0.25
   simplePoints: 0
   simpleSpeed: 6
-  easySpeed: 14
-  mediumSpeed: 8
-  hardSpeed: 6
+  easySpeed: 10
+  mediumSpeed: 7
+  hardSpeed: 5
+  timeToFadeWord: 3
   goalRadius: 0.31
   classicFontSize: 5
   classicFont: {fileID: 11400000, guid: ff289a50614dbe747a44f7437a12db77, type: 2}
@@ -32,36 +33,38 @@ MonoBehaviour:
   waveAmplitude: 0.1
   waveFreq: 5
   tutoFirstSpawn: 1
-  tutoSecondSpawn: 3
-  tutoThirdSpawn: 2
+  tutoSecondSpawn: 4
+  tutoThirdSpawn: 3
   tutoFourthSpawn: 2
-  tutoLastSpawn: 3
+  tutoLastSpawn: 2
   easyWaitTime: 1.5
-  easySpawnRate: 0.8
+  easySpawnRate: 1.2
   e_wordsPerBurst: 2
-  e_numberBursts: 5
+  e_numberBursts: 4
   e_burstCooldown: 3
   easy_ProbabilityMedium: 0.2
   mediumWaitTime: 2
-  mediumSpawnRate: 1
-  m_burstCooldown: 5
-  m_wordsPerBurst: 3
-  m_numberBursts: 3
-  medium_ProbabilityEasy: 0.304
-  medium_ProbabilityHard: 0.2
-  medium_ProbabilityTwoWords: 0.4
+  mediumSpawnRate: 0.8
+  m_burstCooldown: 2.5
+  m_wordsPerBurst: 1
+  m_numberBursts: 2
+  medium_ProbabilityEasy: 0.25
+  medium_ProbabilityHard: 0.1
+  medium_ProbabilityTwoWords: 0.272
   frasesWaitTime: 6
-  frasesSpawnRate: 0.8
+  frasesWordsSpawnRate: 0.8
+  frasesSpawnRate: 5
   phrasesForNextWave: 1
   hardWaitTime: 3
-  hardSpawnRate: 2
-  h_burstCooldown: 6
-  h_wordsPerBurst: 3
-  h_numberBursts: 3
-  h_ProbabilityEasy: 0.2
-  h_ProbabilityHard: 0.6
+  hardSpawnRate: 1.5
+  h_burstCooldown: 4
+  h_wordsPerBurst: 2
+  h_numberBursts: 2
+  h_ProbabilityEasy: 0.25
+  h_ProbabilityHard: 0.65
   h_ProbabilityTwoWords: 0.5
-  easyWaveProbability: 0.24435909
-  mediumWaveProbability: 0.3238108
-  hardWaveProbability: 0.19329897
-  phraseWaveProbability: 0.23853117
+  h_fadeProb: 1
+  easyWaveProbability: 0.30054608
+  mediumWaveProbability: 0.2641093
+  hardWaveProbability: 0.25041944
+  phraseWaveProbability: 0.18492514

@@ -55,15 +55,15 @@ public class MediumWave : WaveStrategy
         float rand = Random.Range(0f, 1f);
         if (rand < easyprob) 
         { 
-            Instantiate(spawner, WordDifficulty.EASY, typeof(EasyWord));
+            Instantiate(spawner, WordDifficulty.EASY, typeof(SimpleWord));
         }
         else if(rand < easyprob + hardprob) 
         { 
-            Instantiate(spawner, WordDifficulty.HARD, typeof(HardWord));
+            Instantiate(spawner, WordDifficulty.HARD, typeof(FadeWord));
         }
         else
         {
-            Instantiate(spawner, WordDifficulty.MEDIUM, typeof(MediumWord));
+            Instantiate(spawner, WordDifficulty.MEDIUM, typeof(SimpleWord));
         }
     }
 

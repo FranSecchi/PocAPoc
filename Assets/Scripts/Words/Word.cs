@@ -9,15 +9,18 @@ public abstract class Word : MonoBehaviour
 {
     //protected static bool inserted;
     public GameManager gameManager;
+    public GameParameters parameter;
     public InputHandler subject;
     public Spawner spawner;
 
     public  WordStruct word;
+    public WordDifficulty difficulty;
     protected string normalizedWord;
     protected IDisplayWord display;
     protected Transform goal;
     protected int points;
     protected float speed;
+    protected string seq = "";
     protected abstract void Step();
 
     #region Enablers
@@ -38,19 +41,52 @@ public abstract class Word : MonoBehaviour
     private void Awake()
     {
         gameManager = GameManager.Instance;
+        parameter = GameManager.Parameter;
         subject = gameManager.InputHandler;
         goal = gameManager.Goal;
     }
     // Start is called before the first frame update
     void Start()
     {
+        Init();
         gameManager.addWord(this);
         display = DisplayStrategyFactory.GetDisplay(word.Type);
         normalizedWord = NormalizeWord(word.Content);
-        Init();
+        display.Initialize(gameObject, word.Content);
+        points = normalizedWord.Length;
     }
-    protected abstract void Init();
-    public abstract void OnCharPressed(char key);
+    protected virtual void Init()
+    {
+        switch (difficulty)
+        {
+            case WordDifficulty.EASY:
+                speed = parameter.EasySpeed;
+                break;
+            case WordDifficulty.HARD:
+                speed = parameter.HardSpeed;
+                break;
+            case WordDifficulty.MEDIUM:
+                speed = parameter.MediumSpeed;
+                break;
+            default:
+                speed = parameter.SimpleSpeed;
+                break;
+        }
+    }
+    public virtual void OnCharPressed(char key)
+    {
+        seq += key;
+        if (seq == normalizedWord)
+        {
+            Remove(true);
+        }
+        else if (!normalizedWord.StartsWith(seq))
+        {
+            seq = "";
+        }
+        else gameManager.AnyWordMatched();
+        display.UpdateDisplay(gameObject, seq, word.Content);
+    }
     // Update is called once per frame
     void Update()
     {

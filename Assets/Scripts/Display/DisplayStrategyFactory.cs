@@ -15,8 +15,8 @@ public class DisplayStrategyFactory
                 case WordType.SIMPLE:
                     strategies.Add(type, new ClassicDisplay());
                     break;
-                case WordType.HARD:
-                    strategies.Add(type, new EpicDisplay());
+                case WordType.FADE:
+                    strategies.Add(type, new SmokeDisplay());
                     break;
                 case WordType.FRASE:
                     strategies.Add(type, new ClassicDisplay());

@@ -24,6 +24,7 @@ public class InputHandler : MonoBehaviour
                 if (char.IsLetterOrDigit(keyPressed) || char.IsPunctuation(keyPressed) || char.IsSymbol(keyPressed))
                 {
                     charPressed?.Invoke(keyPressed);
+                    if(charPressed != null) GameManager.Instance.CheckCombos();
                 }
             }
         }

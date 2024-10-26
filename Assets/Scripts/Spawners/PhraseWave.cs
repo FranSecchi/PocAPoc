@@ -8,6 +8,8 @@ public class PhraseWave : WaveStrategy
     private Queue<WordStruct> currentWords;
     private WordStruct phrase;
     private int spawnerIndex;
+    private float timeForFrase;
+    private float waitTime = 0f;
     public override void Spawn()
     {
         if (wordsSpawned >= numberWords)
@@ -16,11 +18,13 @@ public class PhraseWave : WaveStrategy
             return;
         }
         time += Time.deltaTime;
-        if (time < timeInterval) return;
+        waitTime += Time.deltaTime;
+        if (time < timeInterval || waitTime < timeForFrase) return;
         if(currentWords.Count <= 0)
         {
             ++wordsSpawned;
             currentWords = GetWords(factory.getWord().Value);
+            waitTime = 0f;
         }
         else Instantiate();
 
@@ -28,13 +32,15 @@ public class PhraseWave : WaveStrategy
 
     protected override void Init()
     {
+        GameParameters param = GameManager.Parameter;
         factory = WordFactoryManager.createPhraseFactory();
         phrase = factory.getWord().Value;
         currentWords = GetWords(phrase);
         spawnerIndex = 0;
-        timeInterval = GameManager.Parameter.PhraseSpawnRate;
-        numberWords = GameManager.Parameter.PhraseNextWave;
-        timeForWave = GameManager.Parameter.HardWaitTime;
+        timeForFrase = param.PhraseSpawnRate;
+        timeInterval = param.PhraseWordsSpawnRate;
+        numberWords = param.PhraseNextWave;
+        timeForWave = param.PharseWaitTime;
     }
     protected void Instantiate()
     {

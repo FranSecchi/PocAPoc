@@ -7,40 +7,27 @@ using TMPro;
 
 public class LanguageDropDown : MonoBehaviour
 {
-    public TMP_Dropdown languageDropdown; 
-    public List<Language> languages;   
+    public Button buttonLanguage1; // Button to select the first language
+    public Button buttonLanguage2; // Button to select the second language
+    public Language language1;     // The language assigned to the first button
+    public Language language2;     // The language assigned to the second button
 
     private void Start()
     {
-        if (languageDropdown == null)
+        // Ensure buttons are assigned; if not, find them on the object
+        if (buttonLanguage1 == null || buttonLanguage2 == null)
         {
-            languageDropdown = GetComponent<TMP_Dropdown>();
+            Debug.LogError("Buttons not assigned in inspector.");
+            return;
         }
 
-        PopulateDropdown();
-
-        languageDropdown.onValueChanged.AddListener(OnLanguageSelected);
+        // Assign language setting to each button's click event
+        buttonLanguage1.onClick.AddListener(() => SetLanguage(language1));
+        buttonLanguage2.onClick.AddListener(() => SetLanguage(language2));
     }
 
-    private void PopulateDropdown()
+    private void SetLanguage(Language language)
     {
-        languageDropdown.ClearOptions();
-
-        List<string> options = new List<string>();
-
-        foreach (var language in languages)
-        {
-            options.Add(language.ToString());
-        }
-
-        languageDropdown.AddOptions(options);
+        Localizator.SetLanguage(language);
     }
-
-    private void OnLanguageSelected(int index)
-    {
-        Language selectedLanguage = languages[index];
-
-        Localizator.SetLanguage(selectedLanguage);
-    }
-
 }

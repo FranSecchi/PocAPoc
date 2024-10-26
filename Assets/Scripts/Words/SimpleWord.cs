@@ -4,30 +4,12 @@ using UnityEngine;
 
 public class SimpleWord : Word
 {
-    private string seq = "";
 
-    public override void OnCharPressed(char key)
-    {
-        //if (inserted == true && seq == "") return;
-        //if (!word.Content.Contains(key)) return;
-        seq += key;
-        //Add check
-        if (!normalizedWord.StartsWith(seq))
-        {
-            seq = "";
-        }
-        display.UpdateDisplay(gameObject, seq, word.Content);
-        if (seq == normalizedWord)
-        {
-            Remove(true);
-        }
-    }
 
     protected override void Init()
     {
-        display.Initialize(gameObject, word.Content);
-        points = word.Content.Length;
-        speed = GameManager.Parameter.SimpleSpeed;
+        word.Type = WordType.SIMPLE;
+        base.Init();
     }
 
     protected override void Step()

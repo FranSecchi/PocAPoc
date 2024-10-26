@@ -44,7 +44,6 @@ public class WordFactoryManager
         foreach (var word in words)
         {
             int length = word.Content.Length;
-
             if(length >= 1 && length < 4) // Easy
             {
                 if (!dic.ContainsKey(WordDifficulty.EASY))
@@ -61,7 +60,7 @@ public class WordFactoryManager
                 }
                 dic[WordDifficulty.MEDIUM].Add(word);
             }
-            else if (length >= 6 && length < 8) // Hard
+            else if (length >= 6) // Hard
             {
                 if (!dic.ContainsKey(WordDifficulty.HARD))
                 {
@@ -90,7 +89,7 @@ public class WordFactoryManager
     private static WordStruct GetWord(string v)
     {
         string[] t = v.Split(new char[] { ';' });
-        WordStruct ws = new WordStruct(t[0], t[1], t[2]);
+        WordStruct ws = new WordStruct(t[0], t[1], t[2].Trim());
         return ws;
     }
 }

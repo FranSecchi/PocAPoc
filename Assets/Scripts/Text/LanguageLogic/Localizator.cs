@@ -45,6 +45,10 @@ public class Localizator : MonoBehaviour
     {
         return Instance.TextData[textKey].GetText(Instance._currentLanguage);
     }
+    public static string GetText(string textKey, Language language)
+    {
+        return Instance.TextData[textKey].GetText(language);
+    }
 
     public static void SetLanguage(Language language)
     {

@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using TMPro;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
 public class UsableWord : MonoBehaviour
@@ -31,17 +32,18 @@ public class UsableWord : MonoBehaviour
     private void OnCharPressed(char key)
     {
         seq += key;
-        if (!normalized.StartsWith(seq))
-        {
-            seq = "";
-        }
-        display.UpdateDisplay(gameObject, seq, text);
         if (seq == normalized)
         {
             dialeg.SetActive(false);
             ca.Transition();
             Destroy(gameObject);
         }
+        else if (!normalized.StartsWith(seq))
+        {
+            seq = "";
+        }
+        else GameManager.Instance.AnyWordMatched();
+        display.UpdateDisplay(gameObject, seq, text);
     }
     private string NormalizeWord(string text)
     {

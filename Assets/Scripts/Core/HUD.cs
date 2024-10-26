@@ -44,7 +44,7 @@ public class HUD : MonoBehaviour
         notebook.SetFrases(frases);
     }
 
-    internal void OpenMenu()
+    public void OpenMenu()
     {
         hudPanel.SetActive(!hudPanel.activeSelf);
     }
@@ -61,5 +61,6 @@ public class HUD : MonoBehaviour
     {
         resumeButton.SetActive(paused);
         hudPanel.SetActive(paused);
+        if(!paused) notebook.CloseBook();
     }
 }

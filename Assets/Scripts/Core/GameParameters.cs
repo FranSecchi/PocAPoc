@@ -20,6 +20,8 @@ public class GameParameters : ScriptableObject
     [SerializeField] private float easySpeed = 5f;
     [SerializeField] private float mediumSpeed = 5f;
     [SerializeField] private float hardSpeed = 10f;
+    [Header("Words")]
+    [SerializeField] private float timeToFadeWord = 3f;
 
     [Space(10)]
     [Header("Word Display Settings")]
@@ -62,6 +64,7 @@ public class GameParameters : ScriptableObject
     [SerializeField] private float medium_ProbabilityTwoWords = 0f;
     [Header("Frases wave")]
     [SerializeField] private float frasesWaitTime = 5f;
+    [SerializeField] private float frasesWordsSpawnRate = 5f;
     [SerializeField] private float frasesSpawnRate = 5f;
     [SerializeField] private int phrasesForNextWave = 10;
     [Header("Hard Wave")]
@@ -76,6 +79,8 @@ public class GameParameters : ScriptableObject
     [SerializeField] private float h_ProbabilityHard = 0f;
     [Range(0, 1)]
     [SerializeField] private float h_ProbabilityTwoWords = 0f;
+    [Range(0, 1)]
+    [SerializeField] private float h_fadeProb = 0f;
 
     [Header("Wave probabilities")]
     [Range(0, 1)]
@@ -89,6 +94,7 @@ public class GameParameters : ScriptableObject
 
     private float increment = 0;
     public void Increment() { increment += progressiveSpeed; }
+    public void ResetIncrement() { increment = 0; }
     private void OnValidate()
     {
         // Calculate the total sum
@@ -113,9 +119,12 @@ public class GameParameters : ScriptableObject
     // General
     public float GoalRadius => goalRadius;
     public int Lifes => lifes;
-    public int ComboMultiplier => combo;
+    public int DoubleMultiplier => combo;
     public float NewWordProb => newWordProbability;
-    
+
+    // Words
+    public float TimeToFadeWord => timeToFadeWord;
+
     // Display
     public float ClassicFontSize => classicFontSize;
     public TMP_FontAsset ClassicFont => classicFont;
@@ -148,6 +157,7 @@ public class GameParameters : ScriptableObject
     public float Medium_ComboProbability => medium_ProbabilityTwoWords;
     // Frase wave
     public float PharseWaitTime => frasesWaitTime;
+    public float PhraseWordsSpawnRate => frasesWordsSpawnRate;
     public float PhraseSpawnRate => frasesSpawnRate;
     public int PhraseNextWave => phrasesForNextWave;
     // Hard wave
@@ -159,10 +169,11 @@ public class GameParameters : ScriptableObject
     public float Hard_EasyProbability => h_ProbabilityEasy;
     public float Hard_HardProbability => h_ProbabilityHard;
     public float Hard_ComboProbability => h_ProbabilityTwoWords;
-
+    public float Hard_FadeProb => h_fadeProb;
     public int WavesMultiple => multipleWaves;
     public float EasyProb => easyWaveProbability;
     public float MediumProb => mediumWaveProbability;
     public float HardProb => hardWaveProbability;
     public float PhraseProb => phraseWaveProbability;
+
 }

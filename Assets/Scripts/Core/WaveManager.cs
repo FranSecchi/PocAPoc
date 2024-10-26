@@ -25,8 +25,9 @@ public class WaveManager : MonoBehaviour
         waves = -4;
     }
 
-    private void SetProbs()
+    public void SetProbs()
     {
+        param = GameManager.Parameter;
         easyWaveProbability = param.EasyProb;
         mediumWaveProbability = param.MediumProb;
         hardWaveProbability = param.HardProb;
@@ -47,14 +48,12 @@ public class WaveManager : MonoBehaviour
             if(paramIndex < gameManager.parameters.Count)
             {
                 gameManager.IncrementParam(paramIndex);
-                param = GameManager.Parameter;
                 SetProbs();
             }
             else
             {
                 param.Increment();
             }
-            Debug.Log(param.EasySpeed);
         }
         if (spawner != null) DestroyImmediate(this.spawner as Component);
         this.spawner = spawner;

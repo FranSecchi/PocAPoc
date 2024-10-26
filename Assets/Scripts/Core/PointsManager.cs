@@ -13,6 +13,10 @@ public class PointsManager : MonoBehaviour
     [NonSerialized]
     public int record = 0;
     private Coroutine displayCoroutine;
+    private int combo = 1;
+    private int chainMultiplier = 1;
+    private int lastSum = 0;
+    private bool chain = false;
 
     internal void displayWord(string word)
     {
@@ -64,16 +68,38 @@ public class PointsManager : MonoBehaviour
 
     public void sumPoints(Word word, bool completed)
     {
-        int sum = completed ? word.word.Content.Length : 0;
+        int sum = completed ? word.word.Content.Length * combo * chainMultiplier : 0;
+        sum += chain ? lastSum * 4 : 0;
         totalPoints += sum;
+        lastSum = sum;
+        comboDisplay.PrintPoints(sum);
     }
 
-    internal void combo(Word word)
+    internal void Double(Word word)
     {
-        int points= GameManager.Parameter.ComboMultiplier*word.word.Content.Length;
+        int points= GameManager.Parameter.DoubleMultiplier*word.word.Content.Length*combo;
 
-        comboDisplay.Print(points);
+        comboDisplay.PrintDouble(points);
         totalPoints += points;
     }
 
+    internal void BreakCombo()
+    {
+        if (combo == 1) return;
+        combo = 1;
+        chainMultiplier = 1;
+        comboDisplay.PrintLostCombo();
+    }
+
+    internal void Combo()
+    {
+        ++combo;
+        if (combo > 3) comboDisplay.PrintCombo((combo-1)*chainMultiplier);
+    }
+
+    internal void Chain()
+    {
+        ++chainMultiplier;
+        comboDisplay.PrintChain(chainMultiplier);
+    }
 }

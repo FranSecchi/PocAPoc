@@ -22,6 +22,10 @@ public abstract class LocalizedText : MonoBehaviour
     {
         return Localizator.GetText(textKey, type);
     }
+    protected string GetText(string textKey, Language lang)
+    {
+        return Localizator.GetText(textKey, lang);
+    }
 
-    
+
 }

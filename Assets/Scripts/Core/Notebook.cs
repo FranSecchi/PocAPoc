@@ -6,19 +6,21 @@ using UnityEngine.UI;
 
 public class Notebook : LocalizedText
 {
+    public HUD hud;
     public int maxWordsPerPage = 10;
     public int maxRegionalsPerPage = 10;
     public Transform bookPanel;
     public Transform contentPanel;
     public GameObject wordTextPrefab;
     public GameObject frasesContentPanel;
+    public GameObject titleGO;
     public TextMeshProUGUI fraseText;
     public TextMeshProUGUI fraseDesc;
     public Button wordsButton;
     public Button frasesButton;
     public Button regionalsButton;
-    public Button nextPageButton;
-    public Button backPageButton;
+    public GameObject nextPageButton;
+    public GameObject backPageButton;
 
     private List<WordStruct> words = new List<WordStruct>();
     private List<WordStruct> frases = new List<WordStruct>();
@@ -28,9 +30,11 @@ public class Notebook : LocalizedText
 
     internal void SetWords(List<WordStruct> inputWords)
     {
+        words.Clear();
+        regionals.Clear();
         foreach (var word in inputWords)
         {
-            if (word.Dialect != "català")
+            if (word.Dialect != "catala")
             {
                 regionals.Add(word);
             }
@@ -52,16 +56,17 @@ public class Notebook : LocalizedText
     // Called when the player clicks the UI button to open the book
     public void OpenBook()
     {
-        if (bookPanel.gameObject.activeSelf)
-        {
-            bookPanel.gameObject.SetActive(false);
-            return;
-        }
         bookPanel.gameObject.SetActive(true);
         OpenWords();
     }
+    public void CloseBook()
+    {
+        bookPanel.gameObject.SetActive(false);
+        hud.OpenMenu();
+    }
     public void OpenWords()
     {
+        titleGO.SetActive(true);
         wordsButton.enabled = false;
         frasesButton.enabled = frases.Count > 0;
         regionalsButton.enabled = regionals.Count > 0;
@@ -72,6 +77,7 @@ public class Notebook : LocalizedText
     }
     public void OpenFrases()
     {
+        titleGO.SetActive(false);
         frasesButton.enabled = false;
         regionalsButton.enabled = regionals.Count > 0;
         wordsButton.enabled = true;
@@ -82,6 +88,7 @@ public class Notebook : LocalizedText
     }
     public void OpenRegionals()
     {
+        titleGO.SetActive(true);
         frasesButton.enabled = frases.Count > 0;
         regionalsButton.enabled = false;
         wordsButton.enabled = true;
@@ -104,10 +111,13 @@ public class Notebook : LocalizedText
             wordText.text = words[i].Content;
             GameObject descGO = Instantiate(wordTextPrefab, contentPanel);
             TMP_Text descText = descGO.GetComponent<TMP_Text>();
-            descText.text = GetText(words[i].Description, TextType.Simple);
+            descText.text = GetText(words[i].Description, Language.Spanish);
+            GameObject go = Instantiate(wordTextPrefab, contentPanel);
+            TMP_Text t = go.GetComponent<TMP_Text>();
+            t.text = GetText(words[i].Description, Language.Catalan);
+            t.enableAutoSizing = true;
         }
-        nextPageButton.gameObject.SetActive(currentPage < totalPages - 1);
-        backPageButton.gameObject.SetActive(currentPage > 0);
+        nextPageButton.SetActive(currentPage < totalPages - 1);
     }
     private void ShowRegionalsPage(int pageIndex)
     {
@@ -123,10 +133,13 @@ public class Notebook : LocalizedText
             wordText.text = regionals[i].Content;
             GameObject descGO = Instantiate(wordTextPrefab, contentPanel);
             TMP_Text descText = descGO.GetComponent<TMP_Text>();
-            descText.text = GetText(regionals[i].Description, TextType.Simple);
+            descText.text = GetText(regionals[i].Description, Language.Spanish);
+            GameObject go = Instantiate(wordTextPrefab, contentPanel);
+            TMP_Text t = go.GetComponent<TMP_Text>();
+            t.text = GetText(words[i].Description, Language.Catalan);
+            t.enableAutoSizing = true;
         }
-        nextPageButton.gameObject.SetActive(currentPage < totalPages - 1);
-        backPageButton.gameObject.SetActive(currentPage > 0);
+        nextPageButton.SetActive(currentPage < totalPages - 1);
     }
     private void ShowFrasesPage(int pageIndex)
     {
@@ -141,8 +154,8 @@ public class Notebook : LocalizedText
             fraseText.text = frases[pageIndex].Content;
             fraseDesc.text = frases[pageIndex].Description;
         }
-        nextPageButton.gameObject.SetActive(currentPage < totalPages - 1);
-        backPageButton.gameObject.SetActive(currentPage > 0);
+        nextPageButton.SetActive(currentPage < totalPages - 1);
+        backPageButton.SetActive(currentPage > 0);
     }
     // Helper function to clear the content of the panel
     private void ClearContent()
@@ -175,5 +188,6 @@ public class Notebook : LocalizedText
             if (wordsButton.enabled) ShowRegionalsPage(currentPage);
             else ShowPage(currentPage);
         }
+        else CloseBook();
     }
 }

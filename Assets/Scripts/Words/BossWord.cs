@@ -4,36 +4,19 @@ using UnityEngine;
 
 public class BossWord : Word
 {
-    private string seq = "";
 
-    public override void OnCharPressed(char key)
-    {
-        //if (!word.Content.Contains(key)) return;
-        seq += key;
-        //Add check
-        if (!normalizedWord.StartsWith(seq))
-        {
-            seq = "";
-        }
-        display.UpdateDisplay(gameObject, seq, word.Content);
-        if (seq == normalizedWord)
-        {
-            Remove();
-        }
-    }
 
     protected override void Init()
     {
-        display.Initialize(gameObject, word.Content);
-        points = GameManager.Parameter.SimplePoints;
-        speed = GameManager.Parameter.SimpleSpeed;
+        word.Type = WordType.SIMPLE;
+        base.Init();
     }
 
     protected override void Step()
     {
         if (Vector2.Distance(transform.position, goal.position) < GameManager.Parameter.GoalRadius)
         {
-            Remove();
+            Remove(false);
         }
         else
         {

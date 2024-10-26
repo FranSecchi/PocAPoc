@@ -6,7 +6,7 @@ public class TextWaveAnimation : MonoBehaviour
     private TextMeshPro textMeshPro; // Reference to the TextMesh Pro component
     public float waveFrequency = 2f; // Frequency of the wave
     public float waveAmplitude = 10f; // Amplitude of the wave
-
+    public bool fade = false;
     private void Start()
     {
         waveAmplitude = GameManager.Parameter.WaveAmplitude;
@@ -14,8 +14,27 @@ public class TextWaveAnimation : MonoBehaviour
         textMeshPro = GetComponent<TextMeshPro>();
         // Start the wave animation coroutine
         StartCoroutine(AnimateTextWave());
+        if(fade) StartCoroutine(FadeOut());
     }
+    private IEnumerator FadeOut()
+    {
+        float duration = GameManager.Parameter.TimeToFadeWord;
+        float elapsedTime = 0f;
+        Color startColor = textMeshPro.color;
+        yield return new WaitForSeconds(1f);
+        while (elapsedTime < duration)
+        {
+            float t = elapsedTime / duration;
+            Color currentColor = startColor;
+            currentColor.a = Mathf.Lerp(1f, 0.5f, t);
+            textMeshPro.color = currentColor;
 
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        textMeshPro.text = ""; // Optionally clear the text after fading out
+    }
     private IEnumerator AnimateTextWave()
     {
         // Store the original text

@@ -8,7 +8,6 @@ public class MediumWordFactory : WordFactory
     public override WordStruct? getWord()
     {
         WordStruct ws = new WordStruct(data[Random.Range(0, data.Count)]);
-        ws.Type = WordType.SIMPLE;
         return ws;
     }
 }
