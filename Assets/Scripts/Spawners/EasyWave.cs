@@ -42,16 +42,16 @@ public class EasyWave : WaveStrategy
         WordDifficulty wordDifficulty;
         if (rand > prob) { wordDifficulty = WordDifficulty.EASY; }
         else { wordDifficulty = WordDifficulty.MEDIUM; }
-        Instantiate(spawner, wordDifficulty, typeof(SimpleWord));
+        Instantiate(spawner, wordDifficulty);
     }
 
 
     protected override void Init()
     {
         GameParameters param = GameManager.Parameter;
-        cooldown = param.Easy_BurstCooldown;
         max = param.Easy_WordsPerBurst;
         timeInterval = param.EasySpawnRate;
+        cooldown = param.Easy_BurstCooldown + max*timeInterval;
         numberWords = param.Easy_ManyBursts;
         timeForWave = param.EasyWaitTime;
         prob = param.Easy_MediumProbability;

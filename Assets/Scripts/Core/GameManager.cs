@@ -8,8 +8,11 @@ public class GameManager : MonoBehaviour
 {
     public Transform Goal;
     public HUD hud;
+    public Animator anim;
     public List<GameParameters> parameters;
     public WaveManager waveManager;
+    public AudioManager audioManager;
+    public GameObject hpBar;
     public static GameManager Instance;
 
     private Queue<ISpawn> waves = new Queue<ISpawn>();
@@ -21,7 +24,9 @@ public class GameManager : MonoBehaviour
     private int lastFrameCalled = -1;
     private GameParameters parameter;
 
-    private int lifes = 3;
+    private float maxhp;
+    private float hp;
+    //private int lifes = 3;
     private bool paused = false;
     private Coroutine waveCoro = null;
     private bool started = false;
@@ -52,8 +57,10 @@ public class GameManager : MonoBehaviour
         newWords = new List<WordStruct>();
         frases = new List<WordStruct>();
         inputHandler.escapePressed += PauseGame;
-        waveManager.enabled = false;
+        waveManager.Wait(true);
         waves = new Queue<ISpawn>();
+        maxhp = parameter.maxHp;
+        hp = maxhp;
     }
     public void AnyWordMatched()
     {
@@ -61,14 +68,17 @@ public class GameManager : MonoBehaviour
     }
     public void FirstStart()
     {
+        hpBar.SetActive(true);
         waves.Enqueue(new TutoWave());
         StartGame();
     }
     public void PauseGame()
     {
-        if (lifes == 0 || !started) return;
-        Time.timeScale = paused ? 1f : 0f;
+        if (hp <= 0f || !started) return;
+        hpBar.SetActive(!paused);
         paused = !paused;
+        Time.timeScale = paused ? 0f : 1f;
+        audioManager.Pause(paused);
         hud.SetPoints(pointsManager.totalPoints);
         hud.SetFrases(frases);
         hud.SetWords(newWords);
@@ -76,14 +86,12 @@ public class GameManager : MonoBehaviour
     }
     private void StartGame()
     {
+        audioManager.Play(true);
         started = true;
         waves.Enqueue(new EasyWave());
-        waves.Enqueue(new MediumWave());
-        waves.Enqueue(new PhraseWave());
-        waves.Enqueue(new HardWave());
         RemoveWords();
-        lifes = Parameter.Lifes;
-        hud.SetLifes(lifes);
+        hp = maxhp;
+        hud.UpdateHp(hp, maxhp);
         pointsManager.totalPoints = 0;
         StartNextWave(Parameter.EasyWaitTime);
     }
@@ -96,11 +104,15 @@ public class GameManager : MonoBehaviour
         StartGame();
     }
 
-    private void CheckLifes()
+    public void CheckLifes(int length)
     {
-        --lifes;
-        hud.SetLifes(lifes);
-        if (lifes == 0)
+        //--lifes;
+        //hud.SetLifes(lifes);
+        if(hp <= 0f) return;
+        float i = hp - length;
+        hp = MathF.Max(i, 0f);
+        hud.UpdateHp(hp, maxhp);
+        if (hp <= 0)
         {
             Finish();
         }
@@ -109,7 +121,8 @@ public class GameManager : MonoBehaviour
     private void Finish()
     {
         if(waveCoro != null) StopCoroutine(waveCoro);
-        waveManager.enabled = false;
+        waveManager.Wait(true);
+        hpBar.SetActive(false);
         chain = false;
         pointsManager.BreakCombo();
         RemoveWords();
@@ -124,6 +137,7 @@ public class GameManager : MonoBehaviour
         hud.OpenMenu();
         waves = new Queue<ISpawn>();
         parameter.ResetIncrement();
+        audioManager.Play(false);
     }
 
     public void AddWave(ISpawn wave)
@@ -140,9 +154,9 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator WaitForWave(float sec)
     {
-        waveManager.enabled = false;
+        waveManager.Wait(true);
         yield return new WaitForSeconds(sec);
-        waveManager.enabled = true;
+        waveManager.Wait(false);
         waveCoro = null;
     }
     public void addWord(Word word)
@@ -159,6 +173,10 @@ public class GameManager : MonoBehaviour
         allWords[word.spawner].Remove(word);
         if (completed)
         {
+            anim.SetTrigger("write");
+            float i = hp + parameter.gainHpFactor;
+            hp = Mathf.Min(maxhp, i);
+            hud.UpdateHp(hp, maxhp);
             if (!newWords.Any(w => w.Content == word.word.Content) && word.word.Type != WordType.FRASE)
             {
                 newWords.Add(word.word);
@@ -176,7 +194,7 @@ public class GameManager : MonoBehaviour
             }
             lastFrameCalled = Time.frameCount;
         }
-        else CheckLifes();
+        else CheckLifes(word.word.Content.Length);
     }
 
     private bool CheckDouble(Word word)
@@ -210,7 +228,7 @@ public class GameManager : MonoBehaviour
 
             foreach (Word word in words)
             {
-                if (word != null) word.Remove();
+                word.Remove();
             }
         }
     }
@@ -227,6 +245,7 @@ public class GameManager : MonoBehaviour
         else if (!anyWordMatched && Time.frameCount != lastFrameCalled)
         {
             chain = false;
+            hp -= parameter.loseHpFactor;
             pointsManager.BreakCombo();
         }
         anyWordMatched = false;

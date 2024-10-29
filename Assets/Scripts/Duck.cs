@@ -8,6 +8,7 @@ using System.Globalization;
 
 public class Duck : MonoBehaviour
 {
+    public Animator anim;
     public GameObject pop;
     public TextMeshPro tmp;
     public float showTime;
@@ -44,6 +45,7 @@ public class Duck : MonoBehaviour
     {
         GameManager.Instance.InputHandler.charPressed += OnCharPressed;
         pop.SetActive(true);
+        anim.SetTrigger("cuac");
         yield return new WaitForSeconds(showTime);
         GameManager.Instance.InputHandler.charPressed -= OnCharPressed;
         pop.SetActive(false);

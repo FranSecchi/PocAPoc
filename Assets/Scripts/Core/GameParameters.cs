@@ -7,6 +7,9 @@ public class GameParameters : ScriptableObject
     [SerializeField] public int startWave = 0;
     [Header("General Parameters")]
     [SerializeField] private int lifes = 3;
+    public float maxHp;
+    public float loseHpFactor;
+    public float gainHpFactor;
     [SerializeField] private int combo = 3;
     [SerializeField] private int multipleWaves = 1;
     [Range(0, 1)]
@@ -16,18 +19,27 @@ public class GameParameters : ScriptableObject
     [Space(10)]
     [Header("Word Speeds")]
     [SerializeField] private int simplePoints = 0;
+    [SerializeField] private float bossSpeed = 5f;
     [SerializeField] private float simpleSpeed = 5f;
     [SerializeField] private float easySpeed = 5f;
     [SerializeField] private float mediumSpeed = 5f;
     [SerializeField] private float hardSpeed = 10f;
     [Header("Words")]
     [SerializeField] private float timeToFadeWord = 3f;
+    [Range(0, 1)]
+    [SerializeField] private float simpleProb = 0f;
+    [Range(0, 1)]
+    [SerializeField] private float fadeProb = 0f;
+    [Range(0, 1)]
+    [SerializeField] private float horitProb = 0f;
 
     [Space(10)]
     [Header("Word Display Settings")]
     [SerializeField] private float goalRadius = 1f;
     [SerializeField] private float classicFontSize = 5f;
     [SerializeField] private TMP_FontAsset classicFont;
+    [SerializeField] private Color normalColor;
+    [SerializeField] private Color correctColor;
     [SerializeField] private float epicFont = 5f;
     [SerializeField] private float pointsFont = 5f;
     [SerializeField] private float spacing = 5f;
@@ -79,8 +91,6 @@ public class GameParameters : ScriptableObject
     [SerializeField] private float h_ProbabilityHard = 0f;
     [Range(0, 1)]
     [SerializeField] private float h_ProbabilityTwoWords = 0f;
-    [Range(0, 1)]
-    [SerializeField] private float h_fadeProb = 0f;
 
     [Header("Wave probabilities")]
     [Range(0, 1)]
@@ -108,9 +118,20 @@ public class GameParameters : ScriptableObject
             hardWaveProbability /= total;
             phraseWaveProbability /= total;
         }
+        // Calculate the total sum
+        total = fadeProb + simpleProb + horitProb;
+
+        // If the total is greater than 1, normalize the probabilities
+        if (total > 1f)
+        {
+            fadeProb /= total;
+            simpleProb /= total;
+            horitProb /= total;
+        }
     }
     // Words
-    public int SimplePoints => simplePoints; 
+    public int SimplePoints => simplePoints;
+    public float BossSpeed => (bossSpeed + increment) / 10f;
     public float SimpleSpeed => (simpleSpeed + increment) / 10f;
     public float EasySpeed => (easySpeed + increment) / 10f;
     public float MediumSpeed => (mediumSpeed + increment) / 10f;
@@ -124,10 +145,15 @@ public class GameParameters : ScriptableObject
 
     // Words
     public float TimeToFadeWord => timeToFadeWord;
+    public float SimpleProb => simpleProb;
+    public float FadeProb => fadeProb;
+    public float HoritProb => horitProb;
 
     // Display
     public float ClassicFontSize => classicFontSize;
     public TMP_FontAsset ClassicFont => classicFont;
+    public Color NormalColor => normalColor;
+    public Color CorrectColor => correctColor;
     public float EpicFont => epicFont;
     public float PointsFont => pointsFont;
     public float LettersSpacing => spacing;
@@ -169,7 +195,6 @@ public class GameParameters : ScriptableObject
     public float Hard_EasyProbability => h_ProbabilityEasy;
     public float Hard_HardProbability => h_ProbabilityHard;
     public float Hard_ComboProbability => h_ProbabilityTwoWords;
-    public float Hard_FadeProb => h_fadeProb;
     public int WavesMultiple => multipleWaves;
     public float EasyProb => easyWaveProbability;
     public float MediumProb => mediumWaveProbability;

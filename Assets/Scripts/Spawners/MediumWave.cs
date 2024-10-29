@@ -55,24 +55,24 @@ public class MediumWave : WaveStrategy
         float rand = Random.Range(0f, 1f);
         if (rand < easyprob) 
         { 
-            Instantiate(spawner, WordDifficulty.EASY, typeof(SimpleWord));
+            Instantiate(spawner, WordDifficulty.EASY);
         }
         else if(rand < easyprob + hardprob) 
         { 
-            Instantiate(spawner, WordDifficulty.HARD, typeof(FadeWord));
+            Instantiate(spawner, WordDifficulty.HARD);
         }
         else
         {
-            Instantiate(spawner, WordDifficulty.MEDIUM, typeof(SimpleWord));
+            Instantiate(spawner, WordDifficulty.MEDIUM);
         }
     }
 
     protected override void Init()
     {
         GameParameters param = GameManager.Parameter;
-        cooldown = param.Medium_BurstCooldown;
         max = param.Medium_WordsPerBurst;
         timeInterval = param.MediumSpawnRate;
+        cooldown = param.Medium_BurstCooldown + max * timeInterval;
         numberWords = param.Medium_ManyBursts;
         timeForWave = param.MediumWaitTime;
         comboprob = param.Medium_ComboProbability;

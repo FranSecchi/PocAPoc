@@ -1,18 +1,19 @@
-﻿using UnityEngine;
-using TMPro;
+﻿using TMPro;
+using UnityEngine;
 
-internal class SmokeDisplay : IDisplayWord
+public class SmokeDisplay : IDisplayWord
 {
-    TextMeshPro m_TextMeshPro;
-    private Color color = Color.black;
+    private TextMeshPro m_TextMeshPro;
+
     public void Initialize(GameObject gameObject, string word)
     {
         m_TextMeshPro = gameObject.AddComponent<TextMeshPro>();
         m_TextMeshPro.font = GameManager.Parameter.ClassicFont;
         m_TextMeshPro.fontSize = GameManager.Parameter.EpicFont;
         m_TextMeshPro.alignment = TextAlignmentOptions.Center;
-        m_TextMeshPro.color = color;
+        m_TextMeshPro.color = Color.black;
         m_TextMeshPro.text = word;
+
         gameObject.AddComponent<TextWaveAnimation>().fade = true;
     }
 
@@ -26,11 +27,25 @@ internal class SmokeDisplay : IDisplayWord
         }
     }
 
-
     public void UpdateDisplay(GameObject gameObject, string currentSequence, string fullWord)
     {
         m_TextMeshPro = gameObject.GetComponent<TextMeshPro>();
-        string highlighted = "<color=purple>" + currentSequence + "</color>" + fullWord.Substring(currentSequence.Length);
+        
+        int highlightEnd = 0;
+        int currentIndex = 0;
+
+        while (currentIndex < currentSequence.Length && highlightEnd < fullWord.Length)
+        {
+            if (char.IsPunctuation(fullWord[highlightEnd]))
+            {
+                highlightEnd++;
+            }
+            highlightEnd++;
+            currentIndex++;
+        }
+        string highlighted = "<color=green>" + fullWord.Substring(0, highlightEnd) + "</color>"
+                           + fullWord.Substring(highlightEnd);
+
         m_TextMeshPro.text = highlighted;
     }
 }

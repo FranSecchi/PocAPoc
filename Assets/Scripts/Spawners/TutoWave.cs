@@ -18,35 +18,34 @@ public class TutoWave : WaveStrategy
         }
         WordStruct wordS = wordCont.Value;
         GameObject go = new GameObject();
-        Word word = (Word)go.AddComponent(typeof(BossWord));
+        GameObject r;
+        Word word = (Word)go.AddComponent(typeof(FraseWord));
         Spawner spawner;
-        Transform spawnPoint;
         switch (i)
         {
             case 0:
-                spawner = spawners[1];
-                spawnPoint = spawner.spawnPoints[0];
+                spawner = spawners[2];
                 timeInterval = param.TutoSecondSpawn;
+                WordSpawner wordSpawner = go.AddComponent<WordSpawner>();
+                wordSpawner.SpawnWord(1, go.transform);
                 break;
             case 1:
-                spawner = spawners[3];
-                spawnPoint = spawner.spawnPoints[0];
+                spawner = spawners[4];
                 timeInterval = param.TutoThirdSpawn;
                 break;
             case 2:
-                spawner = spawners[2];
-                spawnPoint = spawner.spawnPoints[0];
+                spawner = spawners[1];
                 timeInterval = param.TutoFourthSpawn;
                 break;
             case 3:
-                spawner = spawners[1];
-                spawnPoint = spawner.spawnPoints[2];
+                spawner = spawners[3];
                 timeInterval = param.TutoSecondSpawn;
                 break;
             case 4:
-                spawner = spawners[1];
-                spawnPoint = spawner.spawnPoints[0];
+                spawner = spawners[2];
                 timeInterval = param.TutoSecondSpawn;
+                WordSpawner ws = go.AddComponent<WordSpawner>();
+                ws.SpawnWord(0, go.transform);
                 break;
             default:
                 throw new System.Exception("Tuto bugg");
@@ -56,7 +55,7 @@ public class TutoWave : WaveStrategy
         word.spawner = spawner;
 
         i++;
-        go.transform.position = spawnPoint.position;
+        go.transform.position = spawner.transform.position;
         time = 0f;
     }
 

@@ -8,15 +8,22 @@ using UnityEngine.UI;
 
 public class HUD : MonoBehaviour
 {
+    public Sprite lapiz;
+    public Sprite lapiz_roto;
+    public Image hp;
     public GameObject dialeg;
     public Notebook notebook;
     public GameObject hudPanel;
     public GameObject resumeButton;
-    public TextMeshProUGUI lifesTMP;
+    public Image[] lifesRend;
     public TextMeshProUGUI pointsTMP;
     public TextMeshProUGUI recordTMP;
     public GameObject newRecordDisplay;
 
+    public void UpdateHp(float i, float x)
+    {
+        hp.fillAmount = i == 0f ? 0f : i / x;
+    }
     public void Restart()
     {
         resumeButton.SetActive(false);
@@ -36,7 +43,11 @@ public class HUD : MonoBehaviour
 
     internal void SetLifes(int lifes)
     {
-        lifesTMP.text = lifes.ToString();
+        lifesRend[0].transform.parent.gameObject.SetActive(lifes>0);
+        for (int i = 0; i < lifesRend.Length; i++)
+        {
+            lifesRend[i].sprite = i < lifes ? lapiz : lapiz_roto;
+        }
     }
 
     internal void SetFrases(List<WordStruct> frases)
@@ -61,6 +72,6 @@ public class HUD : MonoBehaviour
     {
         resumeButton.SetActive(paused);
         hudPanel.SetActive(paused);
-        if(!paused) notebook.CloseBook();
+        notebook.CloseBook();
     }
 }

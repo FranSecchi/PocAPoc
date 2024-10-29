@@ -51,34 +51,32 @@ public class HardWave : WaveStrategy
     private void Instantiate()
     {
         Spawner spawner = RandomSpawner();
-        System.Type type;
         float rand = Random.Range(0f, 1f);
-        type = rand < fadeprob ? typeof(FadeWord) : typeof(SimpleWord);
-        rand = Random.Range(0f, 1f);
         if (rand < easyprob)
         {
-            Instantiate(spawner, WordDifficulty.EASY, type);
+            Instantiate(spawner, WordDifficulty.EASY);
         }
         else if (rand < easyprob + hardprob)
         {
-            Instantiate(spawner, WordDifficulty.HARD, type);
+            Instantiate(spawner, WordDifficulty.HARD);
         }
         else
         {
-            Instantiate(spawner, WordDifficulty.MEDIUM, type);
+            Instantiate(spawner, WordDifficulty.MEDIUM);
         }
     }
 
     protected override void Init()
     {
         GameParameters param = GameManager.Parameter;
-        cooldown = param.Medium_BurstCooldown;
-        max = param.Medium_WordsPerBurst;
+        max = param.Hard_WordsPerBurst;
         timeInterval = param.HardSpawnRate;
+        cooldown = param.Hard_BurstCooldown + max * timeInterval;
         numberWords = param.Hard_ManyBursts;
         timeForWave = param.HardWaitTime;
         comboprob = param.Hard_ComboProbability;
-        fadeprob = param.Hard_FadeProb;
+        hardprob = param.Hard_HardProbability;
+        easyprob = param.Hard_EasyProbability;
     }
 
     public override void JumpWave()

@@ -25,6 +25,7 @@ public enum Language
 {
     Catalan = 0,
     Spanish = 1,
+    English = 2
 }
 
 

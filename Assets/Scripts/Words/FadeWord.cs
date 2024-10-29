@@ -29,15 +29,13 @@ public class FadeWord : Word
         {
             // Calculate the upward and zigzag movement
             elapsedTime += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsedTime / timeToDisappear);
+            float t = speed/2f * Time.deltaTime;
 
             float horizontalOffset = Mathf.Sin(elapsedTime * zigzagFrequency) * zigzagAmplitude;
 
-            // Gradual upward movement reaching target y after timeToDisappear seconds
-            float newY = Mathf.Lerp(startPosition.y, targetPos.y, t);
 
             // Set the new position with zigzagging and gradual vertical movement
-            transform.position = new Vector3(startPosition.x + horizontalOffset, newY, transform.position.z);
+            transform.position = new Vector3(startPosition.x + horizontalOffset, transform.position.y + t, transform.position.z);
         }
     }
 }

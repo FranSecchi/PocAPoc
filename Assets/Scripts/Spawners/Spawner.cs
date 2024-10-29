@@ -25,6 +25,13 @@ public class Spawner : MonoBehaviour
                 return factory;
             }
         }
+        foreach (WordFactory factory in factories)
+        {
+            if (factory.difficulty == WordDifficulty.EASY)
+            {
+                return factory;
+            }
+        }
         throw new InvalidOperationException($"No factory found for difficulty type: {type}");
     }
 }

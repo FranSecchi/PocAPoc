@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class WordFactoryManager
 {
+    public static List<WordStruct> total = new List<WordStruct>();
+    public static List<WordStruct> frases = new List<WordStruct>();
+    public static List<WordStruct> regionals = new List<WordStruct>();
     public static List<WordFactory> createFactories(TextAsset file)
     {
         TextAsset commonFile = Resources.Load<TextAsset>("CommonWords");
@@ -17,10 +20,20 @@ public class WordFactoryManager
         Dictionary<WordDifficulty, List<WordStruct>> wordBuckets = categorizeWords(combinedWords); // Categorize by difficulty
 
         // Create the factories based on word categories
-        factories.Add(new EasyWordFactory(wordBuckets[WordDifficulty.EASY]));
-        factories.Add(new MediumWordFactory(wordBuckets[WordDifficulty.MEDIUM]));
-        factories.Add(new HardWordFactory(wordBuckets[WordDifficulty.HARD]));
+        if (wordBuckets.TryGetValue(WordDifficulty.EASY, out var easyWords))
+        {
+            factories.Add(new EasyWordFactory(easyWords));
+        }
 
+        if (wordBuckets.TryGetValue(WordDifficulty.MEDIUM, out var mediumWords))
+        {
+            factories.Add(new MediumWordFactory(mediumWords));
+        }
+
+        if (wordBuckets.TryGetValue(WordDifficulty.HARD, out var hardWords))
+        {
+            factories.Add(new HardWordFactory(hardWords));
+        }
         return factories;
     }
 
@@ -44,7 +57,7 @@ public class WordFactoryManager
         foreach (var word in words)
         {
             int length = word.Content.Length;
-            if(length >= 1 && length < 4) // Easy
+            if(length >= 1 && length < 5) // Easy
             {
                 if (!dic.ContainsKey(WordDifficulty.EASY))
                 {
@@ -52,7 +65,7 @@ public class WordFactoryManager
                 }
                 dic[WordDifficulty.EASY].Add(word);
             }
-            else if(length >= 4 && length < 6) // Medium
+            else if(length >= 5 && length < 8) // Medium
             {
                 if (!dic.ContainsKey(WordDifficulty.MEDIUM))
                 {
@@ -60,7 +73,7 @@ public class WordFactoryManager
                 }
                 dic[WordDifficulty.MEDIUM].Add(word);
             }
-            else if (length >= 6) // Hard
+            else if (length >= 8) // Hard
             {
                 if (!dic.ContainsKey(WordDifficulty.HARD))
                 {
@@ -90,6 +103,17 @@ public class WordFactoryManager
     {
         string[] t = v.Split(new char[] { ';' });
         WordStruct ws = new WordStruct(t[0], t[1], t[2].Trim());
+
+        if (ws.Dialect == "catala") AddWord(ws, total);
+        else if (ws.Dialect == "-") AddWord(ws, frases);
+        else AddWord(ws, regionals);
         return ws;
+    }
+    private static void AddWord(WordStruct word, List<WordStruct> list)
+    {
+        if (!list.Any(w => w.Description == word.Description))
+        {
+            list.Add(word);
+        }
     }
 }

@@ -7,6 +7,7 @@ public class WaveManager : MonoBehaviour
     private GameManager gameManager;
     private GameParameters param;
     private ISpawn spawner;
+    private bool wait = true;
     private int waves;
     private int paramIndex = 0;
     private float easyWaveProbability;
@@ -18,11 +19,12 @@ public class WaveManager : MonoBehaviour
         
         gameManager = GameManager.Instance; 
         param = GameManager.Parameter;
+        WordFactoryManager.createPhraseFactory();
     }
     private void Start()
     {
         SetProbs();
-        waves = -4;
+        waves = -2;
     }
 
     public void SetProbs()
@@ -36,24 +38,25 @@ public class WaveManager : MonoBehaviour
 
     private void Update()
     {
+        if (wait) return;
         spawn();
         if (Input.GetKeyDown(KeyCode.Space)) spawner.JumpWave();
     }
     public void setSpawner(ISpawn spawner)
     {
         waves++;
+        Debug.Log(waves);
         if (waves > 0 && waves % param.WavesMultiple == 0)
         {
             ++paramIndex;
+            waves = 0;
+            Debug.Log(paramIndex);
             if(paramIndex < gameManager.parameters.Count)
             {
                 gameManager.IncrementParam(paramIndex);
                 SetProbs();
             }
-            else
-            {
-                param.Increment();
-            }
+            param.Increment();
         }
         if (spawner != null) DestroyImmediate(this.spawner as Component);
         this.spawner = spawner;
@@ -84,5 +87,10 @@ public class WaveManager : MonoBehaviour
         {
             gameManager.AddWave(new PhraseWave());
         }
+    }
+
+    internal void Wait(bool v)
+    {
+        wait = v;
     }
 }

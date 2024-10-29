@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
@@ -17,7 +17,7 @@ public abstract class Word : MonoBehaviour
     public WordDifficulty difficulty;
     protected string normalizedWord;
     protected IDisplayWord display;
-    protected Transform goal;
+    protected Vector2 goal;
     protected int points;
     protected float speed;
     protected string seq = "";
@@ -43,7 +43,7 @@ public abstract class Word : MonoBehaviour
         gameManager = GameManager.Instance;
         parameter = GameManager.Parameter;
         subject = gameManager.InputHandler;
-        goal = gameManager.Goal;
+        goal = gameManager.Goal.position;
     }
     // Start is called before the first frame update
     void Start()
@@ -51,7 +51,7 @@ public abstract class Word : MonoBehaviour
         Init();
         gameManager.addWord(this);
         display = DisplayStrategyFactory.GetDisplay(word.Type);
-        normalizedWord = NormalizeWord(word.Content);
+        normalizedWord = NormalizeWord(word.Content.ToLower());
         display.Initialize(gameObject, word.Content);
         points = normalizedWord.Length;
     }
@@ -67,6 +67,9 @@ public abstract class Word : MonoBehaviour
                 break;
             case WordDifficulty.MEDIUM:
                 speed = parameter.MediumSpeed;
+                break;
+            case WordDifficulty.BOSS:
+                speed = parameter.BossSpeed;
                 break;
             default:
                 speed = parameter.SimpleSpeed;
@@ -94,6 +97,7 @@ public abstract class Word : MonoBehaviour
     }
     public void Remove()
     {
+        gameManager.CheckLifes(word.Content.Length);
         display.PrintRemove(gameObject, 0);
         Destroy(gameObject);
     }
@@ -105,10 +109,18 @@ public abstract class Word : MonoBehaviour
     }
     private string NormalizeWord(string text)
     {
-        return string.Concat(
-            text.Normalize(NormalizationForm.FormD)
-                .Where(ch => CharUnicodeInfo.GetUnicodeCategory(ch) != UnicodeCategory.NonSpacingMark &&
-                             char.IsLetterOrDigit(ch)) 
-        ).Normalize(NormalizationForm.FormC);
+        // Decompose the text into base characters and diacritics
+        var normalizedText = text.Normalize(NormalizationForm.FormD);
+
+        // Remove diacritics except for 'ç'
+        var result = string.Concat(
+            normalizedText.Where(
+                ch => CharUnicodeInfo.GetUnicodeCategory(ch) != UnicodeCategory.NonSpacingMark &&
+                             char.IsLetterOrDigit(ch) || ch == '̧'
+            )
+        );
+
+        // Replace decomposed 'ç' with its composed form and recompose the string
+        return result.Replace("ç", "ç").Normalize(NormalizationForm.FormC);
     }
 }

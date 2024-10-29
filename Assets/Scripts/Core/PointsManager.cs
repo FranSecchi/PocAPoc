@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 public class PointsManager : MonoBehaviour
 {
-    public TextMeshProUGUI wordText;
+    public TextMeshPro wordText;
     public ComboDisplay comboDisplay;
     public float fadeTime;
     public float displayTime;

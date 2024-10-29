@@ -11,7 +11,7 @@ public class HardWordFactory : WordFactory
         WordStruct ws;
         float factor = GameManager.Parameter.NewWordProb;
         float minFactor = 0.2f;
-        float decrementFactor = 0.02f;
+        float decrementFactor = 0.001f;
 
         float adjustedFactor = factor - (decrementFactor * currentWords.Count);
 

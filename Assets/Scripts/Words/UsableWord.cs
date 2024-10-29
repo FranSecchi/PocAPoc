@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -11,6 +11,7 @@ public class UsableWord : MonoBehaviour
 {
     public CameraAnimation ca;
     public GameObject dialeg;
+    public GameObject escriu;
     protected IDisplayWord display;
     private string normalized;
     private string text;
@@ -36,6 +37,7 @@ public class UsableWord : MonoBehaviour
         {
             dialeg.SetActive(false);
             ca.Transition();
+            Destroy(escriu);
             Destroy(gameObject);
         }
         else if (!normalized.StartsWith(seq))
@@ -47,10 +49,18 @@ public class UsableWord : MonoBehaviour
     }
     private string NormalizeWord(string text)
     {
-        return string.Concat(
-            text.Normalize(NormalizationForm.FormD)
-                .Where(ch => CharUnicodeInfo.GetUnicodeCategory(ch) != UnicodeCategory.NonSpacingMark &&
-                             char.IsLetterOrDigit(ch))
-        ).Normalize(NormalizationForm.FormC);
+        // Decompose the text into base characters and diacritics
+        var normalizedText = text.Normalize(NormalizationForm.FormD);
+
+        // Remove diacritics except for 'ç'
+        var result = string.Concat(
+            normalizedText.Where(
+                ch => CharUnicodeInfo.GetUnicodeCategory(ch) != UnicodeCategory.NonSpacingMark &&
+                             char.IsLetterOrDigit(ch) || ch == '̧'
+            )
+        );
+
+        // Replace decomposed 'ç' with its composed form and recompose the string
+        return result.Replace("ç", "ç").Normalize(NormalizationForm.FormC);
     }
 }

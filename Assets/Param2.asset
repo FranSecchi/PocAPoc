@@ -14,19 +14,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startWave: -1
   lifes: 3
+  maxHp: 25
+  loseHpFactor: 2
+  gainHpFactor: 0.5
   combo: 3
-  multipleWaves: 3
+  multipleWaves: 2
   newWordProbability: 0.6
-  progressiveSpeed: 0.25
+  progressiveSpeed: 1
   simplePoints: 0
+  bossSpeed: 5
   simpleSpeed: 7
-  easySpeed: 13
+  easySpeed: 11
   mediumSpeed: 9
-  hardSpeed: 7
-  timeToFadeWord: 3
+  hardSpeed: 6
+  timeToFadeWord: 5
+  simpleProb: 0
+  fadeProb: 0.33893278
+  horitProb: 0.66106725
   goalRadius: 0.31
   classicFontSize: 5
   classicFont: {fileID: 11400000, guid: ff289a50614dbe747a44f7437a12db77, type: 2}
+  normalColor: {r: 0, g: 0, b: 0, a: 0}
+  correctColor: {r: 0, g: 0, b: 0, a: 0}
   epicFont: 5
   pointsFont: 6
   spacing: 0
@@ -39,23 +48,23 @@ MonoBehaviour:
   tutoLastSpawn: 5
   easyWaitTime: 1
   easySpawnRate: 0.4
-  e_wordsPerBurst: 2
+  e_wordsPerBurst: 3
   e_numberBursts: 4
-  e_burstCooldown: 1.5
-  easy_ProbabilityMedium: 0.25
-  mediumWaitTime: 1.5
-  mediumSpawnRate: 0.8
-  m_burstCooldown: 4
+  e_burstCooldown: 2
+  easy_ProbabilityMedium: 0.162
+  mediumWaitTime: 1
+  mediumSpawnRate: 0.38
+  m_burstCooldown: 3
   m_wordsPerBurst: 2
   m_numberBursts: 3
   medium_ProbabilityEasy: 0
   medium_ProbabilityHard: 0
-  medium_ProbabilityTwoWords: 1
-  frasesWaitTime: 5
+  medium_ProbabilityTwoWords: 0
+  frasesWaitTime: 4
   frasesWordsSpawnRate: 0.8
   frasesSpawnRate: 2
   phrasesForNextWave: 2
-  hardWaitTime: 2.5
+  hardWaitTime: 1
   hardSpawnRate: 2
   h_burstCooldown: 2
   h_wordsPerBurst: 3
@@ -63,8 +72,7 @@ MonoBehaviour:
   h_ProbabilityEasy: 0.52
   h_ProbabilityHard: 0.48
   h_ProbabilityTwoWords: 0.196
-  h_fadeProb: 0.52
-  easyWaveProbability: 0.28917557
-  mediumWaveProbability: 0.31361946
-  hardWaveProbability: 0.104922056
-  phraseWaveProbability: 0.29228285
+  easyWaveProbability: 0.23533279
+  mediumWaveProbability: 0.7646672
+  hardWaveProbability: 0
+  phraseWaveProbability: 0

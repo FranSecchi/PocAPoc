@@ -7,9 +7,11 @@ public class PhraseWave : WaveStrategy
     private WordFactory factory;
     private Queue<WordStruct> currentWords;
     private WordStruct phrase;
-    private int spawnerIndex;
+    private Spawner spawner;
     private float timeForFrase;
+    private int spawnerIndex;
     private float waitTime = 0f;
+    private bool split;
     public override void Spawn()
     {
         if (wordsSpawned >= numberWords)
@@ -22,39 +24,52 @@ public class PhraseWave : WaveStrategy
         if (time < timeInterval || waitTime < timeForFrase) return;
         if(currentWords.Count <= 0)
         {
+            GameManager.Instance.addPhrase(phrase);
             ++wordsSpawned;
             currentWords = GetWords(factory.getWord().Value);
+            PullPhrase();
+            spawner = RandomSpawner();
             waitTime = 0f;
         }
         else Instantiate();
 
     }
-
+    private void PullPhrase()
+    {
+        phrase = factory.getWord().Value;
+        if (split) currentWords = GetWords(phrase);
+        else
+        {
+            currentWords = new Queue<WordStruct>();
+            currentWords.Enqueue(phrase);
+        }
+        timeForFrase = GameManager.Parameter.PhraseSpawnRate + timeInterval * currentWords.Count;
+    }
     protected override void Init()
     {
         GameParameters param = GameManager.Parameter;
         factory = WordFactoryManager.createPhraseFactory();
-        phrase = factory.getWord().Value;
-        currentWords = GetWords(phrase);
-        spawnerIndex = 0;
-        timeForFrase = param.PhraseSpawnRate;
+        split = true;
         timeInterval = param.PhraseWordsSpawnRate;
         numberWords = param.PhraseNextWave;
         timeForWave = param.PharseWaitTime;
+        spawner = RandomSpawner();
+        spawnerIndex = 0;
+        PullPhrase();
     }
     protected void Instantiate()
     {
-        if (spawnerIndex >= spawners.Count) spawnerIndex = 0;
-        Spawner spawner = spawners[spawnerIndex];
 
+        if (split && spawnerIndex >= spawners.Count) spawnerIndex = 0;
+        if (split) spawner = spawners[spawnerIndex];
         GameObject go = new GameObject();
-        Word word = (Word)go.AddComponent(typeof(SimpleWord));
+        Word word = (Word)go.AddComponent(typeof(FraseWord));
 
         word.word = currentWords.Dequeue();
         word.spawner = spawner;
 
-        go.transform.position = spawner.transform.position;
         spawnerIndex++;
+        go.transform.position = spawner.transform.position;
         time = 0f;
     }
 
