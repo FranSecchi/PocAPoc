@@ -17,7 +17,7 @@ public class HoritWord : Word
         Vector2 directionToGoal = (goal - (Vector2)transform.position).normalized;
 
         // Randomize the path by adding a small offset angle to the goal direction
-        float angleOffset = Random.Range(-60f, 60f); // Small angle for variation
+        float angleOffset = Random.Range(-40f, 40f); // Small angle for variation
         float radians = angleOffset * Mathf.Deg2Rad;
 
         // Calculate random direction toward the goal

@@ -40,7 +40,6 @@ public class WaveManager : MonoBehaviour
     {
         if (wait) return;
         spawn();
-        if (Input.GetKeyDown(KeyCode.Space)) spawner.JumpWave();
     }
     public void setSpawner(ISpawn spawner)
     {
@@ -56,7 +55,7 @@ public class WaveManager : MonoBehaviour
                 gameManager.IncrementParam(paramIndex);
                 SetProbs();
             }
-            param.Increment();
+            else param.Increment();
         }
         if (spawner != null) DestroyImmediate(this.spawner as Component);
         this.spawner = spawner;

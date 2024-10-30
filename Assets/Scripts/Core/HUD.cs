@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class HUD : MonoBehaviour
 {
+    public Image cara;
+    public Sprite[] Caras;
     public Sprite lapiz;
     public Sprite lapiz_roto;
     public Image hp;
@@ -22,7 +24,11 @@ public class HUD : MonoBehaviour
 
     public void UpdateHp(float i, float x)
     {
-        hp.fillAmount = i == 0f ? 0f : i / x;
+        float p = i == 0f ? 0f : i / x;
+        if (p < 1f / 3f) cara.sprite = Caras[2];
+        else if (p < 2f / 3f) cara.sprite = Caras[1];
+        else cara.sprite = Caras[0];
+        hp.fillAmount = p;
     }
     public void Restart()
     {

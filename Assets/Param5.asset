@@ -18,19 +18,19 @@ MonoBehaviour:
   loseHpFactor: 2
   gainHpFactor: 0.5
   combo: 3
-  multipleWaves: 1
-  newWordProbability: 0.735
-  progressiveSpeed: 1.5
+  multipleWaves: 3
+  newWordProbability: 0.536
+  progressiveSpeed: 1
   simplePoints: 0
-  bossSpeed: 4
-  simpleSpeed: 7
-  easySpeed: 12
+  bossSpeed: 5
+  simpleSpeed: 2
+  easySpeed: 11
   mediumSpeed: 10
-  hardSpeed: 8
-  timeToFadeWord: 5
+  hardSpeed: 6
+  timeToFadeWord: 8
   simpleProb: 0
-  fadeProb: 0.33530492
-  horitProb: 0.6646951
+  fadeProb: 0.30973187
+  horitProb: 0.6902681
   goalRadius: 0.31
   classicFontSize: 5
   classicFont: {fileID: 11400000, guid: ff289a50614dbe747a44f7437a12db77, type: 2}
@@ -47,32 +47,33 @@ MonoBehaviour:
   tutoFourthSpawn: 5
   tutoLastSpawn: 5
   easyWaitTime: 0.5
-  easySpawnRate: 0.4
-  e_wordsPerBurst: 4
+  easySpawnRate: 0.3
+  e_wordsPerBurst: 5
   e_numberBursts: 5
-  e_burstCooldown: 1
-  easy_ProbabilityMedium: 0.275
+  e_burstCooldown: 0.75
+  easy_ProbabilityMedium: 0.22
   mediumWaitTime: 1
-  mediumSpawnRate: 0.8
-  m_burstCooldown: 1
-  m_wordsPerBurst: 4
-  m_numberBursts: 2
-  medium_ProbabilityEasy: 0.161
-  medium_ProbabilityHard: 0.188
-  medium_ProbabilityTwoWords: 1
+  mediumSpawnRate: 0.7
+  m_burstCooldown: 1.5
+  m_wordsPerBurst: 3
+  m_numberBursts: 3
+  medium_ProbabilityEasy: 0.256
+  medium_ProbabilityHard: 0.16
+  medium_ProbabilityTwoWords: 0.596
   frasesWaitTime: 4
   frasesWordsSpawnRate: 0.8
   frasesSpawnRate: 2
-  phrasesForNextWave: 2
+  phrasesForNextWave: 1
   hardWaitTime: 1
   hardSpawnRate: 1
-  h_burstCooldown: 1
+  h_burstCooldown: 1.5
   h_wordsPerBurst: 3
   h_numberBursts: 3
-  h_ProbabilityEasy: 0.179
-  h_ProbabilityHard: 0.753
-  h_ProbabilityTwoWords: 0.595
-  easyWaveProbability: 0.19110192
-  mediumWaveProbability: 0.2581515
-  hardWaveProbability: 0.343658
-  phraseWaveProbability: 0.20708859
+  h_ProbabilityEasy: 0.272
+  h_ProbabilityHard: 0.704
+  h_ProbabilityTwoWords: 0.464
+  easyWaveProbability: 0.28501335
+  mediumWaveProbability: 0.22784004
+  hardWaveProbability: 0.15736039
+  phraseWaveProbability: 0.32978624
+  increment: 0

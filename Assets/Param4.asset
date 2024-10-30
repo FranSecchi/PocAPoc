@@ -18,19 +18,19 @@ MonoBehaviour:
   loseHpFactor: 2
   gainHpFactor: 0.5
   combo: 3
-  multipleWaves: 2
-  newWordProbability: 0.735
+  multipleWaves: 3
+  newWordProbability: 0.36
   progressiveSpeed: 1
   simplePoints: 0
   bossSpeed: 4
-  simpleSpeed: 7
-  easySpeed: 13
-  mediumSpeed: 11
-  hardSpeed: 8
-  timeToFadeWord: 3
-  simpleProb: 0
-  fadeProb: 0.29654098
-  horitProb: 0.703459
+  simpleSpeed: 2
+  easySpeed: 10
+  mediumSpeed: 9
+  hardSpeed: 6
+  timeToFadeWord: 8
+  simpleProb: 0.33629724
+  fadeProb: 0.19018477
+  horitProb: 0.47351798
   goalRadius: 0.31
   classicFontSize: 5
   classicFont: {fileID: 11400000, guid: ff289a50614dbe747a44f7437a12db77, type: 2}
@@ -46,20 +46,20 @@ MonoBehaviour:
   tutoThirdSpawn: 5
   tutoFourthSpawn: 5
   tutoLastSpawn: 5
-  easyWaitTime: 1
+  easyWaitTime: 0.5
   easySpawnRate: 0.4
-  e_wordsPerBurst: 3
-  e_numberBursts: 3
-  e_burstCooldown: 2
+  e_wordsPerBurst: 4
+  e_numberBursts: 4
+  e_burstCooldown: 1
   easy_ProbabilityMedium: 0.275
   mediumWaitTime: 1
-  mediumSpawnRate: 0.8
-  m_burstCooldown: 3
+  mediumSpawnRate: 0.5
+  m_burstCooldown: 0.75
   m_wordsPerBurst: 2
-  m_numberBursts: 2
-  medium_ProbabilityEasy: 0
+  m_numberBursts: 3
+  medium_ProbabilityEasy: 0.244
   medium_ProbabilityHard: 0
-  medium_ProbabilityTwoWords: 1
+  medium_ProbabilityTwoWords: 0.44
   frasesWaitTime: 3
   frasesWordsSpawnRate: 0.8
   frasesSpawnRate: 2
@@ -67,12 +67,13 @@ MonoBehaviour:
   hardWaitTime: 2
   hardSpawnRate: 1
   h_burstCooldown: 3
-  h_wordsPerBurst: 3
+  h_wordsPerBurst: 2
   h_numberBursts: 2
-  h_ProbabilityEasy: 0.213
-  h_ProbabilityHard: 0.742
-  h_ProbabilityTwoWords: 0.729
-  easyWaveProbability: 0.2710057
-  mediumWaveProbability: 0.32288584
-  hardWaveProbability: 0.14709014
-  phraseWaveProbability: 0.25901833
+  h_ProbabilityEasy: 0.248
+  h_ProbabilityHard: 0.692
+  h_ProbabilityTwoWords: 0.548
+  easyWaveProbability: 0.4265069
+  mediumWaveProbability: 0.3320393
+  hardWaveProbability: 0.2414538
+  phraseWaveProbability: 0
+  increment: 0

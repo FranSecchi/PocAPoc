@@ -9,10 +9,12 @@ public class GameManager : MonoBehaviour
     public Transform Goal;
     public HUD hud;
     public Animator anim;
+    public Animator deadAnim;
     public List<GameParameters> parameters;
     public WaveManager waveManager;
     public AudioManager audioManager;
     public GameObject hpBar;
+    public GameObject pauseWord;
     public static GameManager Instance;
 
     private Queue<ISpawn> waves = new Queue<ISpawn>();
@@ -75,8 +77,9 @@ public class GameManager : MonoBehaviour
     public void PauseGame()
     {
         if (hp <= 0f || !started) return;
-        hpBar.SetActive(!paused);
         paused = !paused;
+        hpBar.SetActive(!paused);
+        pauseWord.SetActive(!paused);
         Time.timeScale = paused ? 0f : 1f;
         audioManager.Pause(paused);
         hud.SetPoints(pointsManager.totalPoints);
@@ -86,6 +89,7 @@ public class GameManager : MonoBehaviour
     }
     private void StartGame()
     {
+        hpBar.SetActive(true );
         audioManager.Play(true);
         started = true;
         waves.Enqueue(new EasyWave());
@@ -134,12 +138,17 @@ public class GameManager : MonoBehaviour
         hud.SetPoints(pointsManager.totalPoints);
         hud.SetWords(newWords);
         hud.SetFrases(frases);
-        hud.OpenMenu();
         waves = new Queue<ISpawn>();
         parameter.ResetIncrement();
         audioManager.Play(false);
+        StartCoroutine(OpenBook());
     }
-
+    private IEnumerator OpenBook()
+    {
+        deadAnim.SetTrigger("trig");
+        yield return new WaitForSeconds(1f);
+        hud.OpenMenu();
+    }
     public void AddWave(ISpawn wave)
     {
         waves.Enqueue(wave);
@@ -216,6 +225,7 @@ public class GameManager : MonoBehaviour
     {
         if (!frases.Any(w => w.Content == word.Content))
         {
+            pointsManager.displayWord(word.Content);
             frases.Add(word);
         }
     }
@@ -228,12 +238,13 @@ public class GameManager : MonoBehaviour
 
             foreach (Word word in words)
             {
-                word.Remove();
+                if(word != null) Destroy(word.gameObject);
             }
         }
     }
     public void IncrementParam(int i)
     {
+        parameter.ResetIncrement();
         parameter = parameters[i];
     }
     public void CheckCombos()
@@ -245,7 +256,6 @@ public class GameManager : MonoBehaviour
         else if (!anyWordMatched && Time.frameCount != lastFrameCalled)
         {
             chain = false;
-            hp -= parameter.loseHpFactor;
             pointsManager.BreakCombo();
         }
         anyWordMatched = false;

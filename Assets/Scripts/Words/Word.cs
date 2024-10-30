@@ -19,7 +19,7 @@ public abstract class Word : MonoBehaviour
     protected IDisplayWord display;
     protected Vector2 goal;
     protected int points;
-    protected float speed;
+    public float speed;
     protected string seq = "";
     protected abstract void Step();
 
@@ -57,6 +57,7 @@ public abstract class Word : MonoBehaviour
     }
     protected virtual void Init()
     {
+        Debug.Log("speed" + speed);
         switch (difficulty)
         {
             case WordDifficulty.EASY:
@@ -75,6 +76,7 @@ public abstract class Word : MonoBehaviour
                 speed = parameter.SimpleSpeed;
                 break;
         }
+        Debug.Log("speed" + speed);
     }
     public virtual void OnCharPressed(char key)
     {

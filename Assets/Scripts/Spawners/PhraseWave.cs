@@ -64,7 +64,7 @@ public class PhraseWave : WaveStrategy
         if (split) spawner = spawners[spawnerIndex];
         GameObject go = new GameObject();
         Word word = (Word)go.AddComponent(typeof(FraseWord));
-
+        word.difficulty = WordDifficulty.BOSS;
         word.word = currentWords.Dequeue();
         word.spawner = spawner;
 

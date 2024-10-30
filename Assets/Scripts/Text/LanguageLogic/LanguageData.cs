@@ -23,9 +23,9 @@ public class LanguageData
 
 public enum Language
 {
-    Catalan = 0,
-    Spanish = 1,
-    English = 2
+    Català = 0,
+    Castellà = 1,
+    Anglès = 2
 }
 
 

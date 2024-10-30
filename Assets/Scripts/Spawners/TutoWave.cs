@@ -18,8 +18,8 @@ public class TutoWave : WaveStrategy
         }
         WordStruct wordS = wordCont.Value;
         GameObject go = new GameObject();
-        GameObject r;
         Word word = (Word)go.AddComponent(typeof(FraseWord));
+        word.difficulty = WordDifficulty.BOSS;
         Spawner spawner;
         switch (i)
         {

@@ -153,7 +153,7 @@ public class Notebook : LocalizedText
             GameObject go = Instantiate(wordTextPrefab, contentPanel);
             TMP_Text t = go.GetComponent<TMP_Text>();
             t.margin = new Vector4(0, 0, -80f, 0);
-            t.text = has ? GetText(word.Description, Language.Catalan) : "????";
+            t.text = has ? GetText(word.Description, Language.Català) : "????";
         }
         page1.text = currentPage.ToString();
         page2.text = (currentPage + 1).ToString();
@@ -183,7 +183,7 @@ public class Notebook : LocalizedText
             GameObject go = Instantiate(wordTextPrefab, contentPanel);
             TMP_Text t = go.GetComponent<TMP_Text>();
             t.margin = new Vector4(0, 0, -80f, 0);
-            t.text = has ? GetText(regionalWord.Description, Language.Catalan) : "????";
+            t.text = has ? GetText(regionalWord.Description, Language.Català) : "????";
         }
         page1.text = currentPage.ToString();
         page2.text = (currentPage + 1).ToString();

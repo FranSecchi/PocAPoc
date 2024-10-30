@@ -184,7 +184,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Pots ignorar els accents per ara...
+  m_text: Ignora els accents per ara...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2338196236a70af47bc3f7093218337d, type: 2}
   m_sharedMaterial: {fileID: -6238851688903750369, guid: 2338196236a70af47bc3f7093218337d, type: 2}

@@ -12,8 +12,8 @@ public class AudioManager : MonoBehaviour
     public float loopStartTime;
     private Coroutine coro;
     private bool isPaused;
-    private EventInstance musicEvent;
     private EventInstance peopleEvent;
+    private EventInstance musicEvent;
 
 
     private void Awake()
@@ -29,10 +29,10 @@ public class AudioManager : MonoBehaviour
     void Start()
     {
         musicEvent = CreateEventInstance(music);
+        musicEvent.setParameterByName("Speed", 1f);
         peopleEvent = CreateEventInstance(people);
         peopleEvent.start();
         SetStartPeople(false);
-        musicEvent.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 
     // Update is called once per frame
@@ -55,7 +55,7 @@ public class AudioManager : MonoBehaviour
         else
         {
             // Stop the event with a fade-out
-            musicEvent.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            musicEvent.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             SetStartPeople(false);
         }
     }
@@ -79,10 +79,5 @@ public class AudioManager : MonoBehaviour
         // Set the "StartPeople" parameter on the peopleEvent instance
         float parameterValue = isActive ? 0.0f : 1.0f;
         peopleEvent.setParameterByName("StartPeople", parameterValue);
-    }
-    public void SetMusicSpeed(float speedValue)
-    {
-        // Set the "speed" parameter on the musicEvent instance
-        musicEvent.setParameterByName("speed", Mathf.Min(speedValue, 3f));
     }
 }

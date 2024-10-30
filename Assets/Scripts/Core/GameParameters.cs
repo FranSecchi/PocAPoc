@@ -14,7 +14,7 @@ public class GameParameters : ScriptableObject
     [SerializeField] private int multipleWaves = 1;
     [Range(0, 1)]
     [SerializeField] private float newWordProbability = 1;
-    [SerializeField] private float progressiveSpeed = 0;
+    [SerializeField] private float progressiveSpeed = 0f;
 
     [Space(10)]
     [Header("Word Speeds")]
@@ -102,9 +102,9 @@ public class GameParameters : ScriptableObject
     [Range(0, 1)]
     [SerializeField] private float phraseWaveProbability = 0.1f;
 
-    private float increment = 0;
-    public void Increment() { increment += progressiveSpeed; }
-    public void ResetIncrement() { increment = 0; }
+    [SerializeField] private float increment = 0f;
+    public void Increment() { increment += progressiveSpeed; Debug.Log("inc: " + increment); }
+    public void ResetIncrement() { increment = 0f; }
     private void OnValidate()
     {
         // Calculate the total sum

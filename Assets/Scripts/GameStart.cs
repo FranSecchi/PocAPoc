@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class GameStart : MonoBehaviour
 {
+    public GameObject barra;
     public GameObject startText;
     public GameObject escriu;
     public TextMeshProUGUI textMeshPro; 
@@ -32,7 +33,7 @@ public class GameStart : MonoBehaviour
                 StartCoroutine(TypeText());
             else
             {
-                textMeshPro.text = "";
+                barra.SetActive(false);
                 startText.SetActive(true);
                 escriu.SetActive(true);
             }
@@ -58,5 +59,6 @@ public class GameStart : MonoBehaviour
 
             yield return new WaitForSeconds(typingSpeed); 
         }
+        skipTyping = true;
     }
 }
