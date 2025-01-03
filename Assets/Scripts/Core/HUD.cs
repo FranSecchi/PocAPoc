@@ -14,6 +14,7 @@ public class HUD : MonoBehaviour
     public Sprite lapiz_roto;
     public Image hp;
     public GameObject dialeg;
+    public GameObject keys;
     public Notebook notebook;
     public GameObject hudPanel;
     public GameObject resumeButton;
@@ -79,5 +80,11 @@ public class HUD : MonoBehaviour
         resumeButton.SetActive(paused);
         hudPanel.SetActive(paused);
         notebook.CloseBook();
+        ShowKeys(!paused);
+    }
+
+    internal void ShowKeys(bool v)
+    {
+        keys.SetActive(v);
     }
 }

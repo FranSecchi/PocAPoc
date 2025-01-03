@@ -13,7 +13,7 @@ public class SmokeDisplay : IDisplayWord
         m_TextMeshPro.alignment = TextAlignmentOptions.Center;
         m_TextMeshPro.color = Color.black;
         m_TextMeshPro.text = word;
-
+        UpdateDisplay(gameObject, "", word);
         gameObject.AddComponent<TextWaveAnimation>().fade = true;
     }
 
@@ -30,7 +30,7 @@ public class SmokeDisplay : IDisplayWord
     public void UpdateDisplay(GameObject gameObject, string currentSequence, string fullWord)
     {
         m_TextMeshPro = gameObject.GetComponent<TextMeshPro>();
-        
+
         int highlightEnd = 0;
         int currentIndex = 0;
 
@@ -43,9 +43,22 @@ public class SmokeDisplay : IDisplayWord
             highlightEnd++;
             currentIndex++;
         }
-        string highlighted = "<color=green>" + fullWord.Substring(0, highlightEnd) + "</color>"
-                           + fullWord.Substring(highlightEnd);
+        string highlighted = "<color=green>" + fullWord.Substring(0, highlightEnd) + "</color>";
+        string normal = fullWord.Substring(highlightEnd);
+        if (normal.Length > 0)
+        {
+            string s = "";
+            foreach (char c in normal)
+            {
+                if (!KeysManager.Contains(char.ToUpper(c)))
+                {
+                    s += "<color=red>" + c + "</color>";
+                }
+                else s += c;
+            }
+            normal = s;
+        }
 
-        m_TextMeshPro.text = highlighted;
+        m_TextMeshPro.text = highlighted + normal;
     }
 }

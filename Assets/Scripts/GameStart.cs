@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameStart : MonoBehaviour
@@ -8,6 +9,9 @@ public class GameStart : MonoBehaviour
     public GameObject barra;
     public GameObject startText;
     public GameObject escriu;
+    public GameObject keys;
+    public GameObject tip;
+    public GameObject tip1;
     public TextMeshProUGUI textMeshPro; 
     public float typingSpeed = 0.05f;
     public float wait = 1f;
@@ -16,6 +20,7 @@ public class GameStart : MonoBehaviour
     private string fullText;            
     private string currentText = "";
     private bool skipTyping = false;
+    private bool check = true;
     private int idx = 0;
     private void Start()
     {
@@ -25,20 +30,36 @@ public class GameStart : MonoBehaviour
     private void Update()
     {
         // Check if spacebar is pressed
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (check && Input.GetKeyDown(KeyCode.Space))
         {
-            if(!skipTyping)
-                skipTyping = true;
-            else if (idx < texts.Count)
-                StartCoroutine(TypeText());
-            else
-            {
-                barra.SetActive(false);
-                startText.SetActive(true);
-                escriu.SetActive(true);
-            }
+            BarPress();
         }
     }
+
+    private void OnDisable()
+    {
+        tip.SetActive(false);
+        tip1.SetActive(false);
+        keys.SetActive(false);
+    }
+    public void BarPress()
+    {
+        if (!skipTyping)
+            skipTyping = true;
+        else if (idx < texts.Count)
+            StartCoroutine(TypeText());
+        else
+        {
+            barra.SetActive(false);
+            startText.SetActive(true);
+            escriu.SetActive(true);
+            tip.SetActive(true);
+            tip1.SetActive(true);
+            keys.SetActive(true);
+            check = false;
+        }
+    }
+    
     IEnumerator TypeText()
     {
         fullText = texts[idx];

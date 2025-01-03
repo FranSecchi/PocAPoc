@@ -13,8 +13,10 @@ public class GameManager : MonoBehaviour
     public List<GameParameters> parameters;
     public WaveManager waveManager;
     public AudioManager audioManager;
+    public InputHandler inputHandler;
     public GameObject hpBar;
     public GameObject pauseWord;
+    public UsableWord startWord;
     public static GameManager Instance;
 
     private Queue<ISpawn> waves = new Queue<ISpawn>();
@@ -22,7 +24,6 @@ public class GameManager : MonoBehaviour
     private List<WordStruct> frases;
     private Dictionary<Spawner,List<Word>> allWords;
     private PointsManager pointsManager;
-    private InputHandler inputHandler;
     private int lastFrameCalled = -1;
     private GameParameters parameter;
 
@@ -46,8 +47,6 @@ public class GameManager : MonoBehaviour
     {
         if (Instance == null)
             Instance = this;
-        if(inputHandler == null)
-            inputHandler = gameObject.AddComponent<InputHandler>();
         parameter = parameters[0];
     }
     private void Start()
@@ -95,6 +94,7 @@ public class GameManager : MonoBehaviour
         waves.Enqueue(new EasyWave());
         RemoveWords();
         hp = maxhp;
+        hud.ShowKeys(true);
         hud.UpdateHp(hp, maxhp);
         pointsManager.totalPoints = 0;
         StartNextWave(Parameter.EasyWaitTime);
@@ -127,6 +127,7 @@ public class GameManager : MonoBehaviour
         if(waveCoro != null) StopCoroutine(waveCoro);
         waveManager.Wait(true);
         hpBar.SetActive(false);
+        hud.ShowKeys(false);
         chain = false;
         pointsManager.BreakCombo();
         RemoveWords();
@@ -179,6 +180,7 @@ public class GameManager : MonoBehaviour
 
     public void removeWord(Word word, bool completed)
     {
+        if (word.word.Type == WordType.FRASE) Debug.Log("frase");
         allWords[word.spawner].Remove(word);
         if (completed)
         {
@@ -239,6 +241,22 @@ public class GameManager : MonoBehaviour
             foreach (Word word in words)
             {
                 if(word != null) Destroy(word.gameObject);
+            }
+        }
+    }
+    public void UpdateDisplayWords()
+    {
+        if (startWord != null && startWord.gameObject.activeSelf) startWord.UpdateDisplay();
+        foreach (List<Word> list in allWords.Values)
+        {
+            foreach(Word word in list)
+            {
+                if (word == null) continue;
+                if (word.gameObject == null)
+                {
+                    allWords[word.spawner].Remove(word); continue;
+                }
+                word.UpdateDisplay();
             }
         }
     }

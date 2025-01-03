@@ -4,27 +4,21 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-
-public class ClassicDisplay : IDisplayWord
+internal class StaticDisplay : IDisplayWord
 {
     TextMeshPro m_TextMeshPro;
     private Color color = Color.black;
     public void Initialize(GameObject gameObject, string word)
     {
         m_TextMeshPro = gameObject.GetComponent<TextMeshPro>();
-            if(m_TextMeshPro == null) m_TextMeshPro = gameObject.AddComponent<TextMeshPro>();
-        m_TextMeshPro.font = GameManager.Parameter.ClassicFont;
-        m_TextMeshPro.fontSize = GameManager.Parameter.ClassicFontSize;
-        m_TextMeshPro.alignment = TextAlignmentOptions.Center;
-        m_TextMeshPro.fontWeight = FontWeight.Bold;
-        m_TextMeshPro.color = color;
+        if (m_TextMeshPro == null) m_TextMeshPro = gameObject.AddComponent<TextMeshPro>();
         m_TextMeshPro.text = word;
         UpdateDisplay(gameObject, "", word);
     }
 
     public void PrintRemove(GameObject gameObject, int points)
     {
-        if(points > 0)
+        if (points > 0)
         {
             GameObject go = new GameObject("pointsDisplay");
             PointsDisplay pd = go.AddComponent<PointsDisplay>();
@@ -67,7 +61,7 @@ public class ClassicDisplay : IDisplayWord
         if (normal.Length > 0)
         {
             string s = "";
-            foreach(char c in normal)
+            foreach (char c in normal)
             {
                 if (!KeysManager.Contains(char.ToUpper(c)))
                 {

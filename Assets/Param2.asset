@@ -24,9 +24,9 @@ MonoBehaviour:
   simplePoints: 0
   bossSpeed: 4
   simpleSpeed: 2
-  easySpeed: 8
-  mediumSpeed: 6
-  hardSpeed: 5
+  easySpeed: 6
+  mediumSpeed: 5
+  hardSpeed: 4
   timeToFadeWord: 8
   simpleProb: 0.23431496
   fadeProb: 0
@@ -47,20 +47,20 @@ MonoBehaviour:
   tutoFourthSpawn: 5
   tutoLastSpawn: 5
   easyWaitTime: 1
-  easySpawnRate: 0.6
+  easySpawnRate: 1
   e_wordsPerBurst: 3
   e_numberBursts: 3
-  e_burstCooldown: 1.5
+  e_burstCooldown: 2
   easy_ProbabilityMedium: 0.162
   mediumWaitTime: 1
-  mediumSpawnRate: 0.5
-  m_burstCooldown: 1
+  mediumSpawnRate: 1
+  m_burstCooldown: 2
   m_wordsPerBurst: 2
   m_numberBursts: 2
   medium_ProbabilityEasy: 0
   medium_ProbabilityHard: 0
   medium_ProbabilityTwoWords: 0
-  frasesWaitTime: 3
+  frasesWaitTime: 3.5
   frasesWordsSpawnRate: 0.8
   frasesSpawnRate: 2
   phrasesForNextWave: 1

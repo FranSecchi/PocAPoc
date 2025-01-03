@@ -22,7 +22,7 @@ public class DisplayStrategyFactory
                     strategies.Add(type, new ClassicDisplay());
                     break;
                 case WordType.STATIC:
-                    strategies.Add(type, new ClassicDisplay());
+                    strategies.Add(type, new StaticDisplay());
                     break;
                 // Add more cases for other word types if needed
                 default:

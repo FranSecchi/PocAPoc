@@ -67,6 +67,7 @@ public class PhraseWave : WaveStrategy
         word.difficulty = WordDifficulty.BOSS;
         word.word = currentWords.Dequeue();
         word.spawner = spawner;
+        GameManager.Instance.addWord(word);
 
         spawnerIndex++;
         go.transform.position = spawner.transform.position;
@@ -75,7 +76,6 @@ public class PhraseWave : WaveStrategy
 
     public override void JumpWave()
     {
-        GameManager.Instance.addPhrase(phrase);
         GameManager.Instance.jumpWave(timeForWave);
     }
 

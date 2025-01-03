@@ -16,7 +16,7 @@ public class FraseWord : Word
     {
         if (Vector2.Distance(transform.position, goal) < GameManager.Parameter.GoalRadius)
         {
-            Remove();
+            Remove(false);
         }
         else
         {

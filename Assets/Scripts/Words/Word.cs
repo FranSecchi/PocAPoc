@@ -57,7 +57,6 @@ public abstract class Word : MonoBehaviour
     }
     protected virtual void Init()
     {
-        Debug.Log("speed" + speed);
         switch (difficulty)
         {
             case WordDifficulty.EASY:
@@ -76,7 +75,6 @@ public abstract class Word : MonoBehaviour
                 speed = parameter.SimpleSpeed;
                 break;
         }
-        Debug.Log("speed" + speed);
     }
     public virtual void OnCharPressed(char key)
     {
@@ -96,12 +94,6 @@ public abstract class Word : MonoBehaviour
     void Update()
     {
         Step();
-    }
-    public void Remove()
-    {
-        gameManager.CheckLifes(word.Content.Length);
-        display.PrintRemove(gameObject, 0);
-        Destroy(gameObject);
     }
     protected void Remove(bool completed)
     {
@@ -124,5 +116,10 @@ public abstract class Word : MonoBehaviour
 
         // Replace decomposed 'ç' with its composed form and recompose the string
         return result.Replace("ç", "ç").Normalize(NormalizationForm.FormC);
+    }
+
+    internal void UpdateDisplay()
+    {
+        display.UpdateDisplay(gameObject, seq, word.Content);
     }
 }

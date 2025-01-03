@@ -22,11 +22,11 @@ MonoBehaviour:
   newWordProbability: 1
   progressiveSpeed: 1
   simplePoints: 0
-  bossSpeed: 5
+  bossSpeed: 3
   simpleSpeed: 3
-  easySpeed: 8
-  mediumSpeed: 7
-  hardSpeed: 5
+  easySpeed: 5
+  mediumSpeed: 4
+  hardSpeed: 3
   timeToFadeWord: 8
   simpleProb: 1
   fadeProb: 0
@@ -42,19 +42,19 @@ MonoBehaviour:
   waveAmplitude: 0.1
   waveFreq: 5
   tutoFirstSpawn: 1
-  tutoSecondSpawn: 5
-  tutoThirdSpawn: 4
-  tutoFourthSpawn: 3
-  tutoLastSpawn: 3
-  easyWaitTime: 1
-  easySpawnRate: 0.8
+  tutoSecondSpawn: 6
+  tutoThirdSpawn: 5
+  tutoFourthSpawn: 4
+  tutoLastSpawn: 4
+  easyWaitTime: 1.5
+  easySpawnRate: 1
   e_wordsPerBurst: 3
   e_numberBursts: 3
-  e_burstCooldown: 2
+  e_burstCooldown: 2.5
   easy_ProbabilityMedium: 0.244
-  mediumWaitTime: 2
-  mediumSpawnRate: 1
-  m_burstCooldown: 2.5
+  mediumWaitTime: 2.5
+  mediumSpawnRate: 1.3
+  m_burstCooldown: 3
   m_wordsPerBurst: 2
   m_numberBursts: 2
   medium_ProbabilityEasy: 0.25

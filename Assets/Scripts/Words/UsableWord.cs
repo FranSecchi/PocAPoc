@@ -24,6 +24,7 @@ public class UsableWord : MonoBehaviour
     {
         normalized = NormalizeWord(text.ToLower());
         display = DisplayStrategyFactory.GetDisplay(WordType.STATIC);
+        display.Initialize(gameObject,text);
         GameManager.Instance.InputHandler.charPressed += OnCharPressed;
     }
     private void OnDisable()
@@ -62,5 +63,9 @@ public class UsableWord : MonoBehaviour
 
         // Replace decomposed 'ç' with its composed form and recompose the string
         return result.Replace("ç", "ç").Normalize(NormalizationForm.FormC);
+    }
+    internal void UpdateDisplay()
+    {
+        display.UpdateDisplay(gameObject, seq, text);
     }
 }
